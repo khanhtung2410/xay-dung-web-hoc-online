@@ -1,0 +1,32 @@
+.checkboxes label{
+    display: inline-block;
+    padding-right: 10px;
+    white-space: nowrap;
+}
+.checkboxes input{
+    vertical-align: middle;
+}
+.checkboxes label span{
+    vertical-align: middle;
+}
+.username-input-lable{
+    display: flex;
+    justify-content: space-between;
+}
+.username-input span{
+    font-size: 13px;
+}
+.username-input span button{
+    color: rgb(77, 29, 249);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+}
+.input-boxes input[type=text], input[type=password], input[type=button]{
+    width: 100%;
+    margin: 6px 0px;
+    padding: 14px;
+    box-sizing: border-box;
+}

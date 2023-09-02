@@ -1,0 +1,77 @@
+.card {
+
+    position: relative;
+    background-color: rgba(250, 235, 215, 0.372);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 1.5rem;
+    padding: 1.1rem;
+}
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    background-image: radial-gradient(
+        rgba(54, 114, 151, 0.605) 1px,
+        transparent 1px
+    );
+    background-position: 50% 50%;
+    background-size: 1.1rem 1.1rem;
+    overflow: hidden;
+}
+.card-content > :is(h1,h3,p){
+    text-align: center;
+}
+.card-content > h1 {
+    color: rgba(92, 82, 194, 0.664);
+    font-size: 2.6rem;
+}
+.card-content > h3 {
+    color: aquamarine;
+    font-size: 2.6rem;
+}
+.card ::after{
+    background: linear-gradient(
+        transparent,
+        rgb(67, 158, 218),
+        transparent
+    );
+    height: 70px;
+    width: 1px;
+    position: absolute;
+    left: -1px;
+    top: 65%;
+    content: "";
+    transition: top 600ms ease;
+    opacity: 1;
+}
+
+.card ::after{
+    top: 65%;
+    opacity: 0;
+}
+.card:hover ::after{
+    top: 25%;
+    opacity: 1;
+}
+.bar.button{
+    white-space: normal;
+    background-color: white;
+}
+.bar-item{
+    display: inline-block;
+    flex-direction: row;
+    padding: 8px 16px;
+    background: aliceblue;
+    overflow: hidden;
+    padding-top: 15px;
+}
+.button{
+    color: black;
+    text-decoration: none;
+
+}
+.button:hover{
+    background-color: rgb(44, 21, 0);
+    color: white!important;
+}

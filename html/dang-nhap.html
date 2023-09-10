@@ -10,7 +10,7 @@
 </head>
 <body style="background-image: url(/Untitled.png);">
     <div class="bar">
-        <a class="bar-item button" href="/html/so luoc.html">
+        <a class="bar-item button" href="/html/so-luoc.html">
             <img src="/dragon-removebg-preview.png" style="height: 25px;"></a>
     </div>
     <h1 id="status">LOGIN</h1>
@@ -18,8 +18,9 @@
         <div class="username-input">
             <div class="username-input-lable">
                 <label for="username">Username </label>
-                <span >No account ? 
-                    <button id="change-form" onclick="Signup()">Sign up</button>
+                <span>
+                    <span id="acc-Q">No account ? </span>
+                    <button type="button" id="change-form" onclick="Signup()">Sign up</button>
                 </span>
             </div>
             <div class="input-boxes">
@@ -45,9 +46,20 @@
     </form>
     <script>
         function Signup(){
-            document.getElementById("status").innerHTML ="SIGN UP";
-            document.getElementById("change-form").textContent= "Log in"
-            document.getElementById("confirm").value ="Sign up for free"
+            form = document.getElementById("change-form").textContent;
+            if (form == "Log in") {
+                document.getElementById("change-form").textContent = "Sign up";
+                document.getElementById("status").innerHTML = "LOGIN";
+                document.getElementById("confirm").value = "Log in"
+                document.getElementById("acc-Q").textContent = "No acount ?"//
+            }
+            if (form == "Sign up"){
+                document.getElementById("change-form").textContent = "Log in";
+                document.getElementById("status").innerHTML = "SIGN UP";
+                document.getElementById("confirm").value = "Sign up for free";
+                document.getElementById("acc-Q").innerHTML = "Already have acount ?"//
+            } 
+
         }
     </script>
 </body>

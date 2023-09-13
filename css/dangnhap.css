@@ -1,3 +1,42 @@
+.bar-wrapper{
+    padding-left: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+.hover-text {
+    position: relative;
+}
+.hover-text::before{
+    content: attr(data-hover);
+    visibility: hidden;
+    opacity: 0;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 0;
+    transition: opacity 1s ease-in-out;
+  
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 110%;
+}
+.hover-text:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+.login-box-wrapper{
+    border: 1px solid gray;
+    padding: 20px;
+    background-color: rgb(90, 206, 221);
+    border-radius: 1.5rem;
+    /*chỉnh độ rộng bé nhất,mong muốn,lớn nhất*/
+    width: clamp(300px,55%,400px);
+    /*4 dòng cuối là căn về giữa màn hình*/
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+}
 .checkboxes label{
     display: inline-block;
     padding-right: 10px;
@@ -29,4 +68,13 @@
     margin: 6px 0px;
     padding: 14px;
     box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+#confirm{
+    border-radius: 16px;
+    cursor: pointer;
+}
+#confirm:hover{
+    background-color: aquamarine;
 }

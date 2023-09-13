@@ -4,46 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web tieng anh</title>
-    <link rel="icon" href="/dragon-removebg-preview.png">
+    <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/dangnhap.css">
 </head>
 <body style="background-image: url(/Untitled.png);">
-    <div class="bar">
+    <div class="bar-wrapper">
         <a class="bar-item button" href="/html/so-luoc.html">
-            <img src="/dragon-removebg-preview.png" style="height: 25px;"></a>
+            <img src="/image/icon/dragon-removebg-preview.png" style="height: 25px;"></a>
+        <a class="bar-item button hover-text" title="Close" href="/html/so-luoc.html">
+            <img src="/image/icon/x-icon.png" style="width: 25px; height: 25px; opacity: 0.6;"></a>   
     </div>
-    <h1 id="status">LOGIN</h1>
-    <form>
-        <div class="username-input">
-            <div class="username-input-lable">
-                <label for="username">Username </label>
-                <span>
-                    <span id="acc-Q">No account ? </span>
-                    <button type="button" id="change-form" onclick="Signup()">Sign up</button>
-                </span>
-            </div>
-            <div class="input-boxes">
-                <input type="text" id="username">
-            </div>
+   <!-- Cần chỉnh cái title tooltip -->
+
+    <div class="login-box-wrapper">
+        <div>
+            <h1 id="status">LOGIN</h1>
         </div>
-        <label for="password">Password </label><br>
-        <div class="input-boxes">
-            <input type="password" id="password">
+        <div class="login-warpper">
+            <form>
+                <div class="username-input">
+                    <div class="username-input-lable">
+                        <label for="username">Username </label>
+                        <span>
+                            <span id="acc-Q">No account ? </span>
+                            <button type="button" id="change-form" onclick="Signup()">Sign up</button>
+                        </span>
+                    </div>
+                    <div class="input-boxes">
+                        <input type="text" id="username">
+                    </div>
+                </div>
+                <label for="password">Password </label>
+                <div class="input-boxes">
+                    <input type="password" id="password">
+                </div>
+                <input type="button" id="confirm" value="Log in"><br>
+            </form>  
+            <!--đổi nhận email sang đăng ký-->
+            <form>
+                <div class="checkboxes">
+                    <label><input type="checkbox"><span>Remember me </span></label>
+                </div>
+            </form>
+            <form>
+                <div class="checkboxes">
+                    <label><input type="checkbox"><span>Email me updates and news</span></label>
+                </div>
+            </form>
         </div>
-        <input type="button" id="confirm" value="Log in"><br>
-    </form>  
-    <!--đổi nhận email sang đăng ký-->
-    <form>
-        <div class="checkboxes">
-            <label><input type="checkbox"><span>Remember me </span></label>
-        </div>
-    </form>
-    <form>
-        <div class="checkboxes">
-            <label><input type="checkbox"><span>Email me updates and news</span></label>
-        </div>
-    </form>
+    </div>
+    
     <script>
         function Signup(){
             form = document.getElementById("change-form").textContent;
@@ -51,15 +62,14 @@
                 document.getElementById("change-form").textContent = "Sign up";
                 document.getElementById("status").innerHTML = "LOGIN";
                 document.getElementById("confirm").value = "Log in"
-                document.getElementById("acc-Q").textContent = "No acount ?"//
+                document.getElementById("acc-Q").textContent = "No acount ?"
             }
             if (form == "Sign up"){
                 document.getElementById("change-form").textContent = "Log in";
                 document.getElementById("status").innerHTML = "SIGN UP";
                 document.getElementById("confirm").value = "Sign up for free";
-                document.getElementById("acc-Q").innerHTML = "Already have acount ?"//
+                document.getElementById("acc-Q").innerHTML = "Already have acount ?"
             } 
-
         }
     </script>
 </body>

@@ -12,7 +12,7 @@
     <div class="bar-wrapper">
         <a class="bar-item button" href="/html/so-luoc.html">
             <img src="/image/icon/dragon-removebg-preview.png" style="height: 25px;"></a>
-        <a class="bar-item button hover-text" title="Close" href="/html/so-luoc.html">
+        <a class="bar-item button hover-text" data-hover="Close" href="/html/so-luoc.html">
             <img src="/image/icon/x-icon.png" style="width: 25px; height: 25px; opacity: 0.6;"></a>   
     </div>
    <!-- Cần chỉnh cái title tooltip -->
@@ -39,23 +39,35 @@
                 <div class="input-boxes">
                     <input type="password" id="password">
                 </div>
-                <input type="button" id="confirm" value="Log in"><br>
             </form>  
             <!--đổi nhận email sang đăng ký-->
             <form>
-                <div class="checkboxes">
+                <div id="remember" class="checkboxes">
                     <label><input type="checkbox"><span>Remember me </span></label>
                 </div>
             </form>
+            <div id="pass-validation" >
+                <ul>
+                    <li class="validation">One upercase letter</li>
+                    <li class="validation">One number</li>
+                    <li class="validation">One special letter</li>
+                    <li class="validation">One lowercase letter</li>
+                    <li class="validation">8 charater minimum</li>
+                </ul>
+            <!-- sửa căn chỉnh 2 columns bằng nhau -->
+            <!--xem lại js để vào trang tự chọn 1 trong 2 option-->
+            <!--căn chỉnh lại cái login/sign up form-->
+            </div>
             <form>
-                <div class="checkboxes">
-                    <label><input type="checkbox"><span>Email me updates and news</span></label>
+                <div id="email" class="checkboxes">
+                    <label><input type="checkbox" checked ><span>Email me updates and news</span></label>
                 </div>
             </form>
+            <input type="button" id="confirm" value="Log in"><br>
         </div>
     </div>
-    
-    <script>
+    <script src="/js/so-luoc.js"></script>
+    <script >
         function Signup(){
             form = document.getElementById("change-form").textContent;
             if (form == "Log in") {
@@ -63,12 +75,18 @@
                 document.getElementById("status").innerHTML = "LOGIN";
                 document.getElementById("confirm").value = "Log in"
                 document.getElementById("acc-Q").textContent = "No acount ?"
+                document.getElementById("pass-validation").style.display="none";
+                document.getElementById("email").style.display="none";
+                document.getElementById("remember").style.display="block";
             }
             if (form == "Sign up"){
                 document.getElementById("change-form").textContent = "Log in";
                 document.getElementById("status").innerHTML = "SIGN UP";
                 document.getElementById("confirm").value = "Sign up for free";
                 document.getElementById("acc-Q").innerHTML = "Already have acount ?"
+                document.getElementById("pass-validation").style.display="block";
+                document.getElementById("email").style.display="block";
+                document.getElementById("remember").style.display="none";
             } 
         }
     </script>

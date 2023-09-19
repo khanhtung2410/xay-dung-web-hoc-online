@@ -13,7 +13,8 @@
     text-align: center;
     border-radius: 5px;
     padding: 5px 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
+    background-color: aquamarine;
   
     position: absolute;
     z-index: 1;
@@ -48,6 +49,9 @@
 .checkboxes label span{
     vertical-align: middle;
 }
+.checkboxes{
+    accent-color: green;
+}
 .username-input-lable{
     display: flex;
     justify-content: space-between;
@@ -77,4 +81,10 @@
 }
 #confirm:hover{
     background-color: aquamarine;
+}
+ul{
+    font-size: 12px;
+}
+#pass-validation{
+    column-count: 2;
 }

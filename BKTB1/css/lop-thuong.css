@@ -1,0 +1,46 @@
+.bar-wrapper{
+    padding-left: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ten-lop-wrapper{
+    margin-top: auto;
+}
+.mieu-ta-wrapper{
+    position: relative;
+    background-color: rgb(220, 219, 219);
+    border: 2px solid black;
+    margin-bottom: 15px;
+    margin-top: 60px;
+    border-radius: 1.5rem;
+    width: 80%;
+    left: 10%;
+}
+.tieu-de{
+    border: 1px solid aqua;
+    margin-bottom: 15px;
+    position: relative;
+    left: 5%;
+    width: clamp(200px, 80%, 1500px);
+}
+.tieu-de p{
+    background-color: aqua;
+    border-top: none;
+}
+.danh-sach-wrapper{
+    position: relative;
+    border: 1px solid gray;
+    border-radius: 7px;
+    width: clamp(200px, 80%, 1500px);
+    display: flex;
+    margin-left: 5px;
+    height: max(200px);
+    overflow: scroll;
+    background-color: rgb(220, 219, 219);
+    left: 5%;
+}
+.danh-sach-video {
+    line-height: 40px;
+    padding-left: 15px;   
+}

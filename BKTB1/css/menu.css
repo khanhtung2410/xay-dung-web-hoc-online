@@ -1,0 +1,85 @@
+.card {
+    width: clamp(200px, 70%, 800px);
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgba(250, 235, 215, 0.372);
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 1.5rem;
+    padding: 1.1rem;
+    left: 10%;
+}
+.card-content {
+    background-image: radial-gradient(
+        rgba(54, 114, 151, 0.605) 1px,
+        transparent 1px
+    );
+    background-position: 50% 50%;
+    background-size: 1.1rem 1.1rem;
+    overflow: hidden;
+}
+.card ::after{
+    background: linear-gradient(
+        transparent,
+        rgb(67, 158, 218),
+        transparent
+    );
+    height: 70px;
+    width: 1px;
+    position: absolute;
+    left: -1px;
+    top: 65%;
+    content: "";
+    transition: top 600ms ease;
+    opacity: 1;
+}
+
+.card ::after{
+    top: 65%;
+    opacity: 0;
+}
+.card:hover ::after{
+    top: 25%;
+    opacity: 1;
+}
+.bar.button{
+    white-space: normal;
+    background-color: white;
+}
+.bar-item{
+    display: inline-block;
+    flex-direction: row;
+    padding: 8px 16px;
+    background: aliceblue;
+    overflow: hidden;
+    padding-top: 15px;
+}
+.button{
+    color: black;
+    text-decoration: none;
+
+}
+.button:hover{
+    background-color: rgb(44, 21, 0);
+    color: white!important;
+}
+#slide-show{
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+.slide-wrapper{
+    width: 2912px;
+    -webkit-animation: slide 14s ease infinite;
+
+}
+.slide-content{
+    width: clamp(200px, 75%, 500px);
+    height: 400px;
+}
+@-webkit-keyframes slide {
+    20% {margin-left: 0px;}
+    40% {margin-left: -728px;}
+    60% {margin-left: -728px;}
+    80% {margin-left: -1456px;}
+}

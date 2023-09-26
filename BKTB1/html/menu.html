@@ -31,21 +31,87 @@
     <div class="card">
         <div class="card-content">
             <h3>Giới thiệu về web</h3>
-            <p>Bài giới thiệu</p>
+            <p>Bài giới thiệu về trang web lấp chỗ</p><br>
+            <p>Bài giới thiệu về trang web lấp chỗ</p><br>
+            <p>Bài giới thiệu về trang web lấp chỗ</p>
         </div>
     </div>
-
-    <script src="/js/so-luoc.js"></script>
+<div class="wrapper-web">
+  <p1 style="margin-left: 10px;"> Một số hình ảnh về web</p1>
+</div>
+  
     
-   <!-- slide show-->
-    <div id="slide-show">
-        <div class="slide-wrapper">
-            <img class="slide-content" src="/image/slide/angle.jpg">
-            <img class="slide-content" src="/image/slide/blue mage.png">
-            <img class="slide-content" src="/image/slide/hmm.png">
-            <img class="slide-content" src="/image/slide/buisness man.png">
-        </div>
-    </div>
+<div class="slideshow-container">
 
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 3</div>
+      <img src="/image/slide/buisness man.png" style="width:50%">
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 3</div>
+      <img src="/image/slide/blue mage.png" style="width:50%">
+    </div>
+  
+    <div class="mySlides fade">
+      <div class="numbertext">3 / 3</div>
+      <img src="/image/slide/confuse.jpg" style="width:50%">
+    </div>
+  
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+  
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}    
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " active";
+    }
+    function menudropdown(){
+  var x = document.getElementById("dropdown-menu");
+  if (x.className.indexOf("w3-show") == -1) 
+    x.className += " w3-show";
+   else 
+    x.className = x.className.replace(" w3-show", "");
+} 
+function login(){
+  document.getElementById("change-form").textContent = "Log in";
+  document.getElementById("status").innerHTML = "SIGN UP";
+  document.getElementById("confirm").value = "Sign up for free";
+  document.getElementById("acc-Q").innerHTML = "Already have acount ?"
+  document.getElementById("pass-validation").style.display="block";
+  document.getElementById("email").style.display="block";
+  document.getElementById("remember").style.display="none";
+}    
+    </script>
 </body>
 </html>

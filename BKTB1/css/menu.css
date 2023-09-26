@@ -50,7 +50,7 @@
     display: inline-block;
     flex-direction: row;
     padding: 8px 16px;
-    background: aliceblue;
+    background: transparent;
     overflow: hidden;
     padding-top: 15px;
 }
@@ -63,23 +63,90 @@
     background-color: rgb(44, 21, 0);
     color: white!important;
 }
-#slide-show{
-    margin: 0 auto;
-    overflow: hidden;
-    text-align: center;
-}
-.slide-wrapper{
-    width: 2912px;
-    -webkit-animation: slide 14s ease infinite;
 
+.wrapper-web{
+    margin-bottom: 15px;
+    justify-content: center;
 }
-.slide-content{
-    width: clamp(200px, 75%, 500px);
-    height: 400px;
+
+* {box-sizing:border-box}
+
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
 }
-@-webkit-keyframes slide {
-    20% {margin-left: 0px;}
-    40% {margin-left: -728px;}
-    60% {margin-left: -728px;}
-    80% {margin-left: -1456px;}
+
+    
+
+.mySlides {
+  display: none;
+  text-align: center;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.text {
+  color: #c0bfbf;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.numbertext {
+  color: #000000;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
 }

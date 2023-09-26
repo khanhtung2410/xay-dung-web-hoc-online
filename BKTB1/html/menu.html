@@ -8,8 +8,8 @@
     <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body style="background-color: aliceblue;">
-    <div class="w3-bar">
+<body style="background-color:  antiquewhite;">  
+  <div class="w3-bar">
         <a class="w3-bar-item w3-button " href="/BKTB1/html/menu.html"><img src="/image/icon/dragon-removebg-preview.png" style="height: 31px;"></a>
         <div class="w3-dropdown-click w3-hide-large w3-hide-medium ">
             <button onclick="menudropdown()" class="w3-button"><img src="/image/icon/menu-bar.png" height="31px"></button>
@@ -23,10 +23,42 @@
             <a class="w3-bar-item w3-button w3-padding-large" href="/BKTB1/html/trangcanhan.html">Thông tin</a>
         </div>
         <div class="dangnhap">
-        <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.html">Đăng nhập</a>
-        <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-nhap.html">Đăng Ký</a> 
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/BKTB1/html/dang-nhap.html">Đăng nhập</a>
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/BKTB1/html/dang-nhap.html">Đăng Ký</a> 
         </div>  
     </div>
+
+    <div class="slideshow-container">
+
+      <div class="mySlides fade">
+        <div class="numbertext">1 / 3</div>
+        <img src="/image/slide/buisness man.png" style="width:50%">
+      </div>
+    
+      <div class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <img src="/image/slide/blue mage.png" style="width:50%">
+      </div>
+    
+      <div class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <img src="/image/slide/confuse.jpg" style="width:50%">
+      </div>
+    
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+    
+    <div style="text-align:center">
+      <span class="dot" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+  
+    <div class="wrapper-web">
+      <p1 style="margin-left: 10px;"> Một số hình ảnh về web</p1>
+    </div>    
 
     <div class="card">
         <div class="card-content">
@@ -36,38 +68,8 @@
             <p>Bài giới thiệu về trang web lấp chỗ</p>
         </div>
     </div>
-<div class="wrapper-web">
-  <p1 style="margin-left: 10px;"> Một số hình ảnh về web</p1>
-</div>
-  
-    
-<div class="slideshow-container">
 
-    <div class="mySlides fade">
-      <div class="numbertext">1 / 3</div>
-      <img src="/image/slide/buisness man.png" style="width:50%">
-    </div>
-  
-    <div class="mySlides fade">
-      <div class="numbertext">2 / 3</div>
-      <img src="/image/slide/blue mage.png" style="width:50%">
-    </div>
-  
-    <div class="mySlides fade">
-      <div class="numbertext">3 / 3</div>
-      <img src="/image/slide/confuse.jpg" style="width:50%">
-    </div>
-  
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-  </div>
-  <br>
-  
-  <div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span>
-    <span class="dot" onclick="currentSlide(2)"></span>
-    <span class="dot" onclick="currentSlide(3)"></span>
-  </div>
+    
 
   <script>
     let slideIndex = 1;
@@ -102,15 +104,6 @@
     x.className += " w3-show";
    else 
     x.className = x.className.replace(" w3-show", "");
-} 
-function login(){
-  document.getElementById("change-form").textContent = "Log in";
-  document.getElementById("status").innerHTML = "SIGN UP";
-  document.getElementById("confirm").value = "Sign up for free";
-  document.getElementById("acc-Q").innerHTML = "Already have acount ?"
-  document.getElementById("pass-validation").style.display="block";
-  document.getElementById("email").style.display="block";
-  document.getElementById("remember").style.display="none";
 }    
     </script>
 </body>

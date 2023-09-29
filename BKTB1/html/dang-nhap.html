@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web học trực tuyến</title>
+    <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
+    <link rel="stylesheet" href="/BKTB1/css/menu.css">
+    <link rel="stylesheet" href="/BKTB1/css/dangnhap.css">
+</head>
+<body style="background-color:  aqua;">
+    <div class="bar-wrapper">
+        <a class="bar-item button" href="/BKTB1/html/menu.html">
+            <img src="/image/icon/dragon-removebg-preview.png" style="height: 25px;"></a>
+        <a class="bar-item button hover-text" data-hover="Close" href="/BKTB1/html/menu.html">
+            <img src="/image/icon/x-icon.png" style="width: 25px; height: 25px; opacity: 0.6;"></a>   
+    </div>
+   <!-- Cần chỉnh cái title tooltip -->
+
+    <div class="login-box-wrapper">
+        <div>
+            <h1 id="status">LOGIN</h1>
+        </div>
+        <div class="login-warpper">
+            <form>
+                <div class="username-input">
+                    <div class="username-input-lable">
+                        <label for="username">Username </label>
+                        <span>
+                            <span id="acc-Q">No account ? </span>
+                            <button type="button" id="change-form" onclick="Signup()">Sign up</button>
+                        </span>
+                    </div>
+                    <div class="input-boxes">
+                        <input type="text" id="username">
+                    </div>
+                </div>
+                <label for="password">Password </label>
+                <div class="input-boxes">
+                    <input type="password" id="password">
+                </div>
+            </form>  
+            <!--đổi nhận email sang đăng ký-->
+            <form>
+                <div id="remember" class="checkboxes">
+                    <label><input type="checkbox"><span>Remember me </span></label>
+                </div>
+            </form>
+            <div id="pass-validation" >
+                <ul>
+                    <li class="validation">One upercase letter</li>
+                    <li class="validation">One number</li>
+                    <li class="validation">One special letter</li>
+                    <li class="validation">One lowercase letter</li>
+                    <li class="validation">8 charater minimum</li>
+                </ul>
+            <!-- sửa căn chỉnh 2 columns bằng nhau -->
+            <!--xem lại js để vào trang tự chọn 1 trong 2 option-->
+            <!--căn chỉnh lại cái login/sign up form chuyển sang trang signup-->
+            <!--đổi hẳn login sang 1 trang khác để phù hợp mô tả-->
+            </div>
+            <form>
+                <div id="email" class="checkboxes">
+                    <label><input type="checkbox" checked ><span>Email me updates and news</span></label>
+                </div>
+            </form>
+            <input type="button" id="confirm" value="Log in"><br>
+        </div>
+    </div>
+    <script src="/js/so-luoc.js"></script>
+    <script >
+        function Signup(){
+            form = document.getElementById("change-form").textContent;
+            if (form == "Log in") {
+                document.getElementById("change-form").textContent = "Sign up";
+                document.getElementById("status").innerHTML = "LOGIN";
+                document.getElementById("confirm").value = "Log in"
+                document.getElementById("acc-Q").textContent = "No acount ?"
+                document.getElementById("pass-validation").style.display="none";
+                document.getElementById("email").style.display="none";
+                document.getElementById("remember").style.display="block";
+            }
+            if (form == "Sign up"){
+                document.getElementById("change-form").textContent = "Log in";
+                document.getElementById("status").innerHTML = "SIGN UP";
+                document.getElementById("confirm").value = "Sign up for free";
+                document.getElementById("acc-Q").innerHTML = "Already have acount ?"
+                document.getElementById("pass-validation").style.display="block";
+                document.getElementById("email").style.display="block";
+                document.getElementById("remember").style.display="none";
+            } 
+        }
+    </script>
+</body>
+</html>

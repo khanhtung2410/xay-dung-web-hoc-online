@@ -47,7 +47,7 @@
     display: inline-block;
     flex-direction: row;
     padding: 8px 16px;
-    background: aliceblue;
+    background: transparent;
     overflow: hidden;
     padding-top: 15px;
 }

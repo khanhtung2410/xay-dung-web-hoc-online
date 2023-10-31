@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web học trực tuyến</title>
+  <link rel="stylesheet" href="/css/navigation-bar.css">
+  <link rel="stylesheet" href="/css/lop-thuong.css">
+  <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+  <div class="w3-bar" style="background-color: antiquewhite;">
+    <a class="w3-bar-item w3-button" href="/html/menu.html"><img src="/image/icon/dragon-removebg-preview.png"
+        style="height: 31px;"></a>
+    <div class="w3-dropdown-click w3-hide-large w3-hide-medium ">
+      <button onclick="menudropdown()" class="w3-button"><img src="/image/icon/menu-bar.png" height="31px"></button>
+      <div id="sub-menu" class="w3-dropdown-content w3-bar-block dropdown-menu">
+        <div class="w3-dropdown-hover w3-bar-item w3-padding-large">
+          <span>Lớp học</span>
+          <div class="w3-dropdown-content" style="left: 60px;">
+
+            <div class="hover-drop-toan">
+              <span class="w3-padding-large w3-bar-item">Toán</span>
+              <div class="lop">
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+              </div>
+
+            </div>
+            <div class="hover-drop-ly">
+              <span class="w3-padding-large w3-bar-item">Lý</span>
+              <div class="lop">
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Thông tin</a>
+      </div>
+    </div>
+    <div class="w3-hide-small dropdown-menu-big">
+      <div class="w3-dropdown-hover w3-bar-block w3-padding-large">
+        <span>Lớp học</span>
+        <div class="w3-dropdown-content" style="left: 67px; margin-top: 10px;">
+
+          <div class="hover-drop-toan">
+            <span class="w3-padding-large w3-bar-item">Toán</span>
+            <div class="lop">
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+            </div>
+          </div>
+
+          <div class="hover-drop-ly">
+            <span class="w3-padding-large w3-bar-item">Lý</span>
+            <div class="lop">
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Thông tin</a>
+    </div>
+
+    <div class="authorize">
+      <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.html">Đăng
+        nhập</a>
+      <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-nhap.html">Đăng Ký</a>
+    </div>
+  </div>
+  <div class="noi-dung">
+    <div class="ten-lop-wrapper">
+      <h2><strong>Toán lớp 12</strong></h2>
+    </div>
+    <div class="mieu-ta-wrapper">
+      <p>Trong lớp học này sẽ chứa đầy đủ các kiến thức về môn toán lớp 12</p>
+      <p>Các bạn có thể tham gia lớp học này để bổ sung và hoàn thiện kiến thức để có thể thi đại học một cách tốt đẹp
+      </p>
+    </div>
+    <div class="bai-hoc-wr">
+      <div class="tieu-de">
+        <span>Danh sách bài học</span>
+      </div>
+      <div class="danh-sach-wrapper">
+        <div class="danh-sach-video">
+          <ul>
+            <li class="chuong">
+              <div class="chuong-wr">
+                <button>Chương 1</button>
+                <img class="arrowhead" src="/image/icon/arrowhead.png">
+              </div>
+            </li>
+            <ul class="list-bai">
+              <li class="bai-wrapper">
+                <p class="bai" style="margin: 0px;">ss1</p>
+                <div class="counters">
+                  <div class="views">
+                    <span class="view">0</span>
+                    <img src="/image/icon/view.png">
+                  </div>
+                  <div class="likes">
+                    <span class="like">0</span>
+                    <img class="remove-like" src="/image/icon/liked.png">
+                    <img class="add-like" src="/image/icon/before-like.png">
+                  </div>
+                  <div class="dislikes">
+                    <span class="dislike">0</span>
+                    <img class="add-dislike" src="/image/icon/before-dislike.png">
+                    <img class="remove-dislike" src="/image/icon/disliked.png">
+                  </div>
+                </div>
+              </li>
+              <li class="bai-wrapper">
+                <p class="bai">ss2</p>
+                <div class="counters">
+                  <div class="views">
+                    <span class="view">0</span>
+                    <img src="/image/icon/view.png">
+                  </div>
+                  <div class="likes">
+                    <span class="like">0</span>
+                    <img class="remove-like" src="/image/icon/liked.png">
+                    <img class="add-like" src="/image/icon/before-like.png">
+                  </div>
+                  <div class="dislikes">
+                    <span class="dislike">0</span>
+                    <img class="add-dislike" src="/image/icon/before-dislike.png">
+                    <img class="remove-dislike" src="/image/icon/disliked.png">
+                  </div>
+                </div>
+              </li>
+              </li>
+              <li class="bai"><a href="#video1">Tiêu đề 3</a></li>
+              <li class="bai"><a href="#video1">Tiêu đề 4</a></li>
+              <li class="bai"><a href="#video1">Tiêu đề 5</a></li>
+              <li class="bai"><a href="#video1">Tiêu đề 6</a></li>
+            </ul>
+            <li class="chuong">
+              <button>Chương 2</button>
+              <ul class="list-bai">
+                <li class="bai-wrapper">
+                  <div class="bai">
+                    <a href="/html/de1.html">Tiêu đề 1</a>
+                  </div>
+                </li>
+                <li class="bai"><a href="#video1">Tiêu đề 2</a>
+                </li>
+                <li class="bai"><a href="#video1">Tiêu đề 3</a></li>
+                <li class="bai"><a href="#video1">Tiêu đề 4</a></li>
+                <li class="bai"><a href="#video1">Tiêu đề 5</a></li>
+                <li class="bai"><a href="#video1">Tiêu đề 6</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>https://github.com/khanhtung2410/xay-dung-web-hoc-online.git
+  </div>
+</body>
+<script src="/js/dropdown.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+  var clicked, disliked;
+  clicked = disliked = 0;
+  const viewed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const liked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  $(".chuong").click(function position() {
+    var number = $(this).index();
+    clicked++;
+    const a = document.getElementsByClassName("list-bai");
+    const b = document.getElementsByClassName("arrowhead");
+    a[number].hide();
+    if (clicked % 2 == 0) {
+      b[number].style.transform = "rotate(0deg)";
+    }
+    if (clicked % 2 == 1) {
+      b[number].style.transform = "rotate(-90deg)";
+    }
+  });
+  var number = 0;
+  $(".bai-wrapper").hover(function () {
+      number = $(this).index();
+      return number;
+    })
+  $(".bai").click(function (){
+      console.log(number);
+      viewed[number] ++;
+      console.log(viewed);
+      const a = document.getElementsByClassName("view");
+      a[number].textContent = viewed[number];
+    });    
+     //function ko lay duoc gia tri cua cac
+  
+  //khi click vao .bai phai lay dc vi tri cua .bai-wrapper ben ngoai
+  // view can duoi dang array
+  $(".add-like").click(function addlike() {
+    liked[number]++;
+    console.log(number);
+    const a = document.getElementsByClassName("add-like");
+    const b = document.getElementsByClassName("like");
+    // a[number].classList.add("hidden");
+    console.log(liked);
+    b[number].textContent = liked[number];
+  })
+  $(".add-dislike").click(function adddislike() {
+    var number = $(this).index();
+    disliked++;
+    console.log(number);
+    const a = document.getElementsByClassName("add-dislike");
+    const b = document.getElementsByClassName("dislike");
+    // a[0].classList.add("hidden");
+    b[0].textContent = disliked;
+  })
+  $(".remove-like").click(function removelike() {
+    liked[number]--;
+    console.log(number);
+    const a = document.getElementsByClassName("remove-like");
+    const b = document.getElementsByClassName("like");
+    console.log(liked);
+    b[number].textContent = liked[number];
+  })
+  $(".remove-dislike").click(function removedislike() {
+    var number = $(this).index();
+    disliked--;
+    console.log(number);
+    const a = document.getElementsByClassName("remove-dislike");
+    const b = document.getElementsByClassName("dislike");
+    // a[0].classList.add("hidden");
+    b[0].textContent = disliked;
+  }) 
+</script>
+
+</html>

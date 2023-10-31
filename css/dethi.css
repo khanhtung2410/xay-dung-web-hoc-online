@@ -1,0 +1,120 @@
+.pop-box {
+    width: clamp(300px, 60%, 900px);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.pop-box .content {
+    background-color: #ddd;
+    border: 5px solid black;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.pop-box .content p1 {
+    font-weight: 500;
+    font-size: large;
+}
+
+.pop-box .content .choice-wr {
+    margin: 15px 15px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.pop-box .yes {
+    background-color: greenyellow;
+}
+
+.pop-box .yes:hover {
+    background-color: rgba(0, 255, 13, 0.783);
+}
+
+.pop-box .no:hover {
+    background-color: rgb(255, 0, 0);
+}
+
+.pop-box .no {
+    background-color: rgb(255, 159, 25);
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 14px 25px;
+    text-decoration: none;
+}
+
+.pop-box button {
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.pop-box button a {
+    text-decoration: none;
+}
+
+.clock-wr {
+    position: fixed;
+    background-color: aquamarine;
+    right: 0px;
+    border: 2px solid black;
+    border-radius: 2px;
+    z-index: 1;
+    display: none;
+    width: 250px;
+    /* Tính di chuyển của box thời gian  */
+    translate: 0 calc(-1% * var(--scroll) * 9);
+}
+
+.mjx-chtml {
+    z-index: 0;
+}
+
+#noidung {
+    max-width: 985px;
+    margin-left: 35px;
+    display: none;
+    padding: 20px;
+}
+
+#noidung .header {
+    font-size: large;
+    font-weight: 600;
+    border-bottom: 1px solid gray;
+}
+
+#noidung .que-form .debai {
+    line-height: 1.5;
+    user-select: none;
+}
+
+#noidung .que-form .debai span {
+    color: rgb(50, 117, 225);
+    font-size: medium;
+}
+
+#noidung .que-form .q-pic {
+    display: block;
+    width: 250px;
+    margin: auto;
+}
+
+#noidung .que-form .answer {
+    display: block;
+    line-height: 2;
+}
+
+#noidung input[type=submit] {
+    background-color: rgb(6, 146, 6);
+    position: relative;
+    margin-right: 0px;
+    border: 1px solid #DDD;
+    width: 20%;
+    padding: 15px 10px 15px 10px;
+    border-radius: 4px;
+}
+
+#noidung input[type=submit]:hover {
+    background-color: rgb(0, 224, 0);
+}

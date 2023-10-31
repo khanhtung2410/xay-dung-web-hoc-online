@@ -1,0 +1,97 @@
+.bar-wrapper {
+    padding-left: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.noi-dung {
+    display: block;
+    box-sizing: border-box;
+    margin-left: 30px;
+}
+
+.ten-lop-wrapper {
+    position: relative;
+    margin-top: auto;
+
+}
+
+.mieu-ta-wrapper {
+    position: relative;
+    background-color: rgb(220, 219, 219);
+    border: 2px solid black;
+    margin-top: 60px;
+    line-height: 30px;
+    border-radius: 1.5rem;
+    width: 80%;
+}
+
+.mieu-ta-wrapper p {
+    padding-left: 10px;
+}
+
+.bai-hoc-wr {
+    margin: 30px 0px 30px 0px;
+}
+
+.tieu-de {
+    border-bottom: 1px solid aqua;
+    margin: 0 0 20px;
+}
+
+.tieu-de span {
+    box-sizing: border-box;
+    background-color: aqua;
+    padding: 0 15px;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 30px;
+    color: aliceblue;
+    width: fit-content;
+}
+
+.danh-sach-wrapper {
+    box-sizing: border-box;
+    border: 1px solid gray;
+    border-radius: 7px;
+    width: clamp(200px, 80%, 1500px);
+    display: flex;
+    background-color: rgb(220, 219, 219);
+    left: 10%;
+}
+
+.danh-sach-video {
+    display: block;
+    line-height: 40px;
+    padding-left: 15px;
+}
+
+.noi-dung .chuong,
+.noi-dung .bai-wrapper {
+    list-style: none;
+   
+}
+
+.noi-dung .chuong {
+    margin-bottom: 20px;
+}
+
+.arrowhead {
+    transition: 0.5s;
+    height: 15px;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+}
+.bai a{
+    text-decoration:wavy;
+}
+.list-bai .counters{
+    display: flex;
+    flex-direction: row;
+}
+.hidden {
+    display: none;
+}

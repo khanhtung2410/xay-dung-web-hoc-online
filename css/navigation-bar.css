@@ -1,0 +1,38 @@
+ /* thanh điều hướng */
+  
+ .w3-bar .w3-button:hover {
+    background-color: rgb(255, 199, 126);
+  }
+  
+  .dropdown-menu-big .w3-dropdown-hover:first-child,
+  .dropdown-menu .w3-dropdown-hover:first-child{
+    background-color: antiquewhite;
+  }
+  .dropdown-menu {
+    position: absolute;
+  }
+  
+  .dropdown-menu .lop, .dropdown-menu-big .lop{
+    display: none;
+    position: relative;
+    background-color: rgb(255, 199, 126);
+  }
+  
+  .dropdown-menu-big .w3-dropdown-content,
+  .dropdown-menu .w3-dropdown-content{
+    background-color: rgb(255, 227, 189);
+  }
+  
+  .dropdown-menu-big .hover-drop-toan:hover .lop,
+  .dropdown-menu-big .hover-drop-ly:hover .lop,
+  .dropdown-menu .hover-drop-ly:hover .lop,
+  .dropdown-menu .hover-drop-toan:hover .lop{
+    display: block;
+  }
+  
+  .dropdown-menu-big .hover-drop-ly,
+  .dropdown-menu-big .hover-drop-toan,
+  .dropdown-menu .hover-drop-ly,
+  .dropdown-menu .hover-drop-toan{
+    cursor: pointer;
+  }

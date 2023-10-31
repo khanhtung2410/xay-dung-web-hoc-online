@@ -1,0 +1,128 @@
+.content{
+    background-color: rgb(251, 255, 130);
+    margin: 0px 100px 0px 100px;
+  }
+  /* thẻ giới thiệu*/
+  .card{
+      width: clamp(150px, 70%, 1000px);
+      position: relative;
+      margin-top: 20px;
+      background-color: rgba(195, 132, 50, 0.735);
+      border-radius: 1.5rem;
+      padding: 1.1rem;
+  }
+  
+  .card-content {
+      background-position: 50% 50%;
+      background-size: 1.1rem 1.1rem;
+      overflow: hidden;
+  }
+  
+  .card ::after{
+      background: linear-gradient(
+          transparent,
+          rgb(20, 0, 122),
+          transparent
+      );
+      height: 70px;
+      width: 1px;
+      position: absolute;
+      left: -1px;
+      top: 65%;
+      content: "";
+      transition: top 600ms ease;
+      opacity: 1;
+  }
+  
+  .card ::after{
+      top: 65%;
+      opacity: 0;
+  }
+  
+  .card:hover ::after{
+      top: 25%;
+      opacity: 1;
+  }
+  
+ 
+  /* slide ảnh */
+  
+  .slideshow-container {
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+    background-color: rgb(177, 176, 176);
+    border-radius: 5px;
+  }   
+  
+  .mySlides {
+    display: none;
+    text-align: center;
+  }
+  
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+  .text {
+    color: #c0bfbf;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .numbertext {
+    color: #000000;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+  }
+  
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+  .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+  }
+  
+  @keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+  }

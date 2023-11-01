@@ -103,15 +103,16 @@
                     <span class="view">0</span>
                     <img src="/image/icon/view.png">
                   </div>
+                  <!-- default -->
                   <div class="likes">
                     <span class="like">0</span>
-                    <img class="remove-like" src="/image/icon/liked.png">
+                    <img class="remove-like hidden" src="/image/icon/liked.png">
                     <img class="add-like" src="/image/icon/before-like.png">
                   </div>
                   <div class="dislikes">
                     <span class="dislike">0</span>
                     <img class="add-dislike" src="/image/icon/before-dislike.png">
-                    <img class="remove-dislike" src="/image/icon/disliked.png">
+                    <img class="remove-dislike hidden" src="/image/icon/disliked.png">
                   </div>
                 </div>
               </li>
@@ -166,16 +167,16 @@
 <script src="/js/dropdown.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
-  var clicked, disliked;
-  clicked = disliked = 0;
+  var clicked = 0;
   const viewed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const liked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const disliked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   $(".chuong").click(function position() {
     var number = $(this).index();
     clicked++;
     const a = document.getElementsByClassName("list-bai");
     const b = document.getElementsByClassName("arrowhead");
-    a[number].hide();
+    a[number].classList.toggle("hidden");
     if (clicked % 2 == 0) {
       b[number].style.transform = "rotate(0deg)";
     }
@@ -185,54 +186,59 @@
   });
   var number = 0;
   $(".bai-wrapper").hover(function () {
-      number = $(this).index();
-      return number;
-    })
-  $(".bai").click(function (){
-      console.log(number);
-      viewed[number] ++;
-      console.log(viewed);
-      const a = document.getElementsByClassName("view");
-      a[number].textContent = viewed[number];
-    });    
-     //function ko lay duoc gia tri cua cac
-  
-  //khi click vao .bai phai lay dc vi tri cua .bai-wrapper ben ngoai
-  // view can duoi dang array
-  $(".add-like").click(function addlike() {
+    number = $(this).index();
+    return number;
+  })
+  $(".bai").click(function () {
+    console.log(number);
+    viewed[number]++;
+    console.log(viewed);
+    const a = document.getElementsByClassName("view");
+    a[number].textContent = viewed[number];
+  });
+
+  const addlike = document.getElementsByClassName("add-like");
+  const numberoflike = document.getElementsByClassName("like");
+  const removelike = document.getElementsByClassName("remove-like");
+  const adddislike = document.getElementsByClassName("add-dislike");
+  const numberofdislike = document.getElementsByClassName("dislike");
+  const removedislike = document.getElementsByClassName("remove-dislike");
+  //hien gio de default la chua nhan like va dislike
+  $(".add-like").click(function addinglike() {
     liked[number]++;
-    console.log(number);
-    const a = document.getElementsByClassName("add-like");
-    const b = document.getElementsByClassName("like");
-    // a[number].classList.add("hidden");
+    addlike[number].classList.add("hidden");
+    removelike[number].classList.remove("hidden");
+    if(adddislike[number].classList.contains("hidden") == true){
+      disliked[number]--;
+      adddislike[number].classList.remove("hidden");
+      removedislike[number].classList.add("hidden");
+      numberofdislike[number].textContent = disliked[number];
+    }
     console.log(liked);
-    b[number].textContent = liked[number];
+    numberoflike[number].textContent = liked[number];
   })
-  $(".add-dislike").click(function adddislike() {
-    var number = $(this).index();
-    disliked++;
-    console.log(number);
-    const a = document.getElementsByClassName("add-dislike");
-    const b = document.getElementsByClassName("dislike");
-    // a[0].classList.add("hidden");
-    b[0].textContent = disliked;
-  })
-  $(".remove-like").click(function removelike() {
+  $(".remove-like").click(function removinglike() {
     liked[number]--;
-    console.log(number);
-    const a = document.getElementsByClassName("remove-like");
-    const b = document.getElementsByClassName("like");
-    console.log(liked);
-    b[number].textContent = liked[number];
+    numberoflike[number].textContent = liked[number];
+    addlike[number].classList.remove("hidden");
+    removelike[number].classList.add("hidden");
   })
-  $(".remove-dislike").click(function removedislike() {
-    var number = $(this).index();
-    disliked--;
-    console.log(number);
-    const a = document.getElementsByClassName("remove-dislike");
-    const b = document.getElementsByClassName("dislike");
-    // a[0].classList.add("hidden");
-    b[0].textContent = disliked;
+  $(".add-dislike").click(function addingdislike() {
+    disliked[number]++;
+    adddislike[number].classList.add("hidden");
+    removedislike[number].classList.remove("hidden");
+    numberofdislike[number].textContent = disliked[number];
+    if(addlike[number].classList.contains("hidden") == true){
+      liked[number]--;
+      addlike[number].classList.remove("hidden");
+      removelike[number].classList.add("hidden");
+      numberoflike[number].textContent = liked[number];
+    }  })
+  $(".remove-dislike").click(function removingdislike() {
+    disliked[number]--;
+    removedislike[number].classList.add("hidden");
+    adddislike[number].classList.remove("hidden");
+    numberofdislike[number].textContent = disliked[number];
   }) 
 </script>
 

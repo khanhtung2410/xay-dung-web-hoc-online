@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web học trực tuyến</title>
     <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
-    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="/css/dangnhap.css">
     <link rel="stylesheet" href="/css/navigation-bar.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body style="background-color:  aqua;">
-    <div class="bar-wrapper">
-        <a class="bar-item button" href="/html/menu.html">
-            <img src="../image/icon/dragon-removebg-preview.png" style="height: 25px;"></a>
-        <a class="bar-item button hover-text" data-hover="Close" href="/html/menu.html">
-            <img src="/image/icon/x-icon.png" style="width: 25px; height: 25px; opacity: 0.6;"></a>   
+
+<body>
+    <div class="w3-bar" style="background-color: antiquewhite;">
+        <a class="w3-bar-item w3-button" href="/html/menu.html">
+            <img src="../image/icon/dragon-removebg-preview.png" style="height: 31px;"></a>
+        <a class="w3-bar-item w3-button hover-text w3-right" data-hover="Close" href="/html/menu.html">
+            <img src="/image/icon/x-icon.png" style="width: 25px; height: 31px; opacity: 0.6;"></a>
     </div>
-   <!-- Cần chỉnh cái title tooltip -->
+    <!-- Cần chỉnh cái title tooltip -->
 
     <div class="login-box-wrapper">
         <div>
-            <h1 id="status">LOGIN</h1>
+            <h1>LOGIN</h1>
         </div>
         <div class="login-warpper">
-            <form>
+            <form id="login">
                 <div class="username-input">
                     <div class="username-input-lable">
                         <label for="username">Username </label>
@@ -32,64 +35,64 @@
                         </span>
                     </div>
                     <div class="input-boxes">
-                        <input type="text" id="username">
+                        <input type="text" id="username" name="username" required>
                     </div>
                 </div>
                 <label for="password">Password </label>
                 <div class="input-boxes">
-                    <input type="password" id="password">
+                    <input type="password" id="password" required>
                 </div>
-            </form>  
-            <!--đổi nhận email sang đăng ký-->
-            <form>
-                <div id="remember" class="checkboxes">
-                    <label><input type="checkbox"><span>Remember me </span></label>
-                </div>
+                <input type="submit" id="confirm" value="Log in">
             </form>
-            <div id="pass-validation">
+            <!-- đổi nhận email sang đăng ký-->
+
+            <!-- <div id="pass-validation">
                 <ul>
                     <li class="validation">One upercase letter</li>
                     <li class="validation">One number</li>
                     <li class="validation">One special letter</li>
                     <li class="validation">One lowercase letter</li>
                     <li class="validation">8 charater minimum</li>
-                </ul>
+                </ul> 
+            </div>-->
             <!-- sửa căn chỉnh 2 columns bằng nhau -->
             <!--xem lại js để vào trang tự chọn 1 trong 2 option-->
             <!--căn chỉnh lại cái login/sign up form chuyển sang trang signup-->
             <!--đổi hẳn login sang 1 trang khác để phù hợp mô tả-->
-            </div>
-            <form>
+            <!-- <form>
                 <div id="email" class="checkboxes">
                     <label><input type="checkbox" checked ><span>Email me updates and news</span></label>
                 </div>
-            </form>
-            <input type="button" id="confirm" value="Log in"><br>
+            </form> -->
         </div>
     </div>
-    <script src="/js/so-luoc.js"></script>
-    <script >
-        function Signup(){
-            form = document.getElementById("change-form").textContent;
-            if (form == "Log in") {
-                document.getElementById("change-form").textContent = "Sign up";
-                document.getElementById("status").innerHTML = "LOGIN";
-                document.getElementById("confirm").value = "Log in"
-                document.getElementById("acc-Q").textContent = "No acount ?"
-                document.getElementById("pass-validation").style.display="none";
-                document.getElementById("email").style.display="none";
-                document.getElementById("remember").style.display="block";
+    <!-- bat dau dung js de lay du lieu tu form theo kieu post -->
+    <script>
+        // var condition1 = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        // var condition2 = /[A-Z]/;
+        // var condition3 = /[a-z]/;
+        // var condition4 = /[0-9]/;
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelector("#login").onsubmit = function () {
+                const username = document.querySelector("#username").value;
+                // if (condition1.test(username.charAt(0)) == true)
+                //     return wrong("username")
+                // if (username.length < 8)
+                //     return wrong("username");
+                // if (condition1.test(username) == false)
+                //     return wrong("username");
+                // if (condition2.test(username) == false)
+                //     return wrong("username");
+                // if (condition3.test(username) == false)
+                //     return wrong("username");
+                // if (condition4.test(username) == false)
+                //     return wrong("username");
+            };
+            function wrong(string) {
+                alert("Sai " + string);
             }
-            if (form == "Sign up"){
-                document.getElementById("change-form").textContent = "Log in";
-                document.getElementById("status").innerHTML = "SIGN UP";
-                document.getElementById("confirm").value = "Sign up for free";
-                document.getElementById("acc-Q").innerHTML = "Already have acount ?"
-                document.getElementById("pass-validation").style.display="block";
-                document.getElementById("email").style.display="block";
-                document.getElementById("remember").style.display="none";
-            } 
-        }
+        });
     </script>
 </body>
+
 </html>

@@ -97,7 +97,7 @@
             </li>
             <ul class="list-bai">
               <li class="bai-wrapper">
-                <p class="bai" style="margin: 0px;">ss1</p>
+                <a class="bai" style="margin: 0px;">ss1</a>
                 <div class="counters">
                   <div class="views">
                     <span class="view">0</span>
@@ -171,7 +171,7 @@
   const viewed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const liked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const disliked = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  $(".chuong").click(function position() {
+  $(".chuong").click(function positionchap() {
     var number = $(this).index();
     clicked++;
     const a = document.getElementsByClassName("list-bai");
@@ -185,7 +185,7 @@
     }
   });
   var number = 0;
-  $(".bai-wrapper").hover(function () {
+  $(".bai-wrapper").hover(function positionlesson() {
     number = $(this).index();
     return number;
   })
@@ -214,7 +214,6 @@
       removedislike[number].classList.add("hidden");
       numberofdislike[number].textContent = disliked[number];
     }
-    console.log(liked);
     numberoflike[number].textContent = liked[number];
   })
   $(".remove-like").click(function removinglike() {

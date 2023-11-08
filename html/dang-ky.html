@@ -23,7 +23,7 @@
             <h1>SIGN UP</h1>
         </div>
         <div class="sign-up-wrapper">
-            <form id="signup">
+            <form id="signup" method="post">
                 <label for="yourname">Họ tên<span class="need">*</span></label>
                 <div class="input-boxes">
                     <input type="text" id="yourname" name="yourname" required>
@@ -148,20 +148,33 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
     function checkdatecondition() {
-        var date = document.getElementById("date").value;
-        var month = document.getElementById("month").value;
-        var year = document.getElementById("year").value;
-        if (month == 2) {
-            if (date == 30 || date == 31) {
+        var date = document.getElementById("date");
+        var month = document.getElementById("month");
+        var year = document.getElementById("year");
+        if (month.value == 2) {
+            if (date.value == 30 || date.value == 31) {
+                debugger
                 document.getElementById("date-warning").style.visibility = "visible";
+                resetselecteddate(date);
+                resetselecteddate(month);
+                resetselecteddate(year);
             }
-            if (date == 29 && (year % 4) != 0) {
+            if (date.value == 29 && (year.value % 4) != 0) {
                 document.getElementById("date-warning").style.visibility = "visible";
+                resetselecteddate(date);
+                resetselecteddate(month);
+                resetselecteddate(year);
             }
         }
-        if ((month == 4 || month == 6 || month == 9 || month == 11) && date == 31) {
+        if ((month.value == 4 || month.value == 6 || month.value == 9 || month.value == 11) && date.value == 31) {
             document.getElementById("date-warning").style.visibility = "visible";
+            resetselecteddate(date);
+            resetselecteddate(month);
+            resetselecteddate(year);
         }
+    }
+    function resetselecteddate(string) {
+        string.selectedIndex = null;
     }
     // scrap hết đổi lại thành condition ngày và thông báo invalid
     // cho hien full het roi check tính valid của ngày
@@ -226,8 +239,8 @@
                 number.classList.add("invalid");
             }
             // Kiểm tra kí tự đặc biệt
-             var specialchar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-             if (document.getElementById("Password").value.match(specialchar)) {
+            var specialchar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+            if (document.getElementById("Password").value.match(specialchar)) {
                 special.classList.remove("invalid");
                 special.classList.add("valid");
             } else {

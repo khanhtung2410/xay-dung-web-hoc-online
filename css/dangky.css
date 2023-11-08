@@ -1,0 +1,71 @@
+.sign-up-box-wrapper {
+    border: 1px solid gray;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 1.5rem;
+    /*chỉnh độ rộng bé nhất,mong muốn,lớn nhất*/
+    width: clamp(300px, 55%, 400px);
+    /*4 dòng cuối là căn về giữa màn hình*/
+    left: 50%;
+    position: relative;
+    transform: translate(-50%);
+}
+
+.sign-up-box-wrapper .need {
+    color: red;
+}
+
+.input-boxes input[type=text],
+input[type=password],
+input[type=submit],
+input[type=gmail] {
+    width: 100%;
+    margin: 6px 0px;
+    padding: 14px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+#date-warning {
+    position: relative;
+    margin-left: 25px;
+    color: red;
+    font-size: small;
+}
+
+/* HIện box khi nhấn vào password */
+#message {
+    display: none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+}
+
+#message p {
+    padding: 10px 35px;
+    font-size: 10px;
+}
+
+/* Chữ xanh + V nếu đạt đk */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+/* Chữ đỏ + X nếu ko đạt đk */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}

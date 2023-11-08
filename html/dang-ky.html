@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web học trực tuyến</title>
     <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
-    <link rel="stylesheet" href="/css/lop-thuong.css">
+    <link rel="stylesheet" href="/css/dangky.css">
     <link rel="stylesheet" href="/css/navigation-bar.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
@@ -42,7 +42,8 @@
                     <input type="radio" id="gender2" name="gender" value="Nữ"> Nữ
                     <input type="radio" id="gender3" name="gender" value="Không rõ"> Không rõ
                 </div>
-                <label for="Date-of-birth">Ngày tháng năm sinh</label>
+                <label for="Date-of-birth">Ngày tháng năm sinh<span id="date-warning" style="visibility: hidden;">Không
+                        hợp lệ</span></label>
                 <div class="input-boxes">
                     <select name="Date-of-birth" id="date" onchange="checkdatecondition()">
                         <option value="1">1</option>
@@ -76,8 +77,8 @@
                         <option class="feb-full" value="29">29</option>
                         <option class="not-feb" value="30">30</option>
                         <option class="not-feb" value="31">31</option>
-                    </select><a>/</a>
-                    <select name="Date-of-birth" id="month">
+                    </select><a> /</a>
+                    <select name="Date-of-birth" id="month" onchange="checkdatecondition()">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -90,8 +91,8 @@
                         <option value="10">10</option>
                         <option value="11">11</option>
                         <option value="12">12</option>
-                    </select><a>/</a>
-                    <select name="Date-of-birth" id="year">
+                    </select><a> /</a>
+                    <select name="Date-of-birth" id="year" onchange="checkdatecondition()">
                         <option value="1985">1985</option>
                         <option value="1986">1986</option>
                         <option value="1987">1987</option>
@@ -119,21 +120,130 @@
                         <option value="2009">2009</option>
                     </select>
                 </div>
+                <label for="gmail">Gmail<span class="need">*</span></label>
+                <div class="input-boxes">
+                    <input type="gmail" name="gmail" id="gmail">
+                </div>
+                <label for="password">Mật khẩu<span class="need">*</span></label>
+                <div class="input-boxes">
+                    <input type="password" name="password" id="Password">
+                </div>
+                <div id="message">
+                    <h6>Password must contain the following:</h6>
+                    <p id="letter" class="invalid">Ít nhất <b>1</b> chữ <b>thường</b></p>
+                    <p id="capital" class="invalid">Ít nhất <b>1</b> chữ <b>hoa</b></p>
+                    <p id="number" class="invalid">Ít nhất <b>1 số</b></p>
+                    <p id="special" class="invalid">Ít nhất <b>1 kí tự đặc biệt</b></p>
+                    <p id="length" class="invalid">Tối thiểu <b>8 kí tự</b></p>
+                </div>
+                <label for="password-retype">Nhập lại mật khẩu<span class="need">*</span></label>
+                <div class="input-boxes">
+                    <input type="password" name="password-retype" id="Password-retype">
+                </div>
+                <input type="submit" value="Đăng ký">
             </form>
         </div>
     </div>
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
-    function checkdatecondition(){
-        debugger
-       if (document.getElementById("month").value == 2){
-        $(".not-feb").add("hidden");
-        if((document.getElementById("year").value % 4) == 0){
-            document.querySelector(".feb-full").style.display = "none";
+    function checkdatecondition() {
+        var date = document.getElementById("date").value;
+        var month = document.getElementById("month").value;
+        var year = document.getElementById("year").value;
+        if (month == 2) {
+            if (date == 30 || date == 31) {
+                document.getElementById("date-warning").style.visibility = "visible";
+            }
+            if (date == 29 && (year % 4) != 0) {
+                document.getElementById("date-warning").style.visibility = "visible";
+            }
         }
-        
-       }  
-    } 
+        if ((month == 4 || month == 6 || month == 9 || month == 11) && date == 31) {
+            document.getElementById("date-warning").style.visibility = "visible";
+        }
+    }
+    // scrap hết đổi lại thành condition ngày và thông báo invalid
+    // cho hien full het roi check tính valid của ngày
+    //check dk password
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#signup").onsubmit = function () {
+            const username = document.querySelector("#username").value;
+            const password = document.querySelector("#Password").value;
+            if (condition1.test(password.charAt(0)) == true)
+                return wrong("username")
+            if (password.length < 8)
+                return wrong("username");
+            if (condition1.test(password) == false)
+                return wrong("username");
+            if (condition2.test(password) == false)
+                return wrong("username");
+            if (condition3.test(password) == false)
+                return wrong("username");
+            if (condition4.test(password) == false)
+                return wrong("username");
+        };
+        function wrong(string) {
+            alert("Sai " + string);
+        }
+        document.getElementById("Password").onfocus = function () {
+            document.getElementById("message").style.display = "block";
+        }
+
+        // Ẩn box khi ko nhấn vào password
+        document.getElementById("Password").onblur = function () {
+            document.getElementById("message").style.display = "none";
+        }
+        // Khi nhập vào password
+        document.getElementById("Password").onkeyup = function () {
+            // Kiểm tra chữ viết thường
+            var lowerCaseLetters = /[a-z]/g;
+            if (document.getElementById("Password").value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Kiểm tra chữ viết hoa
+            var upperCaseLetters = /[A-Z]/g;
+            if (document.getElementById("Password").value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Kiểm tra số
+            var numbers = /[0-9]/g;
+            if (document.getElementById("Password").value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+            // Kiểm tra kí tự đặc biệt
+             var specialchar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+             if (document.getElementById("Password").value.match(specialchar)) {
+                special.classList.remove("invalid");
+                special.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+            //  Kiểm tra độ dài
+            if (document.getElementById("Password").value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+        }
+    });
 </script>
+
 </html>

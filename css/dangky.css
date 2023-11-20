@@ -6,7 +6,7 @@
     border-radius: 1.5rem;
     /*chỉnh độ rộng bé nhất,mong muốn,lớn nhất*/
     width: clamp(300px, 55%, 400px);
-    /*4 dòng cuối là căn về giữa màn hình*/
+    /* căn về giữa màn hình*/
     left: 50%;
     position: relative;
     transform: translate(-50%);
@@ -20,6 +20,7 @@
 input[type=password],
 input[type=submit],
 input[type=gmail] {
+    position: relative;
     width: 100%;
     margin: 6px 0px;
     padding: 14px;
@@ -28,7 +29,25 @@ input[type=gmail] {
     border-radius: 4px;
 }
 
-#date-warning {
+input[type=radio] {
+    margin-left: 30px;
+}
+
+#secret,
+#show,
+#secret1,
+#show1 {
+    position: absolute;
+    height: 20px;
+    left: 83%;
+    margin-top: -40px;
+    z-index: 1;
+    display: none;
+}
+
+#date-warning,
+#psw-check-warning,
+#CCCD-warning {
     position: relative;
     margin-left: 25px;
     color: red;
@@ -68,4 +87,19 @@ input[type=gmail] {
     position: relative;
     left: -35px;
     content: "✖";
+}
+
+
+#confirm {
+    background-color: rgb(34, 119, 34);
+}
+
+#confirm:hover {
+    background-color: rgb(33, 179, 33);
+}
+
+/* Xóa hiện password default */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
 }

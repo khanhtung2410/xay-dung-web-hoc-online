@@ -44,39 +44,14 @@
                 </div>
                 <input type="submit" id="confirm" value="Log in">
             </form>
-            <!-- đổi nhận email sang đăng ký-->
-            <!-- sửa căn chỉnh 2 columns bằng nhau -->
-            <!--xem lại js để vào trang tự chọn 1 trong 2 option-->
-            <!--căn chỉnh lại cái login/sign up form chuyển sang trang signup-->
-            <!--đổi hẳn login sang 1 trang khác để phù hợp mô tả-->
-            <!-- <form>
-                <div id="email" class="checkboxes">
-                    <label><input type="checkbox" checked ><span>Email me updates and news</span></label>
-                </div>
-            </form> -->
         </div>
     </div>
-    <!-- bat dau dung js de lay du lieu tu form theo kieu post -->
     <script>
-       
-        // var condition2 = /[A-Z]/;
-        // var condition3 = /[a-z]/;
-        // var condition4 = /[0-9]/;
+
         document.addEventListener("DOMContentLoaded", function () {
             document.querySelector("#login").onsubmit = function () {
                 const username = document.querySelector("#username").value;
-                // if (condition1.test(username.charAt(0)) == true)
-                //     return wrong("username")
-                // if (username.length < 8)
-                //     return wrong("username");
-                // if (condition1.test(username) == false)
-                //     return wrong("username");
-                // if (condition2.test(username) == false)
-                //     return wrong("username");
-                // if (condition3.test(username) == false)
-                //     return wrong("username");
-                // if (condition4.test(username) == false)
-                //     return wrong("username");
+
             };
             function wrong(string) {
                 alert("Sai " + string);

@@ -26,26 +26,29 @@
             <form id="signup" method="post">
                 <label for="yourname">Họ tên<span class="need">*</span></label>
                 <div class="input-boxes">
-                    <input type="text" id="yourname" name="yourname" required>
+                    <input type="text" id="yourname" name="yourname" required maxlength="30">
                 </div>
                 <label for="username">Username<span class="need">*</span></label>
                 <div class="input-boxes">
                     <input type="text" id="username" name="username" required minlength="8" maxlength="18">
                 </div>
-                <label for="CCCD">CCCD<span class="need">*</span></label>
+                <label for="CCCD">CCCD<span class="need">*</span><span id="CCCD-warning" style="visibility: hidden;">Sai
+                        định dạng</span></label>
                 <div class="input-boxes">
-                    <input type="text" id="CCCD" name="CCCD" minlength="12" maxlength="12">
+                    <input type="text" id="CCCD" name="CCCD" minlength="12" maxlength="12" pattern="[0-9]">
                 </div>
                 <label for="gender">Giới tính</label>
                 <div class="input-boxes multichoice-box">
                     <input type="radio" id="gender1" name="gender" value="Nam"> Nam
                     <input type="radio" id="gender2" name="gender" value="Nữ"> Nữ
-                    <input type="radio" id="gender3" name="gender" value="Không rõ"> Không rõ
+                    <input type="radio" id="gender3" name="gender" value="Không rõ" checked> Không rõ
+                    <!-- neu khong tich thi mac dinh la khong ro -->
                 </div>
                 <label for="Date-of-birth">Ngày tháng năm sinh<span id="date-warning" style="visibility: hidden;">Không
                         hợp lệ</span></label>
-                <div class="input-boxes">
-                    <select name="Date-of-birth" id="date" onchange="checkdatecondition()">
+                <div class="input-boxes date-select">
+                    <select name="Date-of-birth" id="date" onchange="checkdatecondition(); this.blur()"
+                        onfocus="this.size=7" onblur="this.size=1">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -78,7 +81,8 @@
                         <option class="not-feb" value="30">30</option>
                         <option class="not-feb" value="31">31</option>
                     </select><a> /</a>
-                    <select name="Date-of-birth" id="month" onchange="checkdatecondition()">
+                    <select name="Date-of-birth" id="month" onchange="checkdatecondition(); this.blur()"
+                        onfocus="this.size=7" onblur="this.size=1">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -92,7 +96,8 @@
                         <option value="11">11</option>
                         <option value="12">12</option>
                     </select><a> /</a>
-                    <select name="Date-of-birth" id="year" onchange="checkdatecondition()">
+                    <select name="Date-of-birth" id="year" onchange="checkdatecondition(); this.blur()"
+                        onfocus="this.size=7" onblur="this.size=1">
                         <option value="1985">1985</option>
                         <option value="1986">1986</option>
                         <option value="1987">1987</option>
@@ -127,6 +132,8 @@
                 <label for="password">Mật khẩu<span class="need">*</span></label>
                 <div class="input-boxes">
                     <input type="password" name="password" id="Password">
+                    <img src="/image/icon/eye-slash 256-205.png" alt="not-show" id="secret">
+                    <img src="/image/icon/eye 240 60.png" alt="show" id="show">
                 </div>
                 <div id="message">
                     <h6>Password must contain the following:</h6>
@@ -134,13 +141,16 @@
                     <p id="capital" class="invalid">Ít nhất <b>1</b> chữ <b>hoa</b></p>
                     <p id="number" class="invalid">Ít nhất <b>1 số</b></p>
                     <p id="special" class="invalid">Ít nhất <b>1 kí tự đặc biệt</b></p>
-                    <p id="length" class="invalid">Tối thiểu <b>8 kí tự</b></p>
+                    <p id="lengthchk" class="invalid">Tối thiểu <b>8 kí tự</b></p>
                 </div>
-                <label for="password-retype">Nhập lại mật khẩu<span class="need">*</span></label>
+                <label for="password-retype">Nhập lại mật khẩu<span class="need">*</span><span id="psw-check-warning"
+                        style="visibility: hidden;">Không khớp</span></label>
                 <div class="input-boxes">
                     <input type="password" name="password-retype" id="Password-retype">
+                    <img src="/image/icon/eye-slash 256-205.png" alt="not-show" id="secret1">
+                    <img src="/image/icon/eye 240 60.png" alt="show" id="show1">
                 </div>
-                <input type="submit" value="Đăng ký">
+                <input type="submit" id="confirm" value="Đăng ký">
             </form>
         </div>
     </div>
@@ -151,6 +161,7 @@
         var date = document.getElementById("date");
         var month = document.getElementById("month");
         var year = document.getElementById("year");
+        // nhung ngay invalid
         if (month.value == 2) {
             if (date.value == 30 || date.value == 31) {
                 debugger
@@ -176,41 +187,81 @@
     function resetselecteddate(string) {
         string.selectedIndex = null;
     }
-    // scrap hết đổi lại thành condition ngày và thông báo invalid
-    // cho hien full het roi check tính valid của ngày
     //check dk password
     document.addEventListener("DOMContentLoaded", function () {
-        document.querySelector("#signup").onsubmit = function () {
-            const username = document.querySelector("#username").value;
-            const password = document.querySelector("#Password").value;
-            if (condition1.test(password.charAt(0)) == true)
-                return wrong("username")
-            if (password.length < 8)
-                return wrong("username");
-            if (condition1.test(password) == false)
-                return wrong("username");
-            if (condition2.test(password) == false)
-                return wrong("username");
-            if (condition3.test(password) == false)
-                return wrong("username");
-            if (condition4.test(password) == false)
-                return wrong("username");
-        };
-        function wrong(string) {
-            alert("Sai " + string);
-        }
-        document.getElementById("Password").onfocus = function () {
-            document.getElementById("message").style.display = "block";
+        const psw = document.querySelector("#Password");
+        const psw_chk = document.querySelector("#Password-retype");
+
+        // Khi nhập vào passworđ-retype
+        document.querySelector("#Password-retype").onkeyup = function () {
+
+            //Hiện img khi nhập
+            document.getElementById("secret1").style.display = "block";
+
+            // Kiểm tra nếu độ dài 2 password đã bằng chưa
+            if (psw.value.length == psw_chk.value.length) {
+
+                // Nếu độ dài bằng + giá trị giống không hiện tb
+                if (psw.value === psw_chk.value) {
+                    document.getElementById("psw-check-warning").style.visibility = "hidden";
+                    document.getElementById("confirm").style.pointerEvents = "auto";
+                }
+                // Ngược lại hiện tb
+                else {
+                    document.getElementById("psw-check-warning").style.visibility = "visible";
+                    document.getElementById("confirm").style.pointerEvents = "none";
+                }
+            }
         }
 
-        // Ẩn box khi ko nhấn vào password
-        document.getElementById("Password").onblur = function () {
-            document.getElementById("message").style.display = "none";
+        // Hiện box + img khi nhấn vào password
+        document.getElementById("Password").onfocus = function () {
+            document.getElementById("show").style.display = "none";
+            document.getElementById("message").style.display = "block";
+            if (psw.value.length != 0)
+                document.getElementById("secret").style.display = "block";
         }
+        // Hiện img khi nhấn vào nhập lại mật khẩu
+        document.getElementById("Password-retype").onfocus = function () {
+            if (psw.value.length != 0)
+                document.getElementById("secret1").style.display = "block";
+        }
+        // Ẩn box + img khi ko nhấn vào password
+        document.getElementById("Password").onblur = function () {
+            if (click_img != 1) {
+                document.getElementById("message").style.display = "none";
+                document.getElementById("secret").style.display = "none";
+                document.getElementById("Password").type = "password";
+            }
+            click_img = 0;
+        }
+
+        // Ẩn img khi ko nhấn vào nhập lại mật khẩu
+        document.getElementById("Password-retype").onblur = function () {
+            document.getElementById("secret1").style.display = "none";
+        }
+
+        // Kiểm tra điều kiện input
+        var upperCaseLetters = /[A-Z]/g;
+        var lowerCaseLetters = /[a-z]/g;
+        var numbers = /[0-9]/g;
+        var specialchar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+        // Kiểm tra nếu nhấn vào toggle password
+        var click_img;
+
+        // Kiểm tra định dạng CCCD
+        document.getElementById("CCCD").onkeyup = function () {
+            var CCCD_val = document.getElementById("CCCD").value;
+            if (CCCD_val.match(lowerCaseLetters) || CCCD_val.match(upperCaseLetters) || CCCD_val.match(specialchar)) {
+                document.getElementById("CCCD-warning").style.visibility = "visible";
+            }
+        }
+
         // Khi nhập vào password
         document.getElementById("Password").onkeyup = function () {
+            document.getElementById("secret").style.display = "block";
             // Kiểm tra chữ viết thường
-            var lowerCaseLetters = /[a-z]/g;
             if (document.getElementById("Password").value.match(lowerCaseLetters)) {
                 letter.classList.remove("invalid");
                 letter.classList.add("valid");
@@ -220,7 +271,6 @@
             }
 
             // Kiểm tra chữ viết hoa
-            var upperCaseLetters = /[A-Z]/g;
             if (document.getElementById("Password").value.match(upperCaseLetters)) {
                 capital.classList.remove("invalid");
                 capital.classList.add("valid");
@@ -230,7 +280,6 @@
             }
 
             // Kiểm tra số
-            var numbers = /[0-9]/g;
             if (document.getElementById("Password").value.match(numbers)) {
                 number.classList.remove("invalid");
                 number.classList.add("valid");
@@ -238,25 +287,45 @@
                 number.classList.remove("valid");
                 number.classList.add("invalid");
             }
+
             // Kiểm tra kí tự đặc biệt
-            var specialchar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
             if (document.getElementById("Password").value.match(specialchar)) {
                 special.classList.remove("invalid");
                 special.classList.add("valid");
             } else {
-                number.classList.remove("valid");
-                number.classList.add("invalid");
+                special.classList.remove("valid");
+                special.classList.add("invalid");
             }
+
             //  Kiểm tra độ dài
             if (document.getElementById("Password").value.length >= 8) {
-                length.classList.remove("invalid");
-                length.classList.add("valid");
+                lengthchk.classList.remove("invalid");
+                lengthchk.classList.add("valid");
             } else {
-                length.classList.remove("valid");
-                length.classList.add("invalid");
+                lengthchk.classList.remove("valid");
+                lengthchk.classList.add("invalid");
             }
         }
+
+        // Hiện-ẩn password
+
+        document.getElementById("secret").onmousedown = function () {
+                document.getElementById("message").style.display = "block";
+            document.getElementById("secret").style.display = "none";
+            document.getElementById("show").style.display = "block";
+            document.getElementById("Password").type = "text";
+            click_img = 1;
+        }
+
+        document.getElementById("show").onmousedown = function () {
+            document.getElementById("secret").style.display = "block";
+            document.getElementById("message").style.display = "block";
+            document.getElementById("show").style.display = "none";
+            document.getElementById("Password").type = "password";
+            click_img = 1;
+        }
     });
+
 </script>
 
 </html>

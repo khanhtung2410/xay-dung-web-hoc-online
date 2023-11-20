@@ -518,16 +518,22 @@
 <script src="/js/moment.js"></script>
 <script>
   function begin() {
+    // Đặt biến
     const han = 90;
+    // Bắt đầu
     var start = moment();
+    // Hạn
     var limit = start.add(han, 'minutes');
+    // Lấy độ trễ
     var x = setInterval(function () {
       function time() {
         var now = moment();
         //Tính thời gian còn lại
         remaining = limit - now;
+        //Đổi màu nếu còn ít hơn 5p
         if (remaining < 300000)
           document.querySelector(".clock-wr").style.backgroundColor = 'rgb(252, 39, 39)'
+        //Thông báo hết giờ
         if (remaining < 1000) {
           document.querySelector(".time-noti").style.display = 'Hết giờ'
           document.getElementById("tet").style.display = 'none'

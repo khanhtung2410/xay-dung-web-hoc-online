@@ -5,30 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web học trực tuyến</title>
-  <link rel="stylesheet" href="css/menu.css">
   <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="/css/dethi.css">
+  <link rel="stylesheet" type="text/css" href="/css/w3.css">
+  <link rel="stylesheet" type="text/css" href="/css/dethi.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation-bar.css">
 </head>
 
 <body style="background-color: white;">
   <div class="w3-bar " style="background-color: antiquewhite;">
-    <a class="w3-bar-item w3-button" href="/html/menu.html"><img src="/image/icon/dragon-removebg-preview.png"
-        style="height: 31px;"></a>
+    <a class="w3-bar-item w3-button" href="/html/menu.html"><img class="logo" src="/image/icon/dragon-removebg-preview.png"></a>
     <div class="w3-dropdown-click w3-hide-large w3-hide-medium ">
       <button onclick="menudropdown()" class="w3-button"><img src="/image/icon/menu-bar.png" height="31px"></button>
       <div id="sub-menu" class="w3-dropdown-content w3-bar-block dropdown-menu">
         <div class="w3-dropdown-hover w3-bar-item w3-padding-large">
           <span>Lớp học</span>
           <div class="w3-dropdown-content" style="left: 60px;">
-
             <div class="hover-drop-toan">
               <span class="w3-padding-large w3-bar-item">Toán</span>
               <div class="lop">
                 <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
-
             </div>
             <div class="hover-drop-ly">
               <span class="w3-padding-large w3-bar-item">Lý</span>
@@ -39,14 +36,13 @@
             </div>
           </div>
         </div>
-        <a id="tt" class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Thông tin</a>
+        <a class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Thông tin</a>
       </div>
     </div>
     <div class="w3-hide-small dropdown-menu-big">
       <div class="w3-dropdown-hover w3-bar-block w3-padding-large">
         <span>Lớp học</span>
         <div class="w3-dropdown-content" style="left: 67px; margin-top: 10px;">
-
           <div class="hover-drop-toan">
             <span class="w3-padding-large w3-bar-item">Toán</span>
             <div class="lop">
@@ -54,7 +50,6 @@
               <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
             </div>
           </div>
-
           <div class="hover-drop-ly">
             <span class="w3-padding-large w3-bar-item">Lý</span>
             <div class="lop">
@@ -64,12 +59,13 @@
           </div>
         </div>
       </div>
-      <a id="tt" class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Thông tin</a>
+      <a class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Thông tin</a>
+      <a class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Hướng dẫn</a>
     </div>
 
     <div class="authorize">
-      <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()"
-        href="/html/dang-nhap.html">Đăng nhập</a>
+      <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.html">Đăng
+        nhập</a>
       <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-nhap.html">Đăng Ký</a>
     </div>
   </div>
@@ -77,6 +73,18 @@
     <p>Thời gian còn: 
       <span id="tet" onclick=" begin()">Bắt đầu</span> 
     </p>
+  </div>
+  <div class="pop-box">
+    <div class="content">
+      <p>Bài kiểm tra này gồm 40 câu hỏi về toán.</p>
+      <p>Bạn có 90 phút để hoàn thành bài kiểm tra.</p>
+      <p>Mỗi câu tương đương với 0,25 điểm với số điểm tối đa là 10.</p>
+      <p1>Bắt đầu làm bài ?</p1>
+      <div class="choice-wr">
+        <button class="yes" onclick="begin()">Vô</button>
+        <a href="/html/lop-thuong.html" class="no">Thôi</a>
+      </div>
+    </div>
   </div>
   <div id="noidung">
     <div class="header">
@@ -449,30 +457,56 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script src="/lib1/moment/moment.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="/js/moment.js"></script>
   <script>
     function begin() {
+      // Đặt biến
       const han = 90;
-      var anchor = moment();
+      // Bắt đầu
       var start = moment();
+      // Hạn
       var limit = start.add(han, 'minutes');
-      var x = setInterval(function () {
+      // Lấy độ trễ
+      var x = setInterval(function() {
         function time() {
           var now = moment();
           //Tính thời gian còn lại
           remaining = limit - now;
-          return remaining;
+          //Đổi màu nếu còn ít hơn 5p
+          if (remaining < 300000)
+            document.querySelector(".clock-wr").style.backgroundColor = 'rgb(252, 39, 39)'
+          //Thông báo hết giờ
+          if (remaining < 1000) {
+            document.querySelector(".time-noti").style.display = 'Hết giờ'
+            document.getElementById("tet").style.display = 'none'
+          }
+          return remaining
         }
         //Tính thời gian
         var hours = Math.floor((time() % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((time() % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((time() % (1000 * 60)) / 1000);
-
-        document.getElementById("tet").innerHTML= hours + "h" + minutes + "p" + seconds + "s";
-    
-      }
-        , 1000);
-        document.getElementById("noidung").style.display = 'block';
+  
+        document.getElementById("tet").innerHTML = hours + "h" + minutes + "p" + seconds + "s"
+      }, 1000);
+      //Chỉnh display các element
+      document.getElementById("noidung").style.display = 'block'
+      document.querySelector(".clock-wr").style.display = 'block'
+      document.querySelector(".pop-box").style.display = 'none'
     }
+    //Thêm envent scroll
+    window.addEventListener("scroll", setScrollvar)
+    //Hàm lấy giá trị scroll
+    function setScrollvar() {
+      const htmlelement = document.documentElement
+      //Pixel kéo xuống chia cho độ cao client (chỉ tính padding xem đc)
+      const percentofScrYscrolled = htmlelement.scrollTop / htmlelement.clientHeight
+      //Lấy giá trị tối đa scroll xuống là 9,2%
+      htmlelement.style.setProperty("--scroll", Math.min(percentofScrYscrolled * 100, 9.2))
+    }
+    //Xác định scroll đến đâu r
+    setScrollvar()
   </script>
-
 </body>

@@ -1,10 +1,13 @@
 .content{
     background-color: rgb(251, 255, 130);
-    margin: 0px 100px 0px 100px;
+    margin: 0px 200px 0px 200px;
+  }
+  .w3-bar{
+    font-size: 18px;
   }
   /* thẻ giới thiệu*/
   .card{
-      width: clamp(150px, 70%, 1000px);
+      width: clamp(150px, 70%, 900px);
       position: relative;
       margin-top: 20px;
       background-color: rgba(195, 132, 50, 0.735);

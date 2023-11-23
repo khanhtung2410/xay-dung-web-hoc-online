@@ -1,9 +1,13 @@
  /* thanh điều hướng */
-  
+  .logo{
+    height: 37px;
+  }
  .w3-bar .w3-button:hover {
     background-color: rgb(255, 199, 126);
   }
-  
+  .w3-bar {
+    font-size: 19px;
+  }
   .dropdown-menu-big .w3-dropdown-hover:first-child,
   .dropdown-menu .w3-dropdown-hover:first-child{
     background-color: antiquewhite;

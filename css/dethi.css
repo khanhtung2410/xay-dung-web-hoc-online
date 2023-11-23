@@ -10,15 +10,20 @@
     background-color: #ddd;
     border: 5px solid black;
     border-radius: 7px;
-    text-align: center;
 }
 
+.pop-box .content p {
+    margin-left: 25px;
+    font-size: 18px;
+}
 .pop-box .content p1 {
     font-weight: 500;
-    font-size: large;
+    font-size: 30px;
+    margin-left: 25px;
 }
 
 .pop-box .content .choice-wr {
+    font-size: 18px;
     margin: 15px 15px;
     display: flex;
     justify-content: space-around;
@@ -26,6 +31,7 @@
 
 .pop-box .yes {
     background-color: greenyellow;
+    width: clamp(100px, 30%, 200px);
 }
 
 .pop-box .yes:hover {
@@ -38,10 +44,12 @@
 
 .pop-box .no {
     background-color: rgb(255, 159, 25);
+    width: clamp(100px, 30%, 200px);
     border: 1px solid black;
     border-radius: 2px;
     padding: 14px 25px;
     text-decoration: none;
+    text-align: center;
 }
 
 .pop-box button {
@@ -63,23 +71,26 @@
     z-index: 1;
     display: none;
     width: 250px;
+    font-size: 18px;
     /* Tính di chuyển của box thời gian  */
-    translate: 0 calc(-1% * var(--scroll) * 9);
+    translate: 0 calc(-1% * var(--scroll) * 8.65);
 }
-
+.time-noti{
+    margin-left: 5px;
+}
 .mjx-chtml {
     z-index: 0;
 }
 
 #noidung {
-    max-width: 985px;
+    max-width: 1250px;
     margin-left: 35px;
     display: none;
     padding: 20px;
 }
 
 #noidung .header {
-    font-size: large;
+    font-size: 25px;
     font-weight: 600;
     border-bottom: 1px solid gray;
 }
@@ -87,6 +98,7 @@
 #noidung .que-form .debai {
     line-height: 1.5;
     user-select: none;
+    font-size: 17px;
 }
 
 #noidung .que-form .debai span {
@@ -96,23 +108,25 @@
 
 #noidung .que-form .q-pic {
     display: block;
-    width: 250px;
+    width: 300px;
     margin: auto;
 }
 
 #noidung .que-form .answer {
     display: block;
     line-height: 2;
+    font-size: 17px;
 }
 
 #noidung input[type=submit] {
-    background-color: rgb(6, 146, 6);
+    background-color: rgb(138, 237, 138);
     position: relative;
     margin-right: 0px;
     border: 1px solid #DDD;
     width: 20%;
     padding: 15px 10px 15px 10px;
     border-radius: 4px;
+    border: 1px solid black;
 }
 
 #noidung input[type=submit]:hover {

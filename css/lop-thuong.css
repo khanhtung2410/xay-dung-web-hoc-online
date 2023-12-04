@@ -7,23 +7,25 @@
 .noi-dung {
     display: block;
     box-sizing: border-box;
-    margin-left: 30px;
+    margin-left: 70px;
 }
 
 .ten-lop-wrapper {
     position: relative;
-    margin-top: auto;
-
+    margin-top: 40px;
 }
-
+.ten-lop-wrapper h1{
+    font-size: 50px;
+    color: rgb(23, 125, 243);
+}
 .mieu-ta-wrapper {
     position: relative;
     background-color: rgb(220, 219, 219);
-    border: 2px solid black;
     margin-top: 60px;
     line-height: 30px;
     border-radius: 1.5rem;
-    width: 80%;
+    width: 70%;
+    padding: 15px 10px 10px 20px;
 }
 
 .mieu-ta-wrapper p {
@@ -33,10 +35,16 @@
 .bai-hoc-wr {
     margin: 30px 0px 30px 0px;
 }
-
+.chuong-wrapper p{
+    padding-left: 45%;
+    font-size: 25px;
+    color: rgb(115, 50, 227);
+}
 .tieu-de {
     border-bottom: 1px solid aqua;
     margin: 0 0 20px;
+    font-size: 18px;
+    width: 70%;
 }
 
 .tieu-de span {
@@ -52,18 +60,16 @@
 
 .danh-sach-wrapper {
     box-sizing: border-box;
-    border: 1px solid gray;
     border-radius: 7px;
-    width: clamp(200px, 80%, 1500px);
+    width: clamp(802px, 70%, 1500px);
     display: flex;
-    background-color: rgb(220, 219, 219);
+    background-color: rgb(241, 199, 152);
     left: 10%;
 }
 
 .danh-sach-video {
     display: block;
     line-height: 40px;
-    padding-left: 15px;
 }
 
 .noi-dung .chuong,
@@ -71,9 +77,12 @@
     list-style: none;
    
 }
-
+.bai{
+    font-size: 17px;
+}
 .noi-dung .chuong {
     margin-bottom: 20px;
+    font-size: 18px;
 }
 
 .arrowhead {
@@ -88,7 +97,11 @@ button {
 .bai a{
     text-decoration:wavy;
 }
+.list-bai{
+    margin-top: 10px;
+}
 .list-bai .counters{
+    padding-left: 55px;
     display: flex;
     flex-direction: row;
 }

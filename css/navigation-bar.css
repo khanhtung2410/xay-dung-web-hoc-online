@@ -3,7 +3,10 @@
     height: 37px;
   }
  .w3-bar .w3-button:hover {
-    background-color: rgb(255, 199, 126);
+    background-color: rgb(255, 199, 126) !important; 
+  }
+  .w3-button{
+    border-radius: 7px;
   }
   .w3-bar {
     font-size: 19px;

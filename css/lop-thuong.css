@@ -1,110 +1,178 @@
-.bar-wrapper {
-    padding-left: 16px;
-    display: flex;
-    justify-content: space-between;
+:root {
+   --main-color: #8e44ad;
+   --red: #e74c3c;
+   --orange: #f39c12;
+   --light-color: #888;
+   --light-bg: #eee;
+   --black: #2c3e50;
+   --white: #fff;
+   --border: .1rem solid rgba(0, 0, 0, .2);
 }
 
-.noi-dung {
-    display: block;
-    box-sizing: border-box;
-    margin-left: 70px;
+* {
+   font-family: 'Nunito', sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   outline: none;
+   border: none;
+   text-decoration: none;
 }
 
-.ten-lop-wrapper {
-    position: relative;
-    margin-top: 40px;
-}
-.ten-lop-wrapper h1{
-    font-size: 50px;
-    color: rgb(23, 125, 243);
-}
-.mieu-ta-wrapper {
-    position: relative;
-    background-color: rgb(220, 219, 219);
-    margin-top: 60px;
-    line-height: 30px;
-    border-radius: 1.5rem;
-    width: 70%;
-    padding: 15px 10px 10px 20px;
+*::selection {
+   background-color: var(--main-color);
+   color: #fff;
 }
 
-.mieu-ta-wrapper p {
-    padding-left: 10px;
+html {
+   font-size: 62.5%;
+   overflow-x: hidden;
 }
 
-.bai-hoc-wr {
-    margin: 30px 0px 30px 0px;
-}
-.chuong-wrapper p{
-    padding-left: 45%;
-    font-size: 25px;
-    color: rgb(115, 50, 227);
-}
-.tieu-de {
-    border-bottom: 1px solid aqua;
-    margin: 0 0 20px;
-    font-size: 18px;
-    width: 70%;
+body {
+   background-color: var(--light-bg);
+   /* padding-left: 30rem; */
 }
 
-.tieu-de span {
-    box-sizing: border-box;
-    background-color: aqua;
-    padding: 0 15px;
-    display: inline-block;
-    font-weight: bold;
-    line-height: 30px;
-    color: aliceblue;
-    width: fit-content;
+body.dark {
+   --light-color: #aaa;
+   --light-bg: #333;
+   --black: #fff;
+   --white: #222;
+   --border: .1rem solid rgba(255, 255, 255, .2);
 }
 
-.danh-sach-wrapper {
-    box-sizing: border-box;
-    border-radius: 7px;
-    width: clamp(802px, 70%, 1500px);
-    display: flex;
-    background-color: rgb(241, 199, 152);
-    left: 10%;
+body.active {
+   padding-left: 0;
 }
 
-.danh-sach-video {
-    display: block;
-    line-height: 40px;
+section {
+   padding: 2rem;
+   margin: 0 auto;
+   max-width: 1200px;
 }
 
-.noi-dung .chuong,
-.noi-dung .bai-wrapper {
-    list-style: none;
-   
-}
-.bai{
-    font-size: 17px;
-}
-.noi-dung .chuong {
-    margin-bottom: 20px;
-    font-size: 18px;
+.heading {
+   font-size: 2.5rem;
+   color: var(--black);
+   margin-bottom: 2.5rem;
+   border-bottom: var(--border);
+   padding-bottom: 1.5rem;
+   text-transform: capitalize;
+
 }
 
-.arrowhead {
-    transition: 0.5s;
-    height: 15px;
+.inline-btn,
+.inline-option-btn,
+.inline-delete-btn,
+.btn,
+.delete-btn,
+.option-btn {
+   border-radius: .5rem;
+   color: #fff;
+   font-size: 1.8rem;
+   cursor: pointer;
+   text-transform: capitalize;
+   padding: 1rem 3rem;
+   text-align: center;
+   margin-top: 1rem;
 }
 
-button {
-    border: none;
-    background-color: transparent;
+.btn,
+.delete-btn,
+.option-btn {
+   display: block;
+   width: 100%;
 }
-.bai a{
-    text-decoration:wavy;
+
+.inline-btn,
+.inline-option-btn,
+.inline-delete-btn {
+   display: inline-block;
 }
-.list-bai{
-    margin-top: 10px;
+
+.btn,
+.inline-btn {
+   background-color: var(--main-color);
 }
-.list-bai .counters{
-    padding-left: 55px;
-    display: flex;
-    flex-direction: row;
+
+.inline-btn:hover{
+background-color:  #04AA6D;
 }
-.hidden {
-    display: none;
+.lopthuong .box-container {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+   gap: 1.5rem;
+   justify-content: center;
+   align-items: flex-start;
+}
+
+.lopthuong .box-container .box {
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   transition: transform .2s; 
+   border-radius: .5rem;
+   background-color: var(--white);
+   padding: 2rem;
+}
+
+.lopthuong .box-container .box:hover {
+   transform: scale(1.05); 
+}
+.lopthuong .box-container .box .tutor {
+   display: flex;
+   align-items: center;
+   gap: 1.5rem;
+   margin-bottom: 2.5rem;
+}
+
+.lopthuong .box-container .box .tutor img {
+   height: 5rem;
+   width: 5rem;
+   border-radius: 50%;
+   object-fit: cover;
+}
+
+.lopthuong .box-container .box .tutor h3 {
+   font-size: 1.8rem;
+   color: var(--black);
+   margin-bottom: .2rem;
+}
+
+.lopthuong .box-container .box .tutor span {
+   font-size: 1.3rem;
+   color: var(--light-color);
+}
+
+.lopthuong .box-container .box .thumb {
+   position: relative;
+}
+
+.lopthuong .box-container .box .thumb span {
+   position: absolute;
+   top: 1rem;
+   left: 1rem;
+   border-radius: .5rem;
+   padding: .5rem 1.5rem;
+   background-color: rgba(0, 0, 0, .3);
+   color: #fff;
+   font-size: 1.5rem;
+}
+
+.lopthuong .box-container .box .thumb img {
+   width: 100%;
+   height: 20rem;
+   object-fit: cover;
+   border-radius: .5rem;
+}
+
+.lopthuong .box-container .box .title {
+   font-size: 2rem;
+   color: var(--black);
+   padding-bottom: .5rem;
+   padding-top: 1rem;
+}
+
+.lopthuong .more-btn {
+   text-align: center;
+   margin-top: 2rem;
 }

@@ -1,5 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+include("./config.php");
+
+$exists = false;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Include file which makes the 
+    // Database Connection. 
+
+    $username = $_POST["username"];
+    $ho_ten = $_POST["yourname"];
+    $CCCD = $_POST["CCCD"];
+    $gender = $_POST["gender"];
+    $gmail = $_POST["gmail"];
+    $birth_day = $_POST["Date-of-birth"];
+    $birth_month = $_POST["Month-of-birth"];
+    $birth_year = $_POST["Year-of-birth"];
+    $date_of_birth = $birth_year . "-" . str_pad($birth_month, 2, "0", STR_PAD_LEFT) . "-" . str_pad($birth_day, 2, "0", STR_PAD_LEFT);
+    $password = $_POST["password"];
+    $password_retype = $_POST["password-retype"];
+
+
+    $sql = "Select * from user where username='$username'";
+
+    $result = mysqli_query($db, $sql);
+
+    $num = mysqli_num_rows($result);
+
+    // This sql query is use to check if 
+    // the username is already present  
+    // or not in our Database 
+    if ($num == 0) {
+        if (($password == $password_retype) && $exists == false) {
+
+            $sql = "INSERT INTO `user` ( `Username`,`Họ và tên`,`CCCD`,`Ngày sinh`,`Gmail`,`Password`,`Giới tính`, `Ngày đăng ký`) VALUES ('$username','$ho_ten' , '$CCCD','$date_of_birth','$gmail','$password','$gender', current_timestamp())";
+            $result = mysqli_query($db, $sql);
+
+            if ($result) {
+                $showAlert = true;
+            }
+        } else {
+            $showError = "Passwords do not match";
+        }
+    } // end if  
+
+    if ($num > 0) {
+        $exists = "Username not available";
+    }
+} //end if    
+
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -23,7 +75,7 @@
             <h1>SIGN UP</h1>
         </div>
         <div class="sign-up-wrapper">
-            <form id="signup" method="post">
+            <form id="signup" method="post" action="dang-ky.php">
                 <label for="yourname">Họ tên<span class="need">*</span></label>
                 <div class="input-boxes">
                     <input type="text" id="yourname" name="yourname" required maxlength="30">
@@ -35,7 +87,7 @@
                 <label for="CCCD">CCCD<span class="need">*</span><span id="CCCD-warning" style="visibility: hidden;">Sai
                         định dạng</span></label>
                 <div class="input-boxes">
-                    <input type="text" id="CCCD" name="CCCD" minlength="12" maxlength="12" pattern="[0-9]">
+                    <input type="text" id="CCCD" name="CCCD" minlength="12" maxlength="12"  >
                 </div>
                 <label for="gender">Giới tính</label>
                 <div class="input-boxes multichoice-box">
@@ -47,82 +99,31 @@
                 <label for="Date-of-birth">Ngày tháng năm sinh<span id="date-warning" style="visibility: hidden;">Không
                         hợp lệ</span></label>
                 <div class="input-boxes date-select">
-                    <select name="Date-of-birth" id="date" onchange="checkdatecondition(); this.blur()"
-                        onfocus="this.size=7" onblur="this.size=1">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
+                    <select name="Date-of-birth" id="date" onchange="checkdatecondition(); this.blur()" onfocus="this.size=7" onblur="this.size=1">
+                        <?php
+                        for ($date = 1; $date <= 28; $date += +1) {
+                            echo "<option value=$date >$date</option>";
+                        }
+                        ?>
                         <option class="feb-full" value="29">29</option>
                         <option class="not-feb" value="30">30</option>
                         <option class="not-feb" value="31">31</option>
                     </select><a> /</a>
-                    <select name="Date-of-birth" id="month" onchange="checkdatecondition(); this.blur()"
-                        onfocus="this.size=7" onblur="this.size=1">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
+                    <select name="Month-of-birth" id="month" onchange="checkdatecondition(); this.blur()" onfocus="this.size=7" onblur="this.size=1">
+                        <?php
+                        for ($month = 1; $month <= 28; $month += +1) {
+                            echo "<option value=$month>$month</option>";
+                        }
+                        ?>
                     </select><a> /</a>
-                    <select name="Date-of-birth" id="year" onchange="checkdatecondition(); this.blur()"
-                        onfocus="this.size=7" onblur="this.size=1">
-                        <option value="1985">1985</option>
-                        <option value="1986">1986</option>
-                        <option value="1987">1987</option>
-                        <option value="1988">1988</option>
-                        <option value="1989">1989</option>
-                        <option value="1990">1990</option>
-                        <option value="1991">1991</option>
-                        <option value="1992">1992</option>
-                        <option value="1993">1993</option>
-                        <option value="1994">1994</option>
-                        <option value="1995">1995</option>
-                        <option value="1996">1996</option>
-                        <option value="1997">1997</option>
-                        <option value="1998">1998</option>
-                        <option value="1999">1999</option>
-                        <option value="2000">2000</option>
-                        <option value="2001">2001</option>
-                        <option value="2002">2002</option>
-                        <option value="2003">2003</option>
-                        <option value="2004">2004</option>
-                        <option value="2005">2005</option>
-                        <option value="2006">2006</option>
-                        <option value="2007">2007</option>
-                        <option value="2008">2008</option>
-                        <option value="2009">2009</option>
+                    <select name="Year-of-birth" id="year" onchange="checkdatecondition(); this.blur()" onfocus="this.size=7" onblur="this.size=1">
+                        <?php
+                        $today = getdate();
+                        $namhientai = $today["year"];
+                        for ($nam = 1990; $nam <= $namhientai; $nam += +1) {
+                            echo "<option value=$nam>$nam</option>";
+                        }
+                        ?>
                     </select>
                 </div>
                 <label for="gmail">Gmail<span class="need">*</span></label>
@@ -143,8 +144,7 @@
                     <p id="special" class="invalid">Ít nhất <b>1 kí tự đặc biệt</b></p>
                     <p id="lengthchk" class="invalid">Tối thiểu <b>8 kí tự</b></p>
                 </div>
-                <label for="password-retype">Nhập lại mật khẩu<span class="need">*</span><span id="psw-check-warning"
-                        style="visibility: hidden;">Không khớp</span></label>
+                <label for="password-retype">Nhập lại mật khẩu<span class="need">*</span><span id="psw-check-warning" style="visibility: hidden;">Không khớp</span></label>
                 <div class="input-boxes">
                     <input type="password" name="password-retype" id="Password-retype">
                     <img src="/image/icon/eye-slash 256-205.png" alt="not-show" id="secret1">
@@ -184,16 +184,17 @@
             resetselecteddate(year);
         }
     }
+
     function resetselecteddate(string) {
         string.selectedIndex = null;
     }
     //check dk password
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const psw = document.querySelector("#Password");
         const psw_chk = document.querySelector("#Password-retype");
 
         // Khi nhập vào passworđ-retype
-        document.querySelector("#Password-retype").onkeyup = function () {
+        document.querySelector("#Password-retype").onkeyup = function() {
 
             //Hiện img khi nhập
             document.getElementById("secret1").style.display = "block";
@@ -214,44 +215,44 @@
             }
         }
 
-        // Hiện box + img khi nhấn vào password
-        document.getElementById("Password").onfocus = function () {
-            document.getElementById("show").style.display = "none";
-            document.getElementById("message").style.display = "block";
-            if (psw.value.length != 0)
-                document.getElementById("secret").style.display = "block";
-        }
-        // Hiện img khi nhấn vào nhập lại mật khẩu
-        document.getElementById("Password-retype").onfocus = function () {
-            if (psw.value.length != 0)
-                document.getElementById("secret1").style.display = "block";
-        }
-        // Ẩn box + img khi ko nhấn vào password
-        document.getElementById("Password").onblur = function () {
-            if (click_img != 1) {
-                document.getElementById("message").style.display = "none";
-                document.getElementById("secret").style.display = "none";
-                document.getElementById("Password").type = "password";
+            // Hiện box + img khi nhấn vào password
+            document.getElementById("Password").onfocus = function() {
+                document.getElementById("show").style.display = "none";
+                document.getElementById("message").style.display = "block";
+                if (psw.value.length != 0)
+                    document.getElementById("secret").style.display = "block";
             }
-            click_img = 0;
-        }
+            // Hiện img khi nhấn vào nhập lại mật khẩu
+            document.getElementById("Password-retype").onfocus = function() {
+                if (psw.value.length != 0)
+                    document.getElementById("secret1").style.display = "block";
+            }
+            // Ẩn box + img khi ko nhấn vào password
+            document.getElementById("Password").onblur = function() {
+                if (click_img != 1) {
+                    document.getElementById("message").style.display = "none";
+                    document.getElementById("secret").style.display = "none";
+                    document.getElementById("Password").type = "password";
+                }
+                click_img = 0;
+            }
 
-        // Ẩn img khi ko nhấn vào nhập lại mật khẩu
-        document.getElementById("Password-retype").onblur = function () {
-            document.getElementById("secret1").style.display = "none";
-        }
+            // Ẩn img khi ko nhấn vào nhập lại mật khẩu
+            document.getElementById("Password-retype").onblur = function() {
+                document.getElementById("secret1").style.display = "none";
+            }
 
-        // Kiểm tra điều kiện input
-        var upperCaseLetters = /[A-Z]/g;
-        var lowerCaseLetters = /[a-z]/g;
-        var numbers = /[0-9]/g;
-        var specialchar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+            // Kiểm tra điều kiện input
+            var upperCaseLetters = /[A-Z]/g;
+            var lowerCaseLetters = /[a-z]/g;
+            var numbers = /[0-9]/g;
+            var specialchar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
         // Kiểm tra nếu nhấn vào toggle password
         var click_img;
 
         // Kiểm tra định dạng CCCD
-        document.getElementById("CCCD").onkeyup = function () {
+        document.getElementById("CCCD").onkeyup = function() {
             var CCCD_val = document.getElementById("CCCD").value;
             if (CCCD_val.match(lowerCaseLetters) || CCCD_val.match(upperCaseLetters) || CCCD_val.match(specialchar)) {
                 document.getElementById("CCCD-warning").style.visibility = "visible";
@@ -259,7 +260,7 @@
         }
 
         // Khi nhập vào password
-        document.getElementById("Password").onkeyup = function () {
+        document.getElementById("Password").onkeyup = function() {
             document.getElementById("secret").style.display = "block";
             // Kiểm tra chữ viết thường
             if (document.getElementById("Password").value.match(lowerCaseLetters)) {
@@ -309,15 +310,15 @@
 
         // Hiện-ẩn password
 
-        document.getElementById("secret").onmousedown = function () {
-                document.getElementById("message").style.display = "block";
+        document.getElementById("secret").onmousedown = function() {
+            document.getElementById("message").style.display = "block";
             document.getElementById("secret").style.display = "none";
             document.getElementById("show").style.display = "block";
             document.getElementById("Password").type = "text";
             click_img = 1;
         }
 
-        document.getElementById("show").onmousedown = function () {
+        document.getElementById("show").onmousedown = function() {
             document.getElementById("secret").style.display = "block";
             document.getElementById("message").style.display = "block";
             document.getElementById("show").style.display = "none";
@@ -325,7 +326,6 @@
             click_img = 1;
         }
     });
-
 </script>
 
 </html>

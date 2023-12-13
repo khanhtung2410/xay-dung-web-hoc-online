@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($num > 0) {
         $exists = "ID CÂU HỎI ĐÃ CÓ CÂU TRẢ LỜI";
-        echo ("bggggggggggggggg");
+        echo ($exists);
     }
 }
 ?>

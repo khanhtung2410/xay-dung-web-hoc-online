@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $test_id = $_POST['test_id'];
   $test_name = $_POST['test_name'];
 
-  $sql = "select * from test where test_id = '$test_id'";
+  $sql = "SELECT * from test where test_id = '$test_id'";
 
   $result = mysqli_query($db, $sql);
 
@@ -33,6 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $exists = "ID ĐÃ TỒN TẠI";
   }
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+  $search_value = $_GET['search_subject'];
+  $sql1 = "SELECT * FROM test where subject_id = '$search_values'";
+  $result = mysqli_query($db, $sql1);
+  $number_of_test = mysqli_num_rows($result);
+}
 ?>
 
 <body>
@@ -45,11 +52,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <input type="text" name="test_name" id="test_name" required><br>
     <input type="submit" id="confirm" value="Nhập">
   </form>
+  <form method="get" id="search" action="add-test.php">
+    <label for="search_subject">Bai kiem tra mon</label>
+    <select name="search_subject">
+      <option value="T">Toan</option>
+      <option value="L">Ly</option>
+    </select><br>
+    <input type="submit" value="Search">
+  </form>
 </body>
 <script>
   var sub_id = document.getElementById("subject_id");
   document.getElementById("confirm").onmouseover = function() {
-    debugger
+    //check value hop le hay khong
     if (sub_id.value == "T" || sub_id.value == "L") {
       return
     } else

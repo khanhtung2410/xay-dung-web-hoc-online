@@ -68,9 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <table>
         <thead>
           <tr class="table_header">
-            <th class="hd">ID môn</th>
-            <th class="hd">ID bài kiểm tra</th>
-            <th class="hd">Tên bài kiểm tra</th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number" id="Subject_id_list">ID môn</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number" id="Test_id_list">ID bài kiểm tra</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number" >Tên bài kiểm tra</a></th>
           </tr>
         </thead>
         <tbody>
@@ -113,6 +113,70 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else
       sub_id.value = "";
   }
+  var properties = [
+	'Test_id_list',
+];
+
+$.each( properties, function( i, val ) {
+	
+	var orderClass = '';
+
+	$("#" + val).click(function(e){
+		e.preventDefault();
+		$('.filter__link.filter__link--active').not(this).removeClass('filter__link--active');
+  		$(this).toggleClass('filter__link--active');
+   		$('.filter__link').removeClass('asc desc');
+
+   		if(orderClass == 'desc' || orderClass == '') {
+    			$(this).addClass('asc');
+    			orderClass = 'asc';
+       	} else {
+       		$(this).addClass('desc');
+       		orderClass = 'desc';
+       	}
+
+		var parent = $(this).closest('.hd');
+    		var index = $(".hd").index(parent);
+		var $table = $('tbody');
+		var rows = $table.find('tr').get();
+		var isSelected = $(this).hasClass('filter__link--active');
+		var isNumber = $(this).hasClass('filter__link--number');
+			
+		rows.sort(function(a, b){
+
+			var x = $(a).find('td').eq(index).text();
+    			var y = $(b).find('td').eq(index).text();
+				
+			if(isNumber == true) {
+    					
+				if(isSelected) {
+					return x - y;
+				} else {
+					return y - x;
+				}
+
+			} else {
+			
+				if(isSelected) {		
+					if(x < y) return -1;
+					if(x > y) return 1;
+					return 0;
+				} else {
+					if(x > y) return -1;
+					if(x < y) return 1;
+					return 0;
+				}
+			}
+    		});
+
+		$.each(rows, function(index,row) {
+			$table.append(row);
+		});
+
+		return false;
+	});
+
+});
 </script>
 
 </html>

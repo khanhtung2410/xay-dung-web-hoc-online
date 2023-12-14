@@ -8,7 +8,7 @@ $exists = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Include file which makes the 
-    // Database Connection. 
+    // Database Connection.
 
     $username = $_POST["username"];
     $ho_ten = $_POST["yourname"];

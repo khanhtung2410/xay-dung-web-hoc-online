@@ -1,0 +1,84 @@
+body {
+    box-sizing: border-box;
+}
+
+h1 {
+    background-color: #58eea8;
+    font-size: calc(1.375rem + 1.5vw);
+    font-weight: 550;
+    line-height: 1.2;
+    text-align: center;
+    margin: 0px 0px 8px 0px;
+}
+
+.them-test,
+.listing {
+    width: 100%;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.listing {
+    margin-bottom: 0px;
+}
+.listing form{
+    line-height: 2.25;
+}
+.search-bar-container {
+    margin-bottom: 10px;
+}
+
+.them-test form,
+.listing form {
+    box-sizing: border-box;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.input-box {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+input[type=submit] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+@media only screen and (min-width: 576px) {
+
+    .them-test,
+    .listing {
+        max-width: 540px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    .them-test,
+    .listing {
+        max-width: 720px;
+    }
+}

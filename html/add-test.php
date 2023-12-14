@@ -5,11 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="/css/table.css">
+  <link rel="stylesheet" type="text/css" href="/css/add-test.css">
 </head>
 <?php
 include("./config.php");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   $exists = false;
   $subject_id = $_POST['subject_id'];
@@ -26,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($exists == false) {
       $sql = "INSERT INTO `test` (`Subject_id`,`Test_id`,`Test_name`) VALUES ('$subject_id','$test_id','$test_name')";
       $result = mysqli_query($db, $sql);
+      echo ("Đã nhập thành công");
     }
   };
 
@@ -33,34 +36,74 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $exists = "ID ĐÃ TỒN TẠI";
   }
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
-  $search_value = $_GET['search_subject'];
-  $sql1 = "SELECT * FROM test where subject_id = '$search_values'";
-  $result = mysqli_query($db, $sql1);
-  $number_of_test = mysqli_num_rows($result);
-}
 ?>
 
 <body>
-  <form method="post" id="overall" action="add-test.php">
-    <label for="subject_id">Nhập mã môn học (Toán = T , Lý = L) : </label><br>
-    <input type="text" id="subject_id" name="subject_id" required maxlength="1"><br>
-    <label for="test_id">Nhập mã bài kiểm tra: </label><br>
-    <input type="text" id="test_id" name="test_id" required maxlength="2"><br>
-    <label for="test_name">Nhập tên bài kiểm tra: </label><br>
-    <input type="text" name="test_name" id="test_name" required><br>
-    <input type="submit" id="confirm" value="Nhập">
-  </form>
-  <form method="get" id="search" action="add-test.php">
-    <label for="search_subject">Bai kiem tra mon</label>
-    <select name="search_subject">
-      <option value="T">Toan</option>
-      <option value="L">Ly</option>
-    </select><br>
-    <input type="submit" value="Search">
-  </form>
+  <div class="them-test">
+    <h1>Thêm bài kiểm tra</h1>
+    <form method="POST" id="overall" action="add-test.php">
+      <label for="subject_id">Mã môn học : </label><br>
+      <input type="text" class="input-box" id="subject_id" name="subject_id" required maxlength="1" placeholder="Toán = T , Lý = L"><br>
+      <label for="test_id">Mã bài kiểm tra: </label><br>
+      <input type="text" class="input-box" id="test_id" name="test_id" required maxlength="2"><br>
+      <label for="test_name">Tên bài kiểm tra: </label><br>
+      <input type="text" class="input-box" name="test_name" id="test_name" required><br>
+      <input type="submit" class="button" id="confirm" value="Nhập">
+    </form>
+  </div>
+  <div class="listing">
+    <h1>Danh sách bài kiểm tra</h1>
+    <div class="search-bar-container">
+      <form method="GET" id="" action="add-test.php">
+        <label for="search">Bài kiểm tra môn</label>
+        <select name="search_subject" id="">
+          <option value="T">Toán</option>
+          <option value="L">Lý</option>
+          <option value="All">All</option>
+        </select>
+        <input type="submit" name="begin_search" value="Tìm ">
+      </form>
+    </div>
+    <div class="container">
+      <table>
+        <thead>
+          <tr class="table_header">
+            <th class="hd">ID môn</th>
+            <th class="hd">ID bài kiểm tra</th>
+            <th class="hd">Tên bài kiểm tra</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+
+          if (isset($_GET['begin_search'])) {
+            $search_subject = $_GET['search_subject'];
+            if ($search_subject == "All")
+              $sql = "SELECT * FROM test ";
+            else
+              $sql = "SELECT * FROM test where Subject_id = '$search_subject'";
+          } else
+            $sql = "SELECT * FROM test ";
+          $result = mysqli_query($db, $sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+          ?>
+            <tr>
+              <td><?php echo $row['Subject_id']; ?></td>
+              <td><?php echo $row['Test_id']; ?></td>
+              <td><?php echo $row['Test_name']; ?></td>
+            </tr>
+          <?php
+          }
+
+          $db->close();
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
   var sub_id = document.getElementById("subject_id");
   document.getElementById("confirm").onmouseover = function() {

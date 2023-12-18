@@ -10,11 +10,14 @@
   <link rel="icon" type="text/css" href="/image/icon/dragon-removebg-preview.png">
   <link rel="stylesheet" type="text/css" type="text/css" href="/css/w3.css">
 </head>
+<?php
+session_start();
+include ("./config.php")
+?>
 
 <body style="background-color: white;">
   <div class="w3-bar" style="background-color: antiquewhite;">
-    <a class="w3-bar-item w3-button" href="/html/menu.html"><img src="/image/icon/dragon-removebg-preview.png" class="logo"
-        ></a>
+    <a class="w3-bar-item w3-button" href="/html/menu.php"><img src="/image/icon/dragon-removebg-preview.png" class="logo"></a>
     <div class="w3-dropdown-click w3-hide-large w3-hide-medium ">
       <button onclick="menudropdown()" class="w3-button"><img src="/image/icon/menu-bar.png" height="31px"></button>
       <div id="sub-menu" class="w3-dropdown-content w3-bar-block dropdown-menu">
@@ -49,7 +52,7 @@
             <span class="w3-padding-large w3-bar-item">Toán</span>
             <div class="lop">
               <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.html">Lớp thường</a>
-              <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/ki1-12-toan.php">Luyện đề</a>
             </div>
           </div>
 
@@ -65,12 +68,20 @@
       <a class="w3-bar-item w3-button w3-padding-large" href="/html/profile.html">Thông tin</a>
       <a class="w3-bar-item w3-button w3-padding-large" href="/html/about.html">Về chúng tôi</a>
     </div>
-      
-
     <div class="authorize">
-      <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng
-        nhập</a>
-      <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-ky.php">Đăng Ký</a>
+      <?php if (isset($_SESSION['login_user'])) :?>
+       <?php
+        $user_check = $_SESSION['login_user'];
+        $ses_sql = mysqli_query($db, "select Username from user where Username = '$user_check' ");
+        $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
+        $login_session = $row['Username']; 
+        echo '<p class="w3-bar-item w3-button w3-right w3-padding-large">Welcome '.$login_session.'</p>';
+        ?>
+      <?php else : ?>
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng
+          nhập</a>
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-ky.php">Đăng Ký</a>
+      <?php endif; ?>
     </div>
   </div>
   <div class="content">

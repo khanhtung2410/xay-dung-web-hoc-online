@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $myusername = mysqli_real_escape_string($db, $_POST['username']);
     $mypassword = mysqli_real_escape_string($db, $_POST['password']);
 
-    $sql = "SELECT ID FROM user WHERE username = '$myusername' and Password = '$mypassword'";
+    $sql = "SELECT ID FROM user WHERE Username = '$myusername' and Password = '$mypassword'";
     $result = mysqli_query($db, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $active = $row['Active'];
@@ -23,8 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION['login_user'] = $myusername;
 
-        header("location: welcome.php");
+        header("location: menu.php");
     } else {
+
         $error = "Your Login Name or Password is invalid";
     }
 }

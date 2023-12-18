@@ -50,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <input type="text" class="input-box" name="test_name" id="test_name" required><br>
       <input type="submit" class="button" id="confirm" value="Nhập">
     </form>
+    <button class="nextpage"><a href="/html/add-test-content.php">Thêm câu hỏi</a></button>
   </div>
   <div class="listing">
     <h1>Danh sách bài kiểm tra</h1>
@@ -70,12 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <tr class="table_header">
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="Subject_id_list">ID môn</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="Test_id_list">ID bài kiểm tra</a></th>
-            <th class="hd"><a href="#" class="filter__link filter__link--number" >Tên bài kiểm tra</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number">Tên bài kiểm tra</a></th>
           </tr>
         </thead>
         <tbody>
           <?php
-
           if (isset($_GET['begin_search'])) {
             $search_subject = $_GET['search_subject'];
             if ($search_subject == "All")
@@ -114,69 +114,69 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       sub_id.value = "";
   }
   var properties = [
-	'Test_id_list',
-];
+    'Test_id_list',
+  ];
 
-$.each( properties, function( i, val ) {
-	
-	var orderClass = '';
+  $.each(properties, function(i, val) {
 
-	$("#" + val).click(function(e){
-		e.preventDefault();
-		$('.filter__link.filter__link--active').not(this).removeClass('filter__link--active');
-  		$(this).toggleClass('filter__link--active');
-   		$('.filter__link').removeClass('asc desc');
+    var orderClass = '';
 
-   		if(orderClass == 'desc' || orderClass == '') {
-    			$(this).addClass('asc');
-    			orderClass = 'asc';
-       	} else {
-       		$(this).addClass('desc');
-       		orderClass = 'desc';
-       	}
+    $("#" + val).click(function(e) {
+      e.preventDefault();
+      $('.filter__link.filter__link--active').not(this).removeClass('filter__link--active');
+      $(this).toggleClass('filter__link--active');
+      $('.filter__link').removeClass('asc desc');
 
-		var parent = $(this).closest('.hd');
-    		var index = $(".hd").index(parent);
-		var $table = $('tbody');
-		var rows = $table.find('tr').get();
-		var isSelected = $(this).hasClass('filter__link--active');
-		var isNumber = $(this).hasClass('filter__link--number');
-			
-		rows.sort(function(a, b){
+      if (orderClass == 'desc' || orderClass == '') {
+        $(this).addClass('asc');
+        orderClass = 'asc';
+      } else {
+        $(this).addClass('desc');
+        orderClass = 'desc';
+      }
 
-			var x = $(a).find('td').eq(index).text();
-    			var y = $(b).find('td').eq(index).text();
-				
-			if(isNumber == true) {
-    					
-				if(isSelected) {
-					return x - y;
-				} else {
-					return y - x;
-				}
+      var parent = $(this).closest('.hd');
+      var index = $(".hd").index(parent);
+      var $table = $('tbody');
+      var rows = $table.find('tr').get();
+      var isSelected = $(this).hasClass('filter__link--active');
+      var isNumber = $(this).hasClass('filter__link--number');
 
-			} else {
-			
-				if(isSelected) {		
-					if(x < y) return -1;
-					if(x > y) return 1;
-					return 0;
-				} else {
-					if(x > y) return -1;
-					if(x < y) return 1;
-					return 0;
-				}
-			}
-    		});
+      rows.sort(function(a, b) {
 
-		$.each(rows, function(index,row) {
-			$table.append(row);
-		});
+        var x = $(a).find('td').eq(index).text();
+        var y = $(b).find('td').eq(index).text();
 
-		return false;
-	});
+        if (isNumber == true) {
 
-});
+          if (isSelected) {
+            return x - y;
+          } else {
+            return y - x;
+          }
+
+        } else {
+
+          if (isSelected) {
+            if (x < y) return -1;
+            if (x > y) return 1;
+            return 0;
+          } else {
+            if (x > y) return -1;
+            if (x < y) return 1;
+            return 0;
+          }
+        }
+      });
+
+      $.each(rows, function(index, row) {
+        $table.append(row);
+      });
+
+      return false;
+    });
+
+  });
 </script>
 
 </html>

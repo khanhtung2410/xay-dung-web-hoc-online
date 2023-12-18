@@ -10,63 +10,87 @@
   <link rel="stylesheet" type="text/css" href="/css/dethi.css">
   <link rel="stylesheet" type="text/css" href="/css/navigation-bar.css">
 </head>
+<?php
+session_start();
+include("./config.php");
+$subject_id = "T";
+$test_id = "T1";
+$sc1 = "/image/anh-de/de1/pic1-de1.png";
+$sql = "SELECT * FROM question WHERE Test_id = '$test_id'";
+$result = mysqli_query($db, $sql);
+$sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Test_id = '$test_id'";
+$result1 = mysqli_query($db, $sql1);
+$sql2 = "SELECT * FROM test WHERE Test_id = '$test_id'";
+$result2 = mysqli_query($db, $sql2);
+?>
 
 <body style="background-color: white;">
-  <div class="w3-bar " style="background-color: antiquewhite;">
-    <a class="w3-bar-item w3-button" href="/html/menu.html"><img class="logo" src="/image/icon/dragon-removebg-preview.png"></a>
+  <div class="w3-bar" style="background-color: antiquewhite;">
+    <a class="w3-bar-item w3-button" href="/html/menu.php"><img src="/image/icon/dragon-removebg-preview.png" class="logo"></a>
     <div class="w3-dropdown-click w3-hide-large w3-hide-medium ">
       <button onclick="menudropdown()" class="w3-button"><img src="/image/icon/menu-bar.png" height="31px"></button>
       <div id="sub-menu" class="w3-dropdown-content w3-bar-block dropdown-menu">
         <div class="w3-dropdown-hover w3-bar-item w3-padding-large">
           <span>Lớp học</span>
-          <div class="w3-dropdown-content" style="left: 60px;">
+          <div class="w3-dropdown-content" style="left: 80px;">
             <div class="hover-drop-toan">
               <span class="w3-padding-large w3-bar-item">Toán</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.html">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
+
             </div>
             <div class="hover-drop-ly">
               <span class="w3-padding-large w3-bar-item">Lý</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.html">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
             </div>
           </div>
         </div>
-        <a class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Thông tin</a>
+        <a class="w3-bar-item w3-button w3-padding-large" href="/html/profile.html">Thông tin</a>
       </div>
     </div>
     <div class="w3-hide-small dropdown-menu-big">
       <div class="w3-dropdown-hover w3-bar-block w3-padding-large">
         <span>Lớp học</span>
-        <div class="w3-dropdown-content" style="left: 67px; margin-top: 10px;">
+        <div class="w3-dropdown-content" style="left: 100px; margin-top: 10px;">
           <div class="hover-drop-toan">
             <span class="w3-padding-large w3-bar-item">Toán</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
-              <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.html">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/ki1-12-toan.php">Luyện đề</a>
             </div>
           </div>
+
           <div class="hover-drop-ly">
             <span class="w3-padding-large w3-bar-item">Lý</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong.html">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.html">Lớp thường</a>
               <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
             </div>
           </div>
         </div>
       </div>
-      <a class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Thông tin</a>
-      <a class="w3-bar-item w3-button w3-padding-large" href="/html/trangcanhan.html">Hướng dẫn</a>
+      <a class="w3-bar-item w3-button w3-padding-large" href="/html/profile.html">Thông tin</a>
+      <a class="w3-bar-item w3-button w3-padding-large" href="/html/about.html">Về chúng tôi</a>
     </div>
-
     <div class="authorize">
-      <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.html">Đăng
-        nhập</a>
-      <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-nhap.html">Đăng Ký</a>
+      <?php if (isset($_SESSION['login_user'])) : ?>
+        <?php
+        $user_check = $_SESSION['login_user'];
+        $ses_sql = mysqli_query($db, "select Username from user where Username = '$user_check' ");
+        $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
+        $login_session = $row['Username'];
+        echo '<p class="w3-bar-item w3-button w3-right w3-padding-large">Welcome ' . $login_session . '</p>';
+        ?>
+      <?php else : ?>
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng
+          nhập</a>
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-ky.php">Đăng Ký</a>
+      <?php endif; ?>
     </div>
   </div>
   <div class="clock-wr">
@@ -89,24 +113,40 @@
   <div id="noidung">
     <div class="header">
       <div class="header-content">
-        <p>Bài kiểm tra cuối kì 1 toán</p>
+        <?php
+        $row = mysqli_fetch_assoc($result2);
+        echo '<p>' . $row['Test_name'] . '</p>';
+        ?>
       </div>
     </div>
-    <form action="/php/score.php" method="post">
+    <form action="/html/score.php" method="post">
+      <input type="text" value="<?php echo ($test_id)?>" name="test_id" style="display: none;">
+      <input type="text" value="<?php echo ($subject_id)?>" name="subject_id" style="display: none;">
       <div class="que-form">
-        <p class="debai"><span>Câu 1:</span> Trong các hàm số sau, hàm số nào có đồ thị như hình dưới?</p>
-        <div class="q-pic-alg debai"> <img class="q-pic" src="/image/anh-de/de1/pic1-de1.png" alt="ảnh 1"></div>
-        <ol class="answer">
-          <li><input type="radio" required name="q1" value="1"> \(y=x^4-3x^2+2\).</li>
-          <li><input type="radio" required name="q1" value="2"> \(y=\frac{x+2}{x-2}\).</li>
-          <li><input type="radio" required name="q1" value="3"> \(y=-x^3+3x^2-1\).</li>
-          <li><input type="radio" required name="q1" value="4"> \(y=\frac{x-1}{x-2}\).</li>
-        </ol>
+        <?php
+        while ($row = mysqli_fetch_assoc($result)) {
+        ?>
+          <?php echo '<p class="debai"><span>Câu ' . $row['Question_id'] . ':</span> ' . $row['Question'] . '</p>'; ?>
+          <?php echo '<div class="q-pic-alg debai"> <img class="q-pic" src=' . $sc1 . ' alt="ảnh 1"></div>' ?>
+          <ol class="answer">
+            <?php
+            while ($row1 = mysqli_fetch_assoc($result1)) {
+              echo '<li><input type="radio" required name="' . $row['Question_id'] . '" value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
+            ?>
+            <?php
+            }
+            ?>
+          </ol>
+        <?php
+        }
+        $db->close();
+        ?>
+
       </div>
       <div class="que-form">
         <p class="debai"><span>Câu 2:</span> Cho các số thực dương \(a,b\) khác 1. Khẳng định nào sau đây <b>sai</b>?</p>
         <ol class="answer">
-          <li><input type="radio" required name="q2" value="1"> \(log_{a^3}\,b=\frac13log_a\,b\).</li>
+          <li><input type="radio" required name="q2" value="1"> \( \).</li>
           <li><input type="radio" required name="q2" value="2"> \(log_a\,(b^2)=2\,log_a\,b\).</li>
           <li><input type="radio" required name="q2" value="3"> \(log_a\,b\cdot log_b\,a=1\).</li>
           <li><input type="radio" required name="q2" value="4"> \(log_a\,b=-\,log_b\,a\).</li>

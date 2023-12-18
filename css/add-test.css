@@ -12,7 +12,9 @@ h1 {
 }
 
 .them-test,
-.listing {
+.them-cauhoi,
+.listing,
+.them-answer {
     width: 100%;
     margin: 50px auto;
     border: 1px solid #ccc;
@@ -25,15 +27,19 @@ h1 {
 .listing {
     margin-bottom: 0px;
 }
-.listing form{
+
+.listing form {
     line-height: 2.25;
 }
+
 .search-bar-container {
     margin-bottom: 10px;
 }
 
 .them-test form,
-.listing form {
+.them-cauhoi form,
+.listing form,
+.them-answer form {
     box-sizing: border-box;
     max-width: 400px;
     margin: 0 auto;
@@ -63,6 +69,28 @@ input[type=submit] {
     cursor: pointer;
 }
 
+.nextpage {
+    margin-top: 7px;
+    position: relative;
+    left: 80%;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    height: 28px;
+    background-color: #b610cd;
+}
+
+.nextpage:hover {
+    background-color: #6b079a;
+}
+
+.nextpage a {
+    line-height: 1.2;
+    text-decoration: none;
+    padding: 0 18px;
+    color: white;
+}
+
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
@@ -70,15 +98,23 @@ input[type="submit"]:hover {
 @media only screen and (min-width: 576px) {
 
     .them-test,
-    .listing {
+    .them-cauhoi,
+    .listing,
+    .them-answer {
         max-width: 540px;
+    }
+
+    .nextpage {
+        left: 75%;
     }
 }
 
 @media only screen and (min-width: 768px) {
 
     .them-test,
-    .listing {
+    .them-cauhoi,
+    .listing,
+    .them-answer {
         max-width: 720px;
     }
 }

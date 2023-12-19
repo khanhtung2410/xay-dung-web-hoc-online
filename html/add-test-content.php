@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <label for="test_id">Mã bài kiểm tra : </label><br>
       <input type="text" class="input-box" id="test_id" name="test_id" required maxlength="2"><br>
       <label for="question_id">Câu hỏi thứ : </label><br>
-      <input type="text" class="input-box" id="question_id" name="question_id" required maxlength="2"><br>
+      <input type="text" class="input-box" id="question_id" name="question_id" required maxlength="2" minlength="2" placeholder="VD: 01"><br>
       <label for="test_name">Câu hỏi : </label><br>
       <input type="text" class="input-box" name="question" id="question" required><br>
       <input type="submit" id="confirm" value="Nhập">

@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1>Thêm câu trả lời</h1>
     <form method="post" id="questions" action="add-question-answer.php">
       <label for="question_id">Câu hỏi thứ : </label><br>
-      <input type="text" class="input-box" id="question_id" name="question_id" required maxlength="2"><br>
+      <input type="text" class="input-box" id="question_id" name="question_id" required maxlength="2" minlength="2"><br>
       <label for="Answer1">Nhập đáp án A:</label><br>
       <input type="text" class="input-box" name="Answer1" id="Answer1" required><br>
       <label for="Answer1">Nhập đáp án B:</label><br>
@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <tr class="table_header">
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="question_id_list">Câu hỏi thứ</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="">Câu trả lời</a></th>
-            <th class="hd"><a href="#" class="filter__link filter__link--number">Câu trả lời đúng</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number">Đáp án</a></th>
           </tr>
         </thead>
         <tbody>

@@ -55,7 +55,7 @@ $test_name = $row['Test_name'];
             <div class="hover-drop-toan">
               <span class="w3-padding-large w3-bar-item">Toán</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.html">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.php">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
 
@@ -63,7 +63,7 @@ $test_name = $row['Test_name'];
             <div class="hover-drop-ly">
               <span class="w3-padding-large w3-bar-item">Lý</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.html">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.php">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
             </div>
@@ -79,7 +79,7 @@ $test_name = $row['Test_name'];
           <div class="hover-drop-toan">
             <span class="w3-padding-large w3-bar-item">Toán</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.html">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.php">Lớp thường</a>
               <a class="w3-bar-item w3-button w3-padding-large" href="/html/ki1-12-toan.php">Luyện đề</a>
             </div>
           </div>
@@ -87,7 +87,7 @@ $test_name = $row['Test_name'];
           <div class="hover-drop-ly">
             <span class="w3-padding-large w3-bar-item">Lý</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.html">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.php">Lớp thường</a>
               <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
             </div>
           </div>

@@ -43,7 +43,7 @@ $result2 = mysqli_query($db, $sql2);
             <div class="hover-drop-ly">
               <span class="w3-padding-large w3-bar-item">Lý</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.html">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.php">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
             </div>
@@ -67,7 +67,7 @@ $result2 = mysqli_query($db, $sql2);
           <div class="hover-drop-ly">
             <span class="w3-padding-large w3-bar-item">Lý</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.html">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.php">Lớp thường</a>
               <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
             </div>
           </div>

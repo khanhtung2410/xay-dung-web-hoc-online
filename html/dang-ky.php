@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($num == 0) {
         if (($password == $password_retype) && $exists == false) {
 
-            $sql = "INSERT INTO `user` ( `Username`,`Họ và tên`,`CCCD`,`Ngày sinh`,`Gmail`,`Password`,`Giới tính`, `Ngày đăng ký`) VALUES ('$username','$ho_ten' , '$CCCD','$date_of_birth','$gmail','$password','$gender', current_timestamp())";
+            $sql = "INSERT INTO `user` ( `Username`,`Name`,`CCCD`,`Date_of_birth`,`Gmail`,`Password`,`Gender`, `Signup_date`) VALUES ('$username','$ho_ten' , '$CCCD','$date_of_birth','$gmail','$password','$gender', current_timestamp())";
             $result = mysqli_query($db, $sql);
 
             if ($result) {
@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($num > 0) {
         $exists = "Username not available";
     }
+    header("location: dang-nhap.php");
 } //end if    
 
 ?>

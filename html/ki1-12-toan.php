@@ -15,7 +15,6 @@ session_start();
 include("./config.php");
 $subject_id = "T";
 $test_id = "T1";
-$sc1 = "/image/anh-de/de1/pic1-de1.png";
 $sql = "SELECT * FROM question WHERE Test_id = '$test_id'";
 $result = mysqli_query($db, $sql);
 $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Test_id = '$test_id'";
@@ -50,7 +49,7 @@ $result2 = mysqli_query($db, $sql2);
             </div>
           </div>
         </div>
-        <a class="w3-bar-item w3-button w3-padding-large" href="/html/profile.html">Thông tin</a>
+        <a class="w3-bar-item w3-button w3-padding-large" href="/html/profile.php">Thông tin</a>
       </div>
     </div>
     <div class="w3-hide-small dropdown-menu-big">
@@ -74,7 +73,6 @@ $result2 = mysqli_query($db, $sql2);
           </div>
         </div>
       </div>
-      <a class="w3-bar-item w3-button w3-padding-large" href="/html/profile.html">Thông tin</a>
       <a class="w3-bar-item w3-button w3-padding-large" href="/html/about.html">Về chúng tôi</a>
     </div>
     <div class="authorize">
@@ -84,7 +82,7 @@ $result2 = mysqli_query($db, $sql2);
         $ses_sql = mysqli_query($db, "select Username from user where Username = '$user_check' ");
         $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
         $login_session = $row['Username'];
-        echo '<p class="w3-bar-item w3-button w3-right w3-padding-large">Welcome ' . $login_session . '</p>';
+        echo '<a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/profile.php">Welcome,' . $login_session . '</a>';
         ?>
       <?php else : ?>
         <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng
@@ -117,23 +115,25 @@ $result2 = mysqli_query($db, $sql2);
         $row = mysqli_fetch_assoc($result2);
         echo '<p>' . $row['Test_name'] . '</p>';
         ?>
-      </div> 
+      </div>
     </div>
     <form action="/html/score.php" method="post">
-      <input type="text" value="<?php echo ($test_id)?>" name="test_id" style="display: none;">
-      <input type="text" value="<?php echo ($subject_id)?>" name="subject_id" style="display: none;">
+      <input type="text" value="<?php echo ($test_id) ?>" name="test_id" style="display: none;">
+      <input type="text" value="<?php echo ($subject_id) ?>" name="subject_id" style="display: none;">
       <div class="que-form">
         <?php
+        $forty = 0;
         while ($row = mysqli_fetch_assoc($result)) {
           $four = 0;
+          $forty += 1;
         ?>
           <?php echo '<p class="debai"><span>Câu ' . $row['Question_id'] . ':</span> ' . $row['Question'] . '</p>'; ?>
           <ol class="answer">
             <?php
             while ($row1 = mysqli_fetch_assoc($result1)) {
               $four += 1;
-              echo '<li><input type="radio" required name="' . $row['Question_id'] . '" value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
-              if($four == 4){
+              echo '<li><input type="radio" required name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
+              if ($four == 4) {
                 break;
               }
             ?>
@@ -142,10 +142,13 @@ $result2 = mysqli_query($db, $sql2);
             ?>
           </ol>
         <?php
+          if ($forty == 40) {
+            break;
+          }
         }
         $db->close();
         ?>
-      <input type="submit" value="Nộp bài">
+        <input type="submit" value="Nộp bài">
     </form>
   </div>
 </body>

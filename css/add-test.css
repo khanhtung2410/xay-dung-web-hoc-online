@@ -14,7 +14,8 @@ h1 {
 .them-test,
 .them-cauhoi,
 .listing,
-.them-answer {
+.them-answer,
+.update-profile {
     width: 100%;
     margin: 50px auto;
     border: 1px solid #ccc;
@@ -39,7 +40,8 @@ h1 {
 .them-test form,
 .them-cauhoi form,
 .listing form,
-.them-answer form {
+.them-answer form,
+.update-profile form {
     box-sizing: border-box;
     max-width: 400px;
     margin: 0 auto;
@@ -100,7 +102,8 @@ input[type="submit"]:hover {
     .them-test,
     .them-cauhoi,
     .listing,
-    .them-answer {
+    .them-answer,
+    .update-profile {
         max-width: 540px;
     }
 
@@ -114,7 +117,8 @@ input[type="submit"]:hover {
     .them-test,
     .them-cauhoi,
     .listing,
-    .them-answer {
+    .them-answer,
+    .update-profile {
         max-width: 720px;
     }
 }

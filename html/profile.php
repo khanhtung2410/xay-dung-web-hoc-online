@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web học trực tuyến</title>
-  <link rel="stylesheet" type="text/css" href="/css/menu.css">
-  <link rel="stylesheet" type="text/css" href="/css/navigation-bar.css">
-  <link rel="icon" type="text/css" href="/image/icon/dragon-removebg-preview.png">
+
+  <link rel="stylesheet" href="/css/navigation-bar.css">
+  <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/profile.css">
   <link rel="stylesheet" type="text/css" type="text/css" href="/css/w3.css">
+  <link rel="stylesheet" type="text/css" href="/css/navigation-bar.css">
+  <link rel="stylesheet" type="text/css" href="/css/table.css">
 </head>
 <?php
 session_start();
-include ("./config.php")
+include("./config.php")
 ?>
 
-<body style="background-color: white;">
+<body>
   <div class="w3-bar" style="background-color: antiquewhite;">
     <a class="w3-bar-item w3-button" href="/html/menu.php"><img src="/image/icon/dragon-removebg-preview.png" class="logo"></a>
     <div class="w3-dropdown-click w3-hide-large w3-hide-medium ">
@@ -68,13 +70,13 @@ include ("./config.php")
       <a class="w3-bar-item w3-button w3-padding-large" href="/html/about.html">Về chúng tôi</a>
     </div>
     <div class="authorize">
-      <?php if (isset($_SESSION['login_user'])) :?>
-       <?php
+      <?php if (isset($_SESSION['login_user'])) : ?>
+        <?php
         $user_check = $_SESSION['login_user'];
         $ses_sql = mysqli_query($db, "select Username from user where Username = '$user_check' ");
         $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
-        $login_session = $row['Username']; 
-        echo '<a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/profile.php">Welcome,'.$login_session.'</a>';
+        $login_session = $row['Username'];
+        echo '<a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/profile.php">Welcome,' . $login_session . '</a>';
         ?>
       <?php else : ?>
         <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng
@@ -83,50 +85,67 @@ include ("./config.php")
       <?php endif; ?>
     </div>
   </div>
-  <div class="content">
-    <div class="slideshow-container">
 
-      <div class="mySlides fade">
-        <div class="numbertext">1 / 3</div>
-        <img src="/image/slide/buisness man.png" style="width:50%">
+  <section class="user-profile">
+
+    <h1 class="heading">Your profile</h1>
+
+    <div class="info">
+
+      <div class="user">
+        <img src="/image/anh-bia/pic-1.jpg" alt="">
+        <?php
+        $sql = "SELECT * FROM user WHERE username='$login_session'";
+        $result = mysqli_query($db, $sql);
+        $row = mysqli_fetch_assoc($result);
+        echo ('<h3>' . $login_session . '</h3>')
+        ?>
+        <p>student</p>
+        <a href="./updateprofile.php" class="inline-btn">update profile</a>
       </div>
-
-      <div class="mySlides fade">
-        <div class="numbertext">2 / 3</div>
-        <img src="/image/slide/blue mage.png" style="width:50%">
+      <div class="profile">
+        <?php
+        echo ('<p class:"info">Họ và tên: ' . $row['Name'] . '</p>');
+        echo ('<p class:"info">CCCD: ' . $row['CCCD'] . '</p>');
+        echo ('<p class:"info">Ngày sinh: ' . $row['Date_of_birth'] . '</p>');
+        echo ('<p class:"info">Gmail: ' . $row['Gmail'] . '</p>');
+        echo ('<p class:"info">Giới tính: ' . $row['Gender'] . '</p>');
+        ?>
       </div>
-
-      <div class="mySlides fade">
-        <div class="numbertext">3 / 3</div>
-        <img src="/image/slide/confuse.jpg" style="width:50%">
-      </div>
-
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+      <h3>Bảng điểm:</h3>
     </div>
-    <br>
+   
+    <div class="container">
+      <table>
+        <thead>
+          <tr class="table_header">
+            <th class="hd"><a href="#" class="filter__link filter__link--number" id="question_id_list">Mã bài kiểm tra</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number" id="">Tên bài kiểm tra</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number">Điểm</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
 
-    <div style="text-align:center">
-      <span class="dot" onclick="currentSlide(1)"></span>
-      <span class="dot" onclick="currentSlide(2)"></span>
-      <span class="dot" onclick="currentSlide(3)"></span>
-    </div>
+          $sql1 = "SELECT * FROM test_result WHERE `Username`='$login_session'";
+          $result = mysqli_query($db, $sql1);
+          while ($row = mysqli_fetch_assoc($result)) {
+          ?>
+            <tr>
+              <td><?php echo $row['Test_id']; ?></td>
+              <td><?php echo $row['Test_name']; ?></td>
+              <td><?php echo $row['Score']; ?></td>
+            </tr>
+          <?php
+          }
 
-    <div class="card">
-      <div class="card-content">
-        <h3>Sơ bộ web</h3>
-        <p>Website này được thiết kế để giúp các bạn đang học lớp 11, 12 có thể nắm vững kiến thức cơ bản trong nhứng năm cuối khóa trước kì thi đại học</p>
-        <p>Trang web này hiện đang chứa nội dung học cơ bản của môn toán và lý của cả 2 lớp 11 và 12</p>
-        <p>Các lớp học của web được chia ra làm 2 phần là lớp thường và luyện đề</p>
-        <ul>
-          <li>Lớp thường là những lớp có video dạy học để các bạn có thể ôn lại kiến thức</li>
-          <li>Lớp luyện đề là tập hợp các đề thi đại học cho những bạn muốn luyện đề có thể thử sức</li>
-        </ul>
-      </div>
+          $db->close();
+          ?>
+        </tbody>
+      </table>
     </div>
-  </div>
+  </section>
+
 </body>
-<script src="/js/so-luoc.js"></script>
-<script src="/js/dropdown.js"></script>
 
 </html>

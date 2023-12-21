@@ -75,9 +75,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 ?>
+<style>
+  a {
+    text-decoration: none;
+    position: relative;
+    color: rgb(85, 83, 83);
+    font-size: 14px;
+    display: table;
+    padding: 10px;
+  }
+
+  .action {
+    display: flex;
+    text-decoration: none;
+  }
+
+  .fix {
+    color: #fdbc24;
+  }
+
+  .delete {
+    color: red;
+  }
+</style>
 
 
 <body>
+  <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
   <div class="them-answer">
     <h1>Thêm câu trả lời</h1>
     <form method="post" id="questions" action="add-question-answer.php">
@@ -117,6 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="question_id_list">Câu hỏi thứ</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="">Câu trả lời</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number">Đáp án</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number">Thao tác</a></th>
           </tr>
         </thead>
         <tbody>
@@ -132,6 +157,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <td><?php echo $row['Question_id']; ?></td>
                 <td><?php echo $row['Answer']; ?></td>
                 <td><?php echo $row['Choice']; ?></td>
+                <td class="action"><a class="fix" href="update_answer.php?qeid=<?php echo $row['Question_id']; ?>&teid=<?php echo ($search_test_id) ?>" class="btn">Sửa</a>
+                </td>
               </tr>
           <?php
             }

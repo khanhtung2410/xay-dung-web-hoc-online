@@ -37,8 +37,32 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   }
 }
 ?>
+<style>
+  a {
+    text-decoration: none;
+    position: relative;
+    color: rgb(85, 83, 83);
+    font-size: 14px;
+    display: table;
+    padding: 10px;
+  }
+
+  .action {
+    display: flex;
+    text-decoration: none;
+  }
+
+  .fix {
+    color: #fdbc24;
+  }
+
+  .delete {
+    color: red;
+  }
+</style>
 
 <body>
+  <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
   <div class="them-test">
     <h1>Thêm bài kiểm tra</h1>
     <form method="POST" id="overall" action="add-test.php">
@@ -72,6 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="Subject_id_list">ID môn</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="Test_id_list">ID bài kiểm tra</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number">Tên bài kiểm tra</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number">Thao tác</a></th>
           </tr>
         </thead>
         <tbody>
@@ -91,6 +116,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               <td><?php echo $row['Subject_id']; ?></td>
               <td><?php echo $row['Test_id']; ?></td>
               <td><?php echo $row['Test_name']; ?></td>
+              <td class="action "><a class="fix btn" href="update_test.php?teid=<?php echo $row['Test_id']; ?>&subid=<?php echo $row['Subject_id'] ?>">Sửa</a>
+                <a class="delete btn" onclick="return confirm('Bạn có muốn xóa không?');" href="delete_test.php?teid=<?php echo $row['Test_id']; ?>&status=test">Xóa</a>
+              </td>
             </tr>
           <?php
           }

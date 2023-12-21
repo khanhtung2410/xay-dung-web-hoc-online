@@ -10,10 +10,13 @@
 </head>
 <?php
 include("./config.php");
-
+if(isset($_GET["search_test"]))
+{
+   $test_id = $_GET["search_test"];
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  $exists = false;  
+  $exists = false;
   $question_id = $_POST['question_id'];
   $test_id = $_POST['test_id'];
   $question = $_POST['question'];
@@ -36,8 +39,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
+<style>
+    a {
+        text-decoration: none;
+        position: relative;
+        color: rgb(85, 83, 83);
+        font-size: 14px;
+        display: table;
+        padding: 10px;
+    }
+    .action{
+        display: flex;
+        text-decoration: none;
+    }
+    .fix{
+        color: #fdbc24;
+    }
+    .delete{
+        color: red;
+    }
+</style>
 
 <body>
+  <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
   <div class="them-cauhoi">
     <h1>Nhập câu hỏi</h1>
     <form method="post" class="questions" action="add-test-content.php">
@@ -72,6 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="question_id_list">Câu hỏi thứ</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="">Câu hỏi</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number">Có câu trả lời ?</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number">Thao tác</a></th>
           </tr>
         </thead>
         <tbody>
@@ -87,6 +112,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <td><?php echo $row['Question_id']; ?></td>
                 <td><?php echo $row['Question']; ?></td>
                 <td><?php echo $row['Have_answer']; ?></td>
+                <td class="action"><a class="fix" href="update_question.php?qeid=<?php echo $row['Question_id']; ?>&teid=<?php echo ($test_id); ?>" class="btn">Sửa</a>
+                  <a class="delete" onclick="return confirm('Bạn có muốn xóa không?');" href="delete_test.php?qeid=<?php echo $row['Question_id']; ?>&teid=<?php echo ($test_id); ?>&status=que"class="btn">Xóa</a>
+                </td>
               </tr>
           <?php
             }

@@ -1,194 +1,125 @@
+:root {
+   --main-color: #8e44ad;
+   --red: #e74c3c;
+   --orange: #f39c12;
+   --light-color: #888;
+   --light-bg: #eee;
+   --black: #2c3e50;
+   --white: #fff;
+   --border: .1rem solid rgba(0, 0, 0, .2);
+}
+
+* {
+   font-family: 'Nunito', sans-serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   outline: none;
+   border: none;
+   text-decoration: none;
+}
+
+*::selection {
+   background-color: var(--main-color);
+   color: #fff;
+}
+
+html {
+   font-size: 62.5%;
+   overflow-x: hidden;
+}
 
 
-:root{
-    --main-color:#8e44ad;
-    --red:#e74c3c;
-    --orange:#f39c12;
-    --light-color:#888;
-    --light-bg:#eee;
-    --black:#2c3e50;
-    --white:#fff;
-    --border:.1rem solid rgba(0,0,0,.2);
- }
- 
- *{
-    font-family: 'Nunito', sans-serif;
-    margin:0; padding:0;
-    box-sizing: border-box;
-    outline: none; border:none;
-    text-decoration: none;
- }
- 
- *::selection{
-    background-color: var(--main-color);
-    color:#fff;
- }
- 
- html{
-    font-size: 62.5%;
-    overflow-x: hidden;
- }
- 
- 
- section{
-    padding:2rem;
-    margin: 0 auto;
-    max-width: 1200px;
- }
- 
- .heading{
-    font-size: 2.5rem;
-    color:var(--black);
-    margin-bottom: 2.5rem;
-    border-bottom: var(--border);
-    padding-bottom: 1.5rem;
-    text-transform: capitalize;
- }
- 
- .inline-btn,
- .inline-option-btn,
- .inline-delete-btn,
- .btn,
- .delete-btn,
- .option-btn{
-    border-radius: .5rem;
-    color:#fff;
-    font-size: 1.8rem;
-    cursor: pointer;
-    text-transform: capitalize;
-    padding:1rem 3rem;
-    text-align: center;
-    margin-top: 1rem;
- }
- 
- .btn,
- .delete-btn,
- .option-btn{
-    display: block;
-    width: 100%;
- }
- 
- .inline-btn,
- .inline-option-btn,
- .inline-delete-btn{
-    display: inline-block;
- }
- 
- .btn,
- .inline-btn{
-    background-color: var(--main-color);
- }
- 
- .user-profile .info{
-    background-color: var(--white);
-    border-radius: .5rem;
-    padding: 2rem;
- }
- 
- .user-profile .info .user{
-    text-align: center;
-    margin-bottom: 2rem;
-    padding: 1rem;
- }
- 
- .user-profile .info .user img{
-    height: 10rem;
-    width: 10rem;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
- }
- 
- .user-profile .info .user h3{
-    font-size: 2rem;
-    color: var(--black);
- }
- 
- .user-profile .info .user p{
-    font-size: 1.7rem;
-    color: var(--light-color);
-    padding: .3rem 0;
- }
- 
- .user-profile .info .box-container{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
- }
- 
- .user-profile .info .box-container .box{
-    background-color: var(--light-bg);
-    border-radius: .5rem;
-    padding: 2rem;
-    flex: 1 1 25rem;
- }
- 
- .user-profile .info .box-container .box .flex{
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 1rem;
- }
- 
- .user-profile .info .box-container .box .flex i{
-    font-size:2rem;
-    color: var(--white);
-    background-color: var(--black);
-    text-align: center;
-    border-radius: .5rem;
-    height: 5rem;
-    width: 5rem;
-    line-height: 4.9rem;
- }
- 
- .user-profile .info .box-container .box .flex span{
-    font-size: 2.5rem;
-    color: var(--main-color);
- }
- 
- .user-profile .info .box-container .box .flex p{
-    color: var(--light-color);
-    font-size: 1.7rem;
- }
- 
- .form-container{
-    min-height: calc(100vh - 20rem);
-    display: flex;
-    align-items: center;
-    justify-content: center;
- }
- 
- .form-container form{
-    background-color: var(--white);
-    border-radius: .5rem;
-    padding: 2rem;
-    width: 50rem;
- }
- 
- .form-container form h3{
-    font-size: 2.5rem;
-    text-transform: capitalize;
-    color: var(--black);
-    text-align: center;
- }
- 
- .form-container form p{
-    font-size: 1.7rem;
-    color: var(--light-color);
-    padding-top: 1rem;
- }
- 
- .form-container form p span{
-    color: var(--red);
- }
- 
- .form-container form .box{
-    font-size: 1.8rem;
-    color: var(--black);
-    border-radius: .5rem;
-    padding: 1.4rem;
-    background-color: var(--light-bg);
-    width: 100%;
-    margin: 1rem 0;
- }
- 
+section {
+   padding: 2rem;
+   margin: 0 auto;
+   max-width: 1200px;
+}
+
+.heading {
+   color: var(--black);
+   margin-bottom: 2.5rem;
+   border-bottom: var(--border);
+   padding-bottom: 1.5rem;
+   text-transform: capitalize;
+}
+
+.inline-btn,
+.inline-option-btn,
+.inline-delete-btn,
+.btn,
+.delete-btn,
+.option-btn {
+   border-radius: .5rem;
+   color: #fff;
+   font-size: 20px;
+   cursor: pointer;
+   text-transform: capitalize;
+   padding: 1rem 3rem;
+   text-align: center;
+   margin-top: 1rem;
+}
+
+.btn,
+.delete-btn,
+.option-btn {
+   display: block;
+   width: 100%;
+}
+
+.inline-btn,
+.inline-option-btn,
+.inline-delete-btn {
+   display: inline-block;
+}
+
+.btn,
+.inline-btn {
+   background-color: var(--main-color);
+}
+
+.user-profile .info {
+   background-color: var(--white);
+   border-radius: .5rem;
+   padding: 2rem;
+}
+
+.user-profile .info .user {
+   text-align: center;
+   margin-bottom: 1rem;
+   padding: .2rem;
+}
+
+.user-profile .info .user img {
+   height: 10rem;
+   width: 10rem;
+   border-radius: 50%;
+   object-fit: cover;
+   margin-bottom: 1rem;
+}
+
+.user-profile .info .user h3 {
+   font-size: 22px;
+   color: var(--black);
+}
+
+.user-profile .info .user p {
+   font-size: 17px;
+   color: var(--light-color);
+   padding: 15px 0;
+}
+
+
+
+.profile {
+   line-height: 3;
+   color: #2c3e50;
+   max-width: 1000px;
+   margin-right: auto;
+   margin-left: auto;
+   justify-content: center;
+   align-items: center;
+}
+.info{
+   font-size: 24px;
+}

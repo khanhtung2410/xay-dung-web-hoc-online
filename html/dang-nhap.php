@@ -9,11 +9,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $myusername = mysqli_real_escape_string($db, $_POST['username']);
     $mypassword = mysqli_real_escape_string($db, $_POST['password']);
+    if ($myusername != 'Admin') {
+        $sql = "SELECT ID FROM user WHERE Username = '$myusername' and Password = '$mypassword'";
+        $result = mysqli_query($db, $sql);
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $active = $row['Active'];
 
-    $sql = "SELECT ID FROM user WHERE Username = '$myusername' and Password = '$mypassword'";
+        $count = mysqli_num_rows($result);
+
+        // If result matched $myusername and $mypassword, table row must be 1 row
+
+        if ($count == 1) {
+
+            $_SESSION['login_user'] = $myusername;
+
+            header("location: menu.php");
+        } else {
+
+            $error = "Your Login Name or Password is invalid";
+        }
+    }
+    $sql = "SELECT Username FROM `admin` WHERE Username = '$myusername' and Password = '$mypassword'";
     $result = mysqli_query($db, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $active = $row['Active'];
 
     $count = mysqli_num_rows($result);
 
@@ -23,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION['login_user'] = $myusername;
 
-        header("location: menu.php");
+        header("location: admin.php");
     } else {
 
         $error = "Your Login Name or Password is invalid";
@@ -62,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="username">Username </label>
                         <span>
                             <span id="acc-Q">No account ? </span>
-                            <a id="change-form" href="/html/dang-ky.html">Sign up</a>
+                            <a id="change-form" href="./dang-ky.php">Sign up</a>
                         </span>
                     </div>
                     <div class="input-boxes">

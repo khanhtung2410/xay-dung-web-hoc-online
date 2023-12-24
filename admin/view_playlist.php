@@ -69,7 +69,7 @@ if(isset($_POST['delete_video'])){
 
 </head>
 <body>
-
+<?php include '../components/admin_header.php'; ?>
    
 <section class="playlist-details">
 

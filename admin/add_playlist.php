@@ -16,8 +16,8 @@ if(isset($_POST['submit'])){
    $title = filter_var($title, FILTER_SANITIZE_STRING);
    $description = $_POST['description'];
    $description = filter_var($description, FILTER_SANITIZE_STRING);
-   $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
+   $subject = $_POST['subject'];
+   $subject = filter_var($subject, FILTER_SANITIZE_STRING);
 
    $image = $_FILES['image']['name'];
    $image = filter_var($image, FILTER_SANITIZE_STRING);
@@ -27,8 +27,8 @@ if(isset($_POST['submit'])){
    $image_tmp_name = $_FILES['image']['tmp_name'];
    $image_folder = '../uploaded_files/'.$rename;
 
-   $add_playlist = $conn->prepare("INSERT INTO `playlist`(id, tutor_id, title, description, thumb, status) VALUES(?,?,?,?,?,?)");
-   $add_playlist->execute([$id, $tutor_id, $title, $description, $rename, $status]);
+   $add_playlist = $conn->prepare("INSERT INTO `playlist`(id, tutor_id, title, description, thumb, status, subject) VALUES(?,?,?,?,?,?,?)");
+   $add_playlist->execute([$id, $tutor_id, $title, $description, $rename, "active", $subject]);
 
    move_uploaded_file($image_tmp_name, $image_folder);
 
@@ -56,12 +56,12 @@ if(isset($_POST['submit'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Add Playlist</title>
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
 <body>
-
+<?php include '../components/admin_header.php'; ?>
    
 <section class="playlist-form">
 
@@ -69,10 +69,10 @@ if(isset($_POST['submit'])){
 
    <form action="" method="post" enctype="multipart/form-data">
       <p>Môn học <span>*</span></p>
-      <select name="status" class="box" required>
-         <option value="" selected disabled>-- chọn môn</option>
-         <option value="active">Toán</option>
-         <option value="deactive">Lý</option>
+      <select name="subject" class="box" required>
+         <option value="" selected disabled>-- chọn môn --</option>
+         <option value="1">Toán</option>
+         <option value="2">Lý</option>
       </select>
       <p>Tiêu đề <span>*</span></p>
       <input type="text" name="title" maxlength="100" required placeholder="nhập tiêu đề playlist" class="box">

@@ -20,16 +20,12 @@ if (isset($_POST['update'])) {
 
    $video_id = $_POST['video_id'];
    $video_id = filter_var($video_id, FILTER_SANITIZE_STRING);
-   $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
    $title = $_POST['title'];
    $title = filter_var($title, FILTER_SANITIZE_STRING);
-   $description = $_POST['description'];
-   $description = filter_var($description, FILTER_SANITIZE_STRING);
    $playlist = $_POST['playlist'];
    $playlist = filter_var($playlist, FILTER_SANITIZE_STRING);
 
-   $update_content = $conn->prepare("UPDATE `content` SET title = ?, description = ?, status = ? WHERE id = ?");
+   $update_content = $conn->prepare("UPDATE `content` SET title = ? WHERE id = ?");
    $update_content->execute([$title, $description, $status, $video_id]);
 
    if (!empty($playlist)) {
@@ -96,11 +92,6 @@ if (isset($_POST['delete_video'])) {
    $fetch_video = $delete_video->fetch(PDO::FETCH_ASSOC);
    unlink('../uploaded_files/' . $fetch_video['video']);
 
-   $delete_likes = $conn->prepare("DELETE FROM `likes` WHERE content_id = ?");
-   $delete_likes->execute([$delete_id]);
-   $delete_comments = $conn->prepare("DELETE FROM `comments` WHERE content_id = ?");
-   $delete_comments->execute([$delete_id]);
-
    $delete_content = $conn->prepare("DELETE FROM `content` WHERE id = ?");
    $delete_content->execute([$delete_id]);
    header('location:contents.php');
@@ -122,8 +113,7 @@ if (isset($_POST['delete_video'])) {
 </head>
 
 <body>
-
-
+<?php include '../components/admin_header.php'; ?>
    <section class="video-form">
 
       <h1 class="heading">Cập nhật video</h1>
@@ -139,12 +129,6 @@ if (isset($_POST['delete_video'])) {
                <input type="hidden" name="video_id" value="<?= $fecth_videos['id']; ?>">
                <input type="hidden" name="old_thumb" value="<?= $fecth_videos['thumb']; ?>">
                <input type="hidden" name="old_video" value="<?= $fecth_videos['video']; ?>">
-               <p>Cập nhật lớp <span>*</span></p>
-               <select name="status" class="box" required>
-                  <option value="<?= $fecth_videos['status']; ?>" selected><?= $fecth_videos['status']; ?></option>
-                  <option value="active">Toán</option>
-                  <option value="deactive">Lý</option>
-               </select>
                <p>Cập nhật tiêu đề <span>*</span></p>
                <input type="text" name="title" maxlength="100" required placeholder="nhập tiêu đề video" class="box" value="<?= $fecth_videos['title']; ?>">
                <p>Cập nhật mô tả <span>*</span></p>
@@ -188,8 +172,5 @@ if (isset($_POST['delete_video'])) {
       ?>
 
    </section>
-
-
 </body>
-
 </html>

@@ -29,12 +29,12 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
    <title>Dashboard</title>
-
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
-<body>
+<?php include '../components/admin_header.php'; ?>
 
    
 <section class="dashboard">
@@ -65,11 +65,13 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
          <a href="contents.php" class="btn">Danh sách video</a>
       </div>
 
-      <div class="box">
-         
-         <a href="playlists.php" class="btn">Danh sách playlist</a>
+      <div class="box">         
+         <h3>Danh sách playlist</h3>
+         <div class="flex-btn">
+            <a href="playlists.php?subject=1" class="option-btn">Toán</a>
+            <a href="playlists.php?subject=2" class="option-btn">Lý</a>
+         </div>
       </div>
-
       <div class="box">
          <h3>Lựa chọn nhanh</h3>
          <div class="flex-btn">

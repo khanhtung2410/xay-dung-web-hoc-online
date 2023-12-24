@@ -20,13 +20,10 @@ if(isset($_POST['submit'])){
 
    $title = $_POST['title'];
    $title = filter_var($title, FILTER_SANITIZE_STRING);
-   $description = $_POST['description'];
-   $description = filter_var($description, FILTER_SANITIZE_STRING);
-   $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
 
-   $update_playlist = $conn->prepare("UPDATE `playlist` SET title = ?, description = ?, status = ? WHERE id = ?");
-   $update_playlist->execute([$title, $description, $status, $get_id]);
+
+   $update_playlist = $conn->prepare("UPDATE `playlist` SET title = ? WHERE id = ?");
+   $update_playlist->execute([$title, $get_id]);
 
    $old_image = $_POST['old_image'];
    $old_image = filter_var($old_image, FILTER_SANITIZE_STRING);
@@ -62,8 +59,6 @@ if(isset($_POST['delete'])){
    $delete_playlist_thumb->execute([$delete_id]);
    $fetch_thumb = $delete_playlist_thumb->fetch(PDO::FETCH_ASSOC);
    unlink('../uploaded_files/'.$fetch_thumb['thumb']);
-   $delete_bookmark = $conn->prepare("DELETE FROM `bookmark` WHERE playlist_id = ?");
-   $delete_bookmark->execute([$delete_id]);
    $delete_playlist = $conn->prepare("DELETE FROM `playlist` WHERE id = ?");
    $delete_playlist->execute([$delete_id]);
    header('location:playlists.php');
@@ -83,7 +78,7 @@ if(isset($_POST['delete'])){
 
 </head>
 <body>
-
+<?php include '../components/admin_header.php'; ?>
    
 <section class="playlist-form">
 
@@ -101,12 +96,6 @@ if(isset($_POST['delete'])){
       ?>
    <form action="" method="post" enctype="multipart/form-data">
       <input type="hidden" name="old_image" value="<?= $fetch_playlist['thumb']; ?>">
-      <p>Playlist môn học <span>*</span></p>
-      <select name="status" class="box" required>
-         <option value="<?= $fetch_playlist['status']; ?>" selected><?= $fetch_playlist['status']; ?></option>
-         <option value="active">Toán</option>
-         <option value="deactive">Lý</option>
-      </select>
       <p>Tiêu đề playlist <span>*</span></p>
       <input type="text" name="title" maxlength="100" required placeholder="nhập tiêu đề playlist" value="<?= $fetch_playlist['title']; ?>" class="box">
       <p>Mô tả playlist <span>*</span></p>

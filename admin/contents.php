@@ -23,10 +23,6 @@ if(isset($_POST['delete_video'])){
       $delete_video->execute([$delete_id]);
       $fetch_video = $delete_video->fetch(PDO::FETCH_ASSOC);
       unlink('../uploaded_files/'.$fetch_video['video']);
-      $delete_likes = $conn->prepare("DELETE FROM `likes` WHERE content_id = ?");
-      $delete_likes->execute([$delete_id]);
-      $delete_comments = $conn->prepare("DELETE FROM `comments` WHERE content_id = ?");
-      $delete_comments->execute([$delete_id]);
       $delete_content = $conn->prepare("DELETE FROM `content` WHERE id = ?");
       $delete_content->execute([$delete_id]);
       $message[] = 'Đã xóa video!';
@@ -45,12 +41,12 @@ if(isset($_POST['delete_video'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Dashboard</title>
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
 <body>
-
+<?php include '../components/admin_header.php'; ?>
    
 <section class="contents">
 
@@ -72,7 +68,6 @@ if(isset($_POST['delete_video'])){
    ?>
       <div class="box">
          <div class="flex">
-            <div><i class="fas fa-dot-circle" style="<?php if($fecth_videos['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"></i><span style="<?php if($fecth_videos['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"><?= $fecth_videos['status']; ?></span></div>
             <div><i class="fas fa-calendar"></i><span><?= $fecth_videos['date']; ?></span></div>
          </div>
          <img src="../uploaded_files/<?= $fecth_videos['thumb']; ?>" class="thumb" alt="">

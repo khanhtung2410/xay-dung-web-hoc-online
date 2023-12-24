@@ -20,32 +20,24 @@ if(isset($_POST['submit'])){
 
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
-   $profession = $_POST['profession'];
-   $profession = filter_var($profession, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
 
    if(!empty($name)){
       $update_name = $conn->prepare("UPDATE `tutors` SET name = ? WHERE id = ?");
       $update_name->execute([$name, $tutor_id]);
-      $message[] = 'username updated successfully!';
-   }
-
-   if(!empty($profession)){
-      $update_profession = $conn->prepare("UPDATE `tutors` SET profession = ? WHERE id = ?");
-      $update_profession->execute([$profession, $tutor_id]);
-      $message[] = 'profession updated successfully!';
+      $message[] = 'tên cập nhật thành công!';
    }
 
    if(!empty($email)){
       $select_email = $conn->prepare("SELECT email FROM `tutors` WHERE id = ? AND email = ?");
       $select_email->execute([$tutor_id, $email]);
       if($select_email->rowCount() > 0){
-         $message[] = 'email already taken!';
+         $message[] = 'email đã được sử dụng!';
       }else{
          $update_email = $conn->prepare("UPDATE `tutors` SET email = ? WHERE id = ?");
          $update_email->execute([$email, $tutor_id]);
-         $message[] = 'email updated successfully!';
+         $message[] = 'email cập nhật thành công!';
       }
    }
 
@@ -67,7 +59,7 @@ if(isset($_POST['submit'])){
          if($prev_image != '' AND $prev_image != $rename){
             unlink('../uploaded_files/'.$prev_image);
          }
-         $message[] = 'image updated successfully!';
+         $message[] = 'anhe cập nhật thành công!';
       }
    }
 
@@ -81,16 +73,16 @@ if(isset($_POST['submit'])){
 
    if($old_pass != $empty_pass){
       if($old_pass != $prev_pass){
-         $message[] = 'old password not matched!';
+         $message[] = 'mật khẩu cũ không khớp!';
       }elseif($new_pass != $cpass){
-         $message[] = 'confirm password not matched!';
+         $message[] = 'Xác nhận mật khẩu không khớp!';
       }else{
          if($new_pass != $empty_pass){
             $update_pass = $conn->prepare("UPDATE `tutors` SET password = ? WHERE id = ?");
             $update_pass->execute([$cpass, $tutor_id]);
-            $message[] = 'password updated successfully!';
+            $message[] = 'mật khẩu cập nhật thành công!';
          }else{
-            $message[] = 'please enter a new password!';
+            $message[] = 'vui lòng nhập mật khẩu mới!';
          }
       }
    }
@@ -111,41 +103,27 @@ if(isset($_POST['submit'])){
 
 </head>
 <body>
-
+<?php include '../components/admin_header.php'; ?>
 
 <section class="form-container" style="min-height: calc(100vh - 19rem);">
 
+   
    <form class="register" action="" method="post" enctype="multipart/form-data">
       <h3>Cập nhật profile</h3>
       <div class="flex">
          <div class="col">
-            <p>Họ và Tên </p>
-            <input type="text" name="name" placeholder="<?= $fetch_profile['name']; ?>" maxlength="50"  class="box">
-            <p>your profession </p>
-            <select name="profession" class="box">
-               <option value="" selected><?= $fetch_profile['profession']; ?></option>
-               <option value="developer">developer</option>
-               <option value="desginer">desginer</option>
-               <option value="musician">musician</option>
-               <option value="biologist">biologist</option>
-               <option value="teacher">teacher</option>
-               <option value="engineer">engineer</option>
-               <option value="lawyer">lawyer</option>
-               <option value="accountant">accountant</option>
-               <option value="doctor">doctor</option>
-               <option value="journalist">journalist</option>
-               <option value="photographer">photographer</option>
-            </select>
+            <p>Tên </p>
+            <input type="text" name="name"  maxlength="50"  class="box">
             <p>Email </p>
-            <input type="email" name="email" placeholder="<?= $fetch_profile['email']; ?>" maxlength="20"  class="box">
+            <input type="email" name="email"  maxlength="20"  class="box">
          </div>
          <div class="col">
-            <p>Mật khẩu cũ :</p>
-            <input type="password" name="old_pass" placeholder="nhập mật khẩu cũ" maxlength="20"  class="box">
-            <p>Mật khẩu mới :</p>
-            <input type="password" name="new_pass" placeholder="nhập mật khẩu mới" maxlength="20"  class="box">
-            <p>Xác nhận mật khẩu mới :</p>
-            <input type="password" name="cpass" placeholder="xác nhận mật khẩu mới" maxlength="20"  class="box">
+            <p>password cũ :</p>
+            <input type="password" name="old_pass" placeholder="nhập password cũ" maxlength="20"  class="box">
+            <p>password mới:</p>
+            <input type="password" name="new_pass" placeholder="nhập password mới" maxlength="20"  class="box">
+            <p>xác nhận password :</p>
+            <input type="password" name="cpass" placeholder="xác nhận password mới" maxlength="20"  class="box">
          </div>
       </div>
       <p>Cập nhật ảnh :</p>
@@ -154,6 +132,6 @@ if(isset($_POST['submit'])){
    </form>
 
 </section>
-  
+
 </body>
 </html>

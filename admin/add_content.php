@@ -12,8 +12,6 @@ if (isset($_COOKIE['tutor_id'])) {
 if (isset($_POST['submit'])) {
 
    $id = unique_id();
-   $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_STRING);
    $title = $_POST['title'];
    $title = filter_var($title, FILTER_SANITIZE_STRING);
    $description = $_POST['description'];
@@ -40,13 +38,26 @@ if (isset($_POST['submit'])) {
       $message[] = 'Dung lượng ảnh quá lớn!';
    } else {
       $add_playlist = $conn->prepare("INSERT INTO `content`(id, tutor_id, playlist_id, title, description, video, thumb, status) VALUES(?,?,?,?,?,?,?,?)");
-      $add_playlist->execute([$id, $tutor_id, $playlist, $title, $description, $rename_video, $rename_thumb, $status]);
+      $add_playlist->execute([$id, $tutor_id, $playlist, $title, $description, $rename_video, $rename_thumb, "active"]);
       move_uploaded_file($thumb_tmp_name, $thumb_folder);
       move_uploaded_file($video_tmp_name, $video_folder);
       $message[] = 'Bài học mới đã được tạo!';
    }
 }
 
+?>
+
+<?php
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message form">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
 ?>
 
 <!DOCTYPE html>
@@ -57,32 +68,26 @@ if (isset($_POST['submit'])) {
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Trang quản lí</title>
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
 
 <body>
-
+   <?php include '../components/admin_header.php'; ?>
 
    <section class="video-form">
 
       <h1 class="heading">Thêm video</h1>
 
       <form action="" method="post" enctype="multipart/form-data">
-         <p>Môn học <span>*</span></p>
-         <select name="status" class="box" required>
-            <option value="" selected disabled>-- chọn môn</option>
-            <option value="active">Toán</option>
-            <option value="deactive">Lý</option>
-         </select>
          <p>Tiêu đề video <span>*</span></p>
          <input type="text" name="title" maxlength="100" required placeholder="nhập tiêu đề video" class="box">
          <p>Mô tả video <span>*</span></p>
          <textarea name="description" class="box" required placeholder="viết mô tả" maxlength="1000" cols="30" rows="10"></textarea>
          <p>video playlist <span>*</span></p>
          <select name="playlist" class="box" required>
-            <option value="" disabled selected>--chọn playlist</option>
+            <option value="" disabled selected>-- chọn playlist --</option>
             <?php
             $select_playlists = $conn->prepare("SELECT * FROM `playlist` WHERE tutor_id = ?");
             $select_playlists->execute([$tutor_id]);

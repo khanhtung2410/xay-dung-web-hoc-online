@@ -7,8 +7,6 @@ if(isset($_POST['submit'])){
    $id = unique_id();
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
-   $profession = $_POST['profession'];
-   $profession = filter_var($profession, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_STRING);
    $pass = sha1($_POST['pass']);
@@ -28,13 +26,13 @@ if(isset($_POST['submit'])){
    $select_tutor->execute([$email]);
    
    if($select_tutor->rowCount() > 0){
-      $message[] = 'email already taken!';
+      $message[] = 'email đã được sử dụng!';
    }else{
       if($pass != $cpass){
          $message[] = 'Mật khẩu không khớp!';
       }else{
-         $insert_tutor = $conn->prepare("INSERT INTO `tutors`(id, name, profession, email, password, image) VALUES(?,?,?,?,?,?)");
-         $insert_tutor->execute([$id, $name, $profession, $email, $cpass, $rename]);
+         $insert_tutor = $conn->prepare("INSERT INTO `tutors`(id, name, email, password, image) VALUES(?,?,?,?,?)");
+         $insert_tutor->execute([$id, $name, $email, $cpass, $rename]);
          move_uploaded_file($image_tmp_name, $image_folder);
          $message[] = 'Đăng kí thành công! Đăng nhập ngay';
       }
@@ -51,7 +49,7 @@ if(isset($_POST['submit'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>register</title>
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
@@ -79,7 +77,6 @@ if(isset($message)){
          <div class="col">
             <p>Họ và Tên <span>*</span></p>
             <input type="text" name="name" placeholder="nhập tên" maxlength="50" required class="box">
-            <!-- // them sdt o sql neu them o day-->
             <p>Email <span>*</span></p>
             <input type="email" name="email" placeholder="nhập email" maxlength="20" required class="box">
          </div>

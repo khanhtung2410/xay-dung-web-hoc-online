@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 13, 2023 lúc 10:17 AM
+-- Thời gian đã tạo: Th12 23, 2023 lúc 11:41 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -36,15 +36,199 @@ CREATE TABLE `active` (
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `Username` varchar(18) NOT NULL,
+  `Password` varchar(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`Username`, `Password`) VALUES
+('Admin', '123123');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `answer`
 --
 
 CREATE TABLE `answer` (
+  `Question_id` varchar(3) NOT NULL,
   `Answer_id` int(3) NOT NULL,
   `Choice` text NOT NULL,
-  `Answer` varchar(100) NOT NULL,
-  `Question_id` varchar(3) NOT NULL
+  `Answer` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `answer`
+--
+
+INSERT INTO `answer` (`Question_id`, `Answer_id`, `Choice`, `Answer`) VALUES
+('01', 57, 'A', 'y=x^4-3x^2+1'),
+('01', 58, 'B', 'y=frac{x+2}{x-2}'),
+('01', 59, 'C', 'y=-x^3+3x^2-1'),
+('01', 60, 'D', 'y=frac{x-1}{x-2}'),
+('02', 61, 'A', 'log_{a^3}\\,b=\\frac13log_a\\,b'),
+('02', 62, 'B', 'log_a\\,(b^2)=2\\,log_a\\,b'),
+('02', 63, 'C', 'log_a\\,b\\cdot log_b\\,a=1'),
+('02', 64, 'D', 'log_a\\,b=-\\,log_b\\,a'),
+('03', 69, 'A', 'm\\lt-1\\) hoặc \\(m \\gt2'),
+('03', 70, 'B', 'm\\lt-4\\) hoặc \\(m \\gt0'),
+('03', 71, 'C', '-4\\lt m\\lt0'),
+('03', 72, 'D', 'm \\gt2\\) hoặc \\(m\\lt-4'),
+('04', 73, 'A', '\\left(-\\infty\\,;\\frac12\\right]'),
+('04', 74, 'B', '\\left(\\frac 12\\,;+\\infty\\right)'),
+('04', 75, 'C', '\\left[\\frac 12\\,;+\\infty\\right)'),
+('04', 76, 'D', '\\left(-\\infty\\,;\\frac12\\right)'),
+('05', 77, 'A', '8'),
+('05', 78, 'B', '2'),
+('05', 79, 'C', '6'),
+('05', 80, 'D', '4'),
+('06', 81, 'A', 't^2-26t+1=0'),
+('06', 82, 'B', '25t^2-26t=0'),
+('06', 83, 'C', 't^2-26t=0'),
+('06', 84, 'D', '25t^2-26t+1=0'),
+('07', 85, 'A', 'a^3'),
+('07', 86, 'B', '\\frac{a^3}3'),
+('07', 87, 'C', '\\frac{a^3sqrt3}4'),
+('07', 88, 'D', '\\frac{a^3\\sqrt3}{12}'),
+('08', 89, 'A', '\\underset{[0;2]}{max}\\,y=5'),
+('08', 90, 'B', '\\underset{[0;2]}{max}\\,y=1'),
+('08', 91, 'C', '\\underset{[0;2]}{max}\\,y=-2'),
+('08', 92, 'D', '\\underset{[0;2]}{max}\\,y=\\frac32'),
+('09', 93, 'A', 'S_{tp}=2\\pi'),
+('09', 94, 'B', 'S_{tp}=10\\pi'),
+('09', 95, 'C', 'S_{tp}=4\\pi'),
+('09', 96, 'D', 'S_{tp}=6\\pi'),
+('10', 97, 'A', 'x=4'),
+('10', 98, 'B', 'x=3'),
+('10', 99, 'C', 'x=2'),
+('10', 100, 'D', 'x=5'),
+('11', 101, 'A', 'm\\gt-2'),
+('11', 102, 'B', 'm\\lt2'),
+('11', 103, 'C', 'm\\gt2'),
+('11', 104, 'D', '-2\\lt m\\lt2'),
+('12', 105, 'A', '1\\le x\\le 3'),
+('12', 106, 'B', '1\\lt x\\le 3'),
+('12', 107, 'C', 'x\\le 3'),
+('12', 108, 'D', '1\\le x \\lt 3'),
+('13', 109, 'A', '7'),
+('13', 110, 'B', '4'),
+('13', 111, 'C', '5'),
+('13', 112, 'D', '3'),
+('14', 113, 'A', '\\frac{a\\sqrt6}4'),
+('14', 114, 'B', '\\frac{a\\sqrt6}{12}'),
+('14', 115, 'C', '\\frac{a\\sqrt6}2'),
+('14', 116, 'D', '\\frac{a\\sqrt6}3'),
+('15', 117, 'A', 'S_{xq}=4\\sqrt3\\pi'),
+('15', 118, 'B', 'S_{xq}=12\\pi'),
+('15', 119, 'C', 'S_{xq}=8\\sqrt3\\pi'),
+('15', 120, 'D', 'S_{xq}=\\sqrt{39}\\pi'),
+('16', 121, 'A', '5'),
+('16', 122, 'B', '4'),
+('16', 123, 'C', '2'),
+('16', 124, 'D', '3'),
+('17', 125, 'A', 'y=x^3+3x^2-1'),
+('17', 126, 'B', 'y=x^3-3x^2-1'),
+('17', 127, 'C', 'y=-x^3-3x^2-1'),
+('17', 128, 'D', 'y=-x^3+3x^2-1'),
+('18', 129, 'A', '[-1;+\\infty)'),
+('18', 130, 'B', '(-\\infty;1]\\cup[4;+\\infty)'),
+('18', 131, 'C', '(-\\infty;4]'),
+('18', 132, 'D', '[-1;4]'),
+('19', 133, 'A', '(-2;2)'),
+('19', 134, 'B', '\\Bbb R'),
+('19', 135, 'C', '(-\\infty;-2)\\cup(2;+\\infty)'),
+('19', 136, 'D', '\\Bbb R\\backslash \\{\\pm2\\}'),
+('20', 137, 'A', '2a^2'),
+('20', 138, 'B', '4a^2'),
+('20', 139, 'C', '6a^2'),
+('20', 140, 'D', '12a^2'),
+('21', 141, 'A', 'm\\lt1'),
+('21', 142, 'B', 'm\\gt5,0\\lt m\\lt1'),
+('21', 143, 'C', '1\\lt m\\lt5'),
+('21', 144, 'D', 'm=1,m=5'),
+('22', 145, 'A', '5'),
+('22', 146, 'B', '12'),
+('22', 147, 'C', '6'),
+('22', 148, 'D', '-2'),
+('23', 149, 'A', '2'),
+('23', 150, 'B', '0'),
+('23', 151, 'C', '5'),
+('23', 152, 'D', '3'),
+('24', 153, 'A', '\\{3;5\\}'),
+('24', 154, 'B', '\\{4;3\\}'),
+('24', 155, 'C', '\\{3;4\\}'),
+('24', 156, 'D', '\\{5;3\\}'),
+('25', 157, 'A', 'OM\\le R'),
+('25', 158, 'B', 'OM=R'),
+('25', 159, 'C', 'OM\\gt R'),
+('25', 160, 'D', 'OM\\lt R'),
+('26', 161, 'A', '3'),
+('26', 162, 'B', '2'),
+('26', 163, 'C', '1'),
+('26', 164, 'D', '0'),
+('27', 165, 'A', 'x=8'),
+('27', 166, 'B', 'x=11'),
+('27', 167, 'C', 'x=9'),
+('27', 168, 'D', 'x=10'),
+('28', 169, 'A', '(1;4)'),
+('28', 170, 'B', '(4;1)'),
+('28', 171, 'C', '(-1;3)'),
+('28', 172, 'D', '(3;-1)'),
+('29', 173, 'A', '3\\pi'),
+('29', 174, 'B', '2\\pi'),
+('29', 175, 'C', '6\\pi'),
+('29', 176, 'D', '4\\pi'),
+('30', 177, 'A', '\\frac{\\pi a^3}3'),
+('30', 178, 'B', '\\frac{4\\pi a^3}3'),
+('30', 179, 'C', '2\\pi a^3'),
+('30', 180, 'D', '4\\pi a^3'),
+('31', 181, 'A', '\\frac{3\\,2\\pi}3'),
+('31', 182, 'B', '4\\pi'),
+('31', 183, 'C', '8\\pi'),
+('31', 184, 'D', '16\\pi'),
+('32', 185, 'A', 'x=2'),
+('32', 186, 'B', 'x=-2'),
+('32', 187, 'C', 'x=1'),
+('32', 188, 'D', 'x=-1'),
+('33', 189, 'A', 'y=log_{\\frac e2}x'),
+('33', 190, 'B', 'y=log_{\\frac e3}x'),
+('33', 191, 'C', 'y=log_{\\frac{\\sqrt2}2}x'),
+('33', 192, 'D', 'y=log_{\\frac\\pi4}x'),
+('34', 193, 'A', '3a^3'),
+('34', 194, 'B', '6a^3'),
+('34', 195, 'C', '\\frac23 a^3'),
+('34', 196, 'D', '2a^3'),
+('35', 197, 'A', '(-1;\\frac12)'),
+('35', 198, 'B', '(\\frac12;1)'),
+('35', 199, 'C', '(0;\\frac32)'),
+('35', 200, 'D', '(1;+\\infty)'),
+('36', 201, 'A', '5'),
+('36', 202, 'B', '2'),
+('36', 203, 'C', '2023'),
+('36', 204, 'D', '2022'),
+('37', 205, 'A', '(3;+\\infty)'),
+('37', 206, 'B', '(0;+\\infty)'),
+('37', 207, 'C', '(1;3)'),
+('37', 208, 'D', '(-\\infty;4)'),
+('38', 209, 'A', '\\frac1x+1'),
+('38', 210, 'B', 'ln\\;x'),
+('38', 211, 'C', 'ln\\,x+x'),
+('38', 212, 'D', 'ln\\,x-1'),
+('39', 213, 'A', '6'),
+('39', 214, 'B', '72'),
+('39', 215, 'C', '24'),
+('39', 216, 'D', '8'),
+('40', 217, 'A', '\\frac {a^3}4'),
+('40', 218, 'B', '\\frac {\\sqrt3}4a^3'),
+('40', 219, 'C', '\\sqrt3a^3'),
+('40', 220, 'D', '\\frac34a^3');
 
 -- --------------------------------------------------------
 
@@ -58,6 +242,95 @@ CREATE TABLE `answer_map` (
   `Choice` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `answer_map`
+--
+
+INSERT INTO `answer_map` (`Question_id`, `Answer_id`, `Choice`) VALUES
+('01', 58, 'B'),
+('02', 63, 'D'),
+('03', 70, 'B'),
+('04', 74, 'B'),
+('05', 79, 'C'),
+('06', 83, 'D'),
+('07', 87, 'D'),
+('08', 90, 'B'),
+('09', 95, 'C'),
+('10', 97, 'A'),
+('11', 103, 'C'),
+('12', 106, 'B'),
+('13', 111, 'C'),
+('14', 115, 'C'),
+('15', 117, 'A'),
+('16', 123, 'D'),
+('17', 127, 'D'),
+('18', 131, 'D'),
+('19', 133, 'A'),
+('20', 139, 'C'),
+('21', 142, 'B'),
+('22', 145, 'A'),
+('23', 151, 'C'),
+('24', 153, 'A'),
+('25', 159, 'C'),
+('26', 163, 'C'),
+('27', 167, 'D'),
+('28', 169, 'A'),
+('29', 175, 'D'),
+('30', 178, 'B'),
+('31', 183, 'D'),
+('32', 187, 'D'),
+('33', 189, 'A'),
+('34', 195, 'D'),
+('35', 198, 'B'),
+('36', 202, 'B'),
+('37', 205, 'A'),
+('38', 210, 'B'),
+('39', 215, 'C'),
+('40', 217, 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc đóng vai cho view `answer_sheet`
+-- (See below for the actual view)
+--
+CREATE TABLE `answer_sheet` (
+`Subject_id` varchar(3)
+,`Test_id` varchar(3)
+,`Question_id` varchar(3)
+,`Question` varchar(500)
+,`Answer` varchar(100)
+,`Choice` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc đóng vai cho view `answer_sheet_true`
+-- (See below for the actual view)
+--
+CREATE TABLE `answer_sheet_true` (
+`Subject_id` varchar(3)
+,`Test_id` varchar(3)
+,`Question_id` varchar(3)
+,`Question` varchar(500)
+,`Answer` varchar(100)
+,`Choice` text
+);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chapter`
+--
+
+CREATE TABLE `chapter` (
+  `Subject_id` varchar(3) NOT NULL,
+  `Chapter_id` varchar(3) NOT NULL,
+  `Chapter_name` varchar(50) NOT NULL,
+  `Amount` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- --------------------------------------------------------
 
 --
@@ -65,12 +338,9 @@ CREATE TABLE `answer_map` (
 --
 
 CREATE TABLE `lesson` (
-  `Subject-id` varchar(3) NOT NULL,
+  `Chapter_id` varchar(3) NOT NULL,
   `Lesson-id` varchar(3) NOT NULL,
-  `Lesson-name` varchar(50) NOT NULL,
-  `View` tinyint(1) NOT NULL,
-  `Liked` tinyint(1) NOT NULL,
-  `Disliked` tinyint(1) NOT NULL
+  `Lesson-name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -82,28 +352,68 @@ CREATE TABLE `lesson` (
 CREATE TABLE `question` (
   `Test_id` varchar(3) NOT NULL,
   `Question_id` varchar(3) NOT NULL,
-  `Question` varchar(100) NOT NULL
+  `Question` varchar(500) NOT NULL,
+  `Have_answer` varchar(8) NOT NULL DEFAULT 'Không'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `question`
 --
 
-INSERT INTO `question` (`Test_id`, `Question_id`, `Question`) VALUES
-('aa', '2', '3'),
-('aa', '3', '4');
+INSERT INTO `question` (`Test_id`, `Question_id`, `Question`, `Have_answer`) VALUES
+('T1', '01', ' Trong các hàm số sau, hàm số nào có đồ thị như hình dưới ?', 'Có'),
+('T1', '02', 'Cho các số thực dương \\(a,b\\) khác 1. Khẳng định nào sau đây <b>sai</b>?', 'Có'),
+('T1', '03', 'Cho hàm số (y=f(x)) có đồ thị như bên. Tìm các giá trị của \\(m\\) để phương trình có 1 nghiệm duy nhấ', 'Có'),
+('T1', '04', 'Tập xác định của hàm số \\(y=ln(2x-1)\\) là', 'Có'),
+('T1', '05', 'Cho hàm số \\(y=f(x)\\) liên tục trên đoạn \\([-3;-1]\\) có đồ thị như hình vẽ.\r\nGọi \\(M\\) và \\(m\\) lần lượt là giá trị lớn nhất và giá trị nhỏ nhất của hàm số đã cho trên đoạn \\([-3;-1]\\). Giá trị của \\(M-m\\) bằng', 'Có'),
+('T1', '06', 'Cho phương trình \\(25^{x+1}-26.5+1=0\\). Đặt \\(t=5^x,\\,t\\gt0\\)thì phương trình  trở thành', 'Có'),
+('T1', '07', 'Cho hình chóp \\(S.ABC\\) có \\(SA\\, \\bot\\, (ABC)\\), đáy \\(ABC\\) là tam giác đều. Tính thể tích khối chóp \\(S.ABC\\) biết \\(AB=a\\,, SA=a\\).', 'Có'),
+('T1', '08', ' Giá trị lớn nhất của hàm số \\(y=\\frac{2x-1}{x+1}\\) trên đoạn \\([0;2]\\) là', 'Có'),
+('T1', '09', 'Trong không gian, cho hình chữ nhật \\(ABCD\\) có \\(AB=1\\) và \\(AD=2\\). Gọi \\(M,N\\) lần lượt là điểm của \\(AD\\) và \\(BC\\). Quay hình chữ nhật \\(ABCD\\) xung quanh trục \\(MN\\), ta được một hình trụ. Tính diện tích toàn phần \\(S_{tp}\\) của hình trụ đó.', 'Có'),
+('T1', '10', ' Nghiệm của phương trình \\(2^{x-1}=8\\) là', 'Có'),
+('T1', '11', 'Tìm tất cả giá trị thực của tham số \\(m\\) để phương trình \\(4^x-2m.2^x+2=0\\)  có 2 nghiệm phân biệt.', 'Có'),
+('T1', '12', ' Nghiệm của bất phương trình \\(log_\\frac12(x-1)\\ge-1\\) là', 'Có'),
+('T1', '13', ' Cho tam giác: \\(OIM\\) vuông tại \\(I\\) có \\(OI=3\\) và \\(IM=4\\). KHi quay tam giác \\(OIM\\) xung quanh cạnh có vuông \\(OI\\) thì đường gấp khúc \\(OIM\\) tạo thành hình nón có độ dài đường sinh bằng', 'Có'),
+('T1', '14', 'Cho hình chóp \\(S.ABCD\\) có đáy \\(ABCD\\) là hình chữ nhật có đường chéo bằng \\(a\\sqrt2\\), cạnh \\(SA\\) có độ dài bằng \\(2a\\) và vuông góc với mặt phẳng đáy. Tính bán kính mặt cầu ngoại tiếp hình chóp \\(S.ABCD\\)', 'Có'),
+('T1', '15', 'Cho hình nón có bán kính đáy \\(r=\\sqrt3\\) và độ dài đường sinh \\(l=4\\). Tính diện tích xung quanh của hình nón đã cho.', 'Có'),
+('T1', '16', 'Cho \\(x,y\\) là các số thực dương thỏa nãm \\(2^{\\,2xy+x+y}=\\frac{8\\,-\\,8xy}{x\\,+\\,y}\\). Khi \\(P=2xy^2+xy\\) đạt giá trị lớn nhất, giá trị của biểu thức \\(3x+2y\\) bằng', 'Có'),
+('T1', '17', 'Bảng biến thiên sau đây là của hàm số nào', 'Có'),
+('T1', '18', 'Tập nghiệm của bất phương trình \\(2^{x^2-3x}\\le 16\\) là', 'Có'),
+('T1', '19', 'Hàm số \\(y=(4-x^2)^\\frac35\\) có tập xác định là', 'Có'),
+('T1', '20', 'Cho khối chóp có thể tích bằng \\(10a^3\\) và chiều cao bằng \\(5a\\). Diện tích mặt đáy của khối chóp đó bằng', 'Có'),
+('T1', '21', 'Cho hàm số \\(y=f(x)\\) có đồ thị như hình vẽ bên. Tìm tất cả các giá trị của \\(m\\) để phương trình \\(|f(x)|=m\\) có đúng 2 nghiệm phân biệt.', 'Có'),
+('T1', '22', 'Phương trình \\(2^{2x}-3.2^{x+2}+32=0\\) có tổng các nghiệm là', 'Có'),
+('T1', '23', 'Tổng bình phương các nghiệm của phương trình \\(5^{3x-2}=(\\frac15)^{-x^2}\\) bằng', 'Có'),
+('T1', '24', 'Khối hai mươi mặt đều là khối đa diện đề thuộc loại', 'Có'),
+('T1', '25', ' Cho điểm \\(M\\) nằm ngoài mặt cầu \\(S\\,(O;R)\\). Khẳng đinh nào dưới đây đúng?', 'Có'),
+('T1', '26', 'Cho hàm số \\(y=f(x)\\) có đạo hàm \\(f\'(x)=x^2(2x-1)^2(x+1)\\). Số điểm cực trị của hàm số đã cho là', 'Có'),
+('T1', '27', ' Nghiệm của phương trình \\(log_3(x-1)=2\\) là', 'Có'),
+('T1', '28', 'Cho hàm số \\(y=f(x)\\) có đồ thị như hình vẽ. Điểm cực đại của đồ thị hàm số đã cho là', 'Có'),
+('T1', '29', 'Cho hình trụ có chiều cao \\(h=1\\) và bán kính đáy \\(r=2\\). Diện tích xung quanh của hình trụ đã cho bằng', 'Có'),
+('T1', '30', ' Thể tích đường cầu có đường kính \\(2a\\) bằng', 'Có'),
+('T1', '31', 'Cho mặt cầu có bán kính \\(R=2\\). Diện tích của mặt cầu đã cho bằng', 'Có'),
+('T1', '32', 'Cho hàm số \\(f(x)\\) có bảng biến thiên như hình vẽ. Hàm số đã cho cực đại tại', 'Có'),
+('T1', '33', 'Hàm số nào sau đây đồng biến trên tập xác định của nó', 'Có'),
+('T1', '34', 'Cho khối nón có diện tích đáy \\(3a^2\\) và chiều cao \\(2a\\). Thể tích của khối nón đã cho bằng', 'Có'),
+('T1', '35', 'Cho hàm số \\(y=f(x)\\) có bảng biến thiên như hình bên. Hàm số \\(y=f(1-2x)+1\\) đồng biến trên khoảng', 'Có'),
+('T1', '36', 'Có bao nhiêu cặp số nguyên \\((x;y)\\) thỏa mãn \\(0\\le x\\le2022\\) và \\(5(25^y+2y)=x+log_5(x+1)^5-4\\)', 'Có'),
+('T1', '37', 'Cho hàm số \\(y=f(x)\\) có bảng biến thiên như hình vẽ. Hàm số \\(y=f(x)\\) đồng biến trên khoảng nào sau đây?', 'Có'),
+('T1', '38', 'Đạo hàm của hàm số \\(y=xlnx-x\\) là', 'Có'),
+('T1', '39', 'Thể tích khối hình hộp chữ nhật có các kích thước \\(2;3;4\\) là', 'Có'),
+('T1', '40', 'Cho khối chóp \\(S.ABCD\\) có đáy \\(ABC\\) là tam giác cân đỉnh \\(A\\), góc \\(\\angle{BAC} =120^\\circ\\) và \\(AB=a\\). Các cạnh bên \\(SA,SB,SC\\) bằng nhau và góc giữa \\(SA\\) với mặt phẳng đáy bằng \\(60^circ\\). Thể tích của khối chóp đã cho bằng', 'Có');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc đóng vai cho view `student_score_sheet`
+-- Cấu trúc đóng vai cho view `question_status`
 -- (See below for the actual view)
 --
-CREATE TABLE `student_score_sheet` (
-`Username` varchar(18)
-,`Test_name` varchar(50)
-,`Score` int(3)
-,`Time` time
+CREATE TABLE `question_status` (
+`Subject_id` varchar(3)
+,`Test_id` varchar(3)
+,`Question_id` varchar(3)
+,`Question` varchar(500)
+,`Have_answer` varchar(8)
 );
 
 -- --------------------------------------------------------
@@ -116,6 +426,14 @@ CREATE TABLE `subject` (
   `Subject_id` varchar(3) NOT NULL,
   `Subject_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `subject`
+--
+
+INSERT INTO `subject` (`Subject_id`, `Subject_name`) VALUES
+('L', 'Lý'),
+('T', 'Toán');
 
 -- --------------------------------------------------------
 
@@ -134,7 +452,7 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`Subject_id`, `Test_id`, `Test_name`) VALUES
-('7', 'aa', 'asddadas');
+('T', 'T1', 'Kiểm tra cuối kỳ toán');
 
 -- --------------------------------------------------------
 
@@ -146,9 +464,15 @@ CREATE TABLE `test_result` (
   `Test_id` varchar(3) NOT NULL,
   `Username` varchar(18) NOT NULL,
   `Test_name` varchar(50) NOT NULL,
-  `Score` int(3) DEFAULT NULL,
-  `Time` time DEFAULT NULL
+  `Score` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `test_result`
+--
+
+INSERT INTO `test_result` (`Test_id`, `Username`, `Test_name`, `Score`) VALUES
+('T1', 'zaa12579', 'Kiểm tra cuối kỳ toán', 4);
 
 -- --------------------------------------------------------
 
@@ -159,13 +483,13 @@ CREATE TABLE `test_result` (
 CREATE TABLE `user` (
   `ID` int(12) NOT NULL,
   `Username` varchar(18) NOT NULL,
-  `Họ và tên` varchar(50) DEFAULT NULL,
-  `CCCD` int(12) DEFAULT NULL,
-  `Ngày sinh` date NOT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `CCCD` varchar(12) DEFAULT NULL,
+  `Date_of_birth` date NOT NULL,
   `Gmail` varchar(50) NOT NULL,
   `Password` varchar(32) NOT NULL,
-  `Giới tính` varchar(14) DEFAULT NULL,
-  `Ngày đăng ký` date NOT NULL DEFAULT current_timestamp(),
+  `Gender` varchar(14) DEFAULT NULL,
+  `Signup_date` date NOT NULL DEFAULT current_timestamp(),
   `Active` varchar(12) NOT NULL DEFAULT 'Off'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -173,8 +497,8 @@ CREATE TABLE `user` (
 -- Đang đổ dữ liệu cho bảng `user`
 --
 
-INSERT INTO `user` (`ID`, `Username`, `Họ và tên`, `CCCD`, `Ngày sinh`, `Gmail`, `Password`, `Giới tính`, `Ngày đăng ký`, `Active`) VALUES
-(5, 'zaa12579', 'qweqweq qưeq', 1203022211, '1990-01-01', 's@gmail.com', 'Zaa135@#', 'Không rõ', '2023-12-08', '0');
+INSERT INTO `user` (`ID`, `Username`, `Name`, `CCCD`, `Date_of_birth`, `Gmail`, `Password`, `Gender`, `Signup_date`, `Active`) VALUES
+(5, 'zaa12579', 'Đào Duy Khánh Tùng', '001203022211', '1990-01-01', 's@gmail.com', 'Zaa135@#', 'Không rõ', '2023-12-08', '0');
 
 -- --------------------------------------------------------
 
@@ -188,11 +512,29 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc cho view `student_score_sheet`
+-- Cấu trúc cho view `answer_sheet`
 --
-DROP TABLE IF EXISTS `student_score_sheet`;
+DROP TABLE IF EXISTS `answer_sheet`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `student_score_sheet`  AS SELECT `user`.`Username` AS `Username`, `test_result`.`Test_name` AS `Test_name`, `test_result`.`Score` AS `Score`, `test_result`.`Time` AS `Time` FROM (`user` join `test_result` on(`user`.`Username` = `test_result`.`Username`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `answer_sheet`  AS SELECT `test`.`Subject_id` AS `Subject_id`, `test`.`Test_id` AS `Test_id`, `question`.`Question_id` AS `Question_id`, `question`.`Question` AS `Question`, `answer`.`Answer` AS `Answer`, `answer`.`Choice` AS `Choice` FROM ((((`test` join `question` on(`test`.`Test_id` = `question`.`Test_id`)) join `subject` on(`test`.`Subject_id` = `subject`.`Subject_id`)) join `answer` on(`question`.`Question_id` = `answer`.`Question_id`)) join `answer_map` on(`question`.`Question_id` = `answer_map`.`Question_id`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc cho view `answer_sheet_true`
+--
+DROP TABLE IF EXISTS `answer_sheet_true`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `answer_sheet_true`  AS SELECT `test`.`Subject_id` AS `Subject_id`, `test`.`Test_id` AS `Test_id`, `question`.`Question_id` AS `Question_id`, `question`.`Question` AS `Question`, `answer`.`Answer` AS `Answer`, `answer_map`.`Choice` AS `Choice` FROM ((((`test` join `question` on(`test`.`Test_id` = `question`.`Test_id`)) join `subject` on(`test`.`Subject_id` = `subject`.`Subject_id`)) join `answer` on(`question`.`Question_id` = `answer`.`Question_id`)) join `answer_map` on(`question`.`Question_id` = `answer_map`.`Question_id`)) WHERE `answer_map`.`Choice` = `answer`.`Choice` ;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc cho view `question_status`
+--
+DROP TABLE IF EXISTS `question_status`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `question_status`  AS SELECT `test`.`Subject_id` AS `Subject_id`, `test`.`Test_id` AS `Test_id`, `question`.`Question_id` AS `Question_id`, `question`.`Question` AS `Question`, `question`.`Have_answer` AS `Have_answer` FROM ((`test` join `question` on(`test`.`Test_id` = `question`.`Test_id`)) join `subject` on(`test`.`Subject_id` = `subject`.`Subject_id`)) ;
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -210,7 +552,14 @@ ALTER TABLE `answer`
 --
 ALTER TABLE `answer_map`
   ADD PRIMARY KEY (`Question_id`,`Answer_id`),
-  ADD KEY `Answer_id` (`Answer_id`);
+  ADD KEY `answer_map_ibfk_4` (`Answer_id`);
+
+--
+-- Chỉ mục cho bảng `chapter`
+--
+ALTER TABLE `chapter`
+  ADD PRIMARY KEY (`Chapter_id`),
+  ADD UNIQUE KEY `Subject_id` (`Subject_id`);
 
 --
 -- Chỉ mục cho bảng `lesson`
@@ -218,13 +567,14 @@ ALTER TABLE `answer_map`
 ALTER TABLE `lesson`
   ADD PRIMARY KEY (`Lesson-id`),
   ADD UNIQUE KEY `Lesson-name` (`Lesson-name`),
-  ADD UNIQUE KEY `Subject-id` (`Subject-id`);
+  ADD UNIQUE KEY `Chapter_id` (`Chapter_id`);
 
 --
 -- Chỉ mục cho bảng `question`
 --
 ALTER TABLE `question`
-  ADD PRIMARY KEY (`Question_id`);
+  ADD PRIMARY KEY (`Question_id`),
+  ADD KEY `question_ibfk_1` (`Test_id`);
 
 --
 -- Chỉ mục cho bảng `subject`
@@ -238,15 +588,14 @@ ALTER TABLE `subject`
 --
 ALTER TABLE `test`
   ADD PRIMARY KEY (`Test_id`),
-  ADD UNIQUE KEY `Test_name` (`Test_name`);
+  ADD UNIQUE KEY `Test_name` (`Test_name`),
+  ADD KEY `test_ibfk_1` (`Subject_id`);
 
 --
 -- Chỉ mục cho bảng `test_result`
 --
 ALTER TABLE `test_result`
-  ADD UNIQUE KEY `Username` (`Test_name`),
-  ADD UNIQUE KEY `Username_2` (`Username`),
-  ADD UNIQUE KEY `Test_id` (`Test_id`);
+  ADD UNIQUE KEY `Username_2` (`Username`);
 
 --
 -- Chỉ mục cho bảng `user`
@@ -263,13 +612,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT cho bảng `answer`
 --
 ALTER TABLE `answer`
-  MODIFY `Answer_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Answer_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -285,27 +634,39 @@ ALTER TABLE `answer`
 -- Các ràng buộc cho bảng `answer_map`
 --
 ALTER TABLE `answer_map`
-  ADD CONSTRAINT `answer_map_ibfk_3` FOREIGN KEY (`Question_id`) REFERENCES `question` (`Question_id`),
-  ADD CONSTRAINT `answer_map_ibfk_4` FOREIGN KEY (`Answer_id`) REFERENCES `answer` (`Answer_id`);
+  ADD CONSTRAINT `answer_map_ibfk_4` FOREIGN KEY (`Answer_id`) REFERENCES `answer` (`Answer_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `answer_map_ibfk_5` FOREIGN KEY (`Question_id`) REFERENCES `question` (`Question_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Các ràng buộc cho bảng `chapter`
+--
+ALTER TABLE `chapter`
+  ADD CONSTRAINT `chapter_ibfk_1` FOREIGN KEY (`Subject_id`) REFERENCES `subject` (`Subject_id`),
+  ADD CONSTRAINT `chapter_ibfk_2` FOREIGN KEY (`Chapter_id`) REFERENCES `lesson` (`Chapter_id`);
+
+--
+-- Các ràng buộc cho bảng `lesson`
+--
+ALTER TABLE `lesson`
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`Subject-id`) REFERENCES `subject` (`Subject_id`);
 
 --
 -- Các ràng buộc cho bảng `question`
 --
 ALTER TABLE `question`
-  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`Test_id`) REFERENCES `test` (`Test_id`);
+  ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`Test_id`) REFERENCES `test` (`Test_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Các ràng buộc cho bảng `subject`
+-- Các ràng buộc cho bảng `test`
 --
-ALTER TABLE `subject`
-  ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`Subject_id`) REFERENCES `test` (`Subject_id`),
-  ADD CONSTRAINT `subject_ibfk_2` FOREIGN KEY (`Subject_id`) REFERENCES `lesson` (`Subject-id`);
+ALTER TABLE `test`
+  ADD CONSTRAINT `test_ibfk_1` FOREIGN KEY (`Subject_id`) REFERENCES `subject` (`Subject_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Các ràng buộc cho bảng `test_result`
 --
 ALTER TABLE `test_result`
-  ADD CONSTRAINT `test_result_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`);
+  ADD CONSTRAINT `test_result_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `user` (`Username`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

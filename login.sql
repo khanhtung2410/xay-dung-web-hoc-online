@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 23, 2023 lúc 11:41 AM
+-- Thời gian đã tạo: Th12 24, 2023 lúc 05:33 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -643,12 +643,6 @@ ALTER TABLE `answer_map`
 ALTER TABLE `chapter`
   ADD CONSTRAINT `chapter_ibfk_1` FOREIGN KEY (`Subject_id`) REFERENCES `subject` (`Subject_id`),
   ADD CONSTRAINT `chapter_ibfk_2` FOREIGN KEY (`Chapter_id`) REFERENCES `lesson` (`Chapter_id`);
-
---
--- Các ràng buộc cho bảng `lesson`
---
-ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`Subject-id`) REFERENCES `subject` (`Subject_id`);
 
 --
 -- Các ràng buộc cho bảng `question`

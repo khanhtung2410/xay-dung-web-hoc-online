@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/table.css">
-    <link rel="stylesheet" type="text/css" href="/css/add-test.css">
+    <link rel="stylesheet" type="text/css" href="../css/table.css">
+    <link rel="stylesheet" type="text/css" href="../css/add-test.css">
 </head>
 <?php
 include("./config.php");
@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <body>
-    <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
+    <button class="nextpage"><a href="/Btl/xay-dung-web-hoc-online/html/admin.php">HOME</a></button>
     <div class="them-cauhoi">
         <h1>Sửa câu hỏi</h1>
         <form method="post" class="questions" action="add-test-content.php">

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/css/table.css">
-    <link rel="stylesheet" type="text/css" href="/css/add-test.css">
+    <link rel="stylesheet" type="text/css" href="../css/table.css">
+    <link rel="stylesheet" type="text/css" href="../css/add-test.css">
 </head>
 <?php
 include("./config.php");
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $exists = "ID CÂU HỎI KHÔNG TỒN TẠI";
         echo ($exists);
     }
-    header("location: add-question-answer.php");
+    header("location: /Btl/xay-dung-web-hoc-online/html/add-question-answer.php");
 }
 ?>
 
@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result4 = mysqli_query($db, $sql4);
     $row4 = mysqli_fetch_assoc($result4);
     ?>
-    <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
+    <button class="nextpage"><a href="/Btl/xay-dung-web-hoc-online/html/admin.php">HOME</a></button>
     <div class="them-answer">
         <h1>Sửa câu trả lời</h1>
         <form method="post" id="questions" action="update_answer.php">

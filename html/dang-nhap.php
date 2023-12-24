@@ -53,18 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web học trực tuyến</title>
-    <link rel="icon" href="/image/icon/dragon-removebg-preview.png">
-    <link rel="stylesheet" type="text/css" href="/css/dangnhap.css">
-    <link rel="stylesheet" type="text/css" href="/css/navigation-bar.css">
-    <link rel="stylesheet" type="text/css" href="/css/w3.css">
+    <link rel="icon" href="../image/icon/dragon-removebg-preview.png">
+    <link rel="stylesheet" type="text/css" href="../css/dangnhap.css">
+    <link rel="stylesheet" type="text/css" href="../css/navigation-bar.css">
+    <link rel="stylesheet" type="text/css" href="../css/w3.css">
 </head>
 
 <body>
     <div class="w3-bar" style="background-color: antiquewhite;">
-        <a class="w3-bar-item w3-button" href="./menu.php">
+        <a class="w3-bar-item w3-button" href="/Btl/xay-dung-web-hoc-online/html/menu.php">
             <img src="../image/icon/dragon-removebg-preview.png" class="logo"></a>
-        <a class="w3-bar-item w3-button hover-text w3-right" data-hover="Close" href="/html/menu.php">
-            <img src="/image/icon/x-icon.png" style="width: 25px; height: 31px; opacity: 0.6;"></a>
+        <a class="w3-bar-item w3-button hover-text w3-right" data-hover="Close" href="/Btl/xay-dung-web-hoc-online/html/menu.php">
+            <img src="../image/icon/x-icon.png" style="width: 25px; height: 31px; opacity: 0.6;"></a>
     </div>
     <!-- Cần chỉnh cái title tooltip -->
 

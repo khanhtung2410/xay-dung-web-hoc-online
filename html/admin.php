@@ -14,12 +14,16 @@ include("./config.php")
 ?>
 
 <body>
-  <?php if (isset($_SESSION['login_user'])) {
-    $user_check = $_SESSION['login_user'];
-    $ses_sql = mysqli_query($db, "select Username from admin where Username = '$user_check' ");
-    $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
-    $login_session = $row['Username'];
-    echo '<p class="w3-bar-item w3-button w3-right w3-padding-large">Welcome,' . $login_session . '</p>';
+  <?php if (isset($_COOKIE['tutor_id'])) {
+    $user_check = $_COOKIE['tutor_id'];
+    $sql = "Select * from tutors where id='$user_check'";
+
+    $result = mysqli_query($db, $sql);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    echo '<p class="w3-bar-item w3-button w3-right w3-padding-large">Welcome ' . $row['name'] . '</p>';
+  }
+  else {
+    header("location:../admin/login.php");
   }
   ?>
 

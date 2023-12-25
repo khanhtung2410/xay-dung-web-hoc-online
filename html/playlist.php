@@ -28,7 +28,6 @@ include ("./config.php")
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>playlist</title>
-   <link rel="icon" type="text/css" href="/image/icon/x-icon.png">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
    <link rel="stylesheet" href="../css/navigation-bar.css">
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -86,8 +85,8 @@ include ("./config.php")
       <div class="row">
 
          <?php
-         $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE id = ? and status = ? LIMIT 1");
-         $select_playlist->execute([$get_id, 'active']);
+         $select_playlist = $conn->prepare("SELECT * FROM `playlist` WHERE id = ? LIMIT 1");
+         $select_playlist->execute([$get_id]);
          if ($select_playlist->rowCount() > 0) {
             $fetch_playlist = $select_playlist->fetch(PDO::FETCH_ASSOC);
 
@@ -104,9 +103,7 @@ include ("./config.php")
          ?>
 
             <div class="col">
-               <form action="" method="post" class="save-list">
-                  <input type="hidden" name="list_id" value="<?= $playlist_id; ?>">
-               </form>
+               
                <div class="thumb">
                   <span><?= $total_videos; ?> videos</span>
                   <img src="../uploaded_files/<?= $fetch_playlist['thumb']; ?>" alt="">
@@ -118,12 +115,10 @@ include ("./config.php")
                   <img src="../uploaded_files/<?= $fetch_tutor['image']; ?>" alt="">
                   <div>
                      <h3><?= $fetch_tutor['name']; ?></h3>
-                     <span><?= $fetch_tutor['profession']; ?></span>
                   </div>
                </div>
                <div class="details">
                   <h3><?= $fetch_playlist['title']; ?></h3>
-                  <p><?= $fetch_playlist['description']; ?></p>
                   <div class="date"><i class="fas fa-calendar"></i><span><?= $fetch_playlist['date']; ?></span></div>
                </div>
             </div>
@@ -146,8 +141,8 @@ include ("./config.php")
       <div class="box-container">
 
          <?php
-         $select_content = $conn->prepare("SELECT * FROM `content` WHERE playlist_id = ? AND status = ? ORDER BY date DESC");
-         $select_content->execute([$get_id, 'active']);
+         $select_content = $conn->prepare("SELECT * FROM `content` WHERE playlist_id = ?  ORDER BY date DESC");
+         $select_content->execute([$get_id]);
          if ($select_content->rowCount() > 0) {
             while ($fetch_content = $select_content->fetch(PDO::FETCH_ASSOC)) {
          ?>

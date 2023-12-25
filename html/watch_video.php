@@ -15,26 +15,6 @@ if(isset($_GET['get_id'])){
    header('location:home.php');
 }
 
-if(isset($_POST['like_content'])){
-
-   if($user_id != ''){
-
-      $content_id = $_POST['content_id'];
-      $content_id = filter_var($content_id, FILTER_SANITIZE_STRING);
-
-      $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
-      $select_content->execute([$content_id]);
-      $fetch_content = $select_content->fetch(PDO::FETCH_ASSOC);
-
-      $tutor_id = $fetch_content['tutor_id'];
-
-
-   }else{
-      $message[] = 'please login first!';
-   }
-
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -44,44 +24,12 @@ if(isset($_POST['like_content'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>watch video</title>
-
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-
    <link rel="stylesheet" href="../css/watch_video.css">
 
 </head>
 <body>
 
-
-<?php
-   if(isset($_POST['edit_comment'])){
-      $edit_id = $_POST['comment_id'];
-      $edit_id = filter_var($edit_id, FILTER_SANITIZE_STRING);
-      $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ? LIMIT 1");
-      $verify_comment->execute([$edit_id]);
-      if($verify_comment->rowCount() > 0){
-         $fetch_edit_comment = $verify_comment->fetch(PDO::FETCH_ASSOC);
-?>
-<section class="edit-comment">
-   <h1 class="heading">edti comment</h1>
-   <form action="" method="post">
-      <input type="hidden" name="update_id" value="<?= $fetch_edit_comment['id']; ?>">
-      <textarea name="update_box" class="box" maxlength="1000" required placeholder="please enter your comment" cols="30" rows="10"><?= $fetch_edit_comment['comment']; ?></textarea>
-      <div class="flex">
-         <a href="watch_video.php?get_id=<?= $get_id; ?>" class="inline-option-btn">cancel edit</a>
-         <input type="submit" value="update now" name="update_now" class="inline-btn">
-      </div>
-   </form>
-</section>
-<?php
-   }else{
-      $message[] = 'comment was not found!';
-   }
-}
-?>
-
-<!-- watch video section starts  -->
 
 <section class="watch-video">
 
@@ -117,7 +65,7 @@ if(isset($_POST['like_content'])){
    <?php
          }
       }else{
-         echo '<p class="empty">no videos added yet!</p>';
+         echo '<p class="empty">không có video!</p>';
       }
    ?>
 

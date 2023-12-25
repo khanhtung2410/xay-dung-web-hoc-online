@@ -24,9 +24,10 @@ if (isset($_POST['update'])) {
    $title = filter_var($title, FILTER_SANITIZE_STRING);
    $playlist = $_POST['playlist'];
    $playlist = filter_var($playlist, FILTER_SANITIZE_STRING);
-
-   $update_content = $conn->prepare("UPDATE `content` SET title = ? WHERE id = ?");
-   $update_content->execute([$title, $description, $status, $video_id]);
+   $description = $_POST['description'];
+   $description = filter_var($description, FILTER_SANITIZE_STRING);
+   $update_content = $conn->prepare("UPDATE `content` SET title = ?, description = ? WHERE id = ?");
+   $update_content->execute([$title, $description, $video_id]);
 
    if (!empty($playlist)) {
       $update_playlist = $conn->prepare("UPDATE `content` SET playlist_id = ? WHERE id = ?");
@@ -51,7 +52,7 @@ if (isset($_POST['update'])) {
          $update_thumb->execute([$rename_thumb, $video_id]);
          move_uploaded_file($thumb_tmp_name, $thumb_folder);
          if ($old_thumb != '' and $old_thumb != $rename_thumb) {
-            unlink('../uploaded_files/' . $old_thumb);
+            unlink('../uploaded_files/' .$old_thumb);
          }
       }
    }

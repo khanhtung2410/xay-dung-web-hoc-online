@@ -68,7 +68,7 @@ if(isset($_POST['delete_video'])){
          <div class="flex-btn">
             <input type="hidden" name="video_id" value="<?= $video_id; ?>">
             <a href="update_content.php?get_id=<?= $video_id; ?>" class="option-btn">Cập nhật</a>
-            <input type="submit" value="Xóa" class="delete-btn" onclick="return confirm('Xóa video này?');" name="delete_video">
+            <!-- <input type="submit" value="Xóa" class="delete-btn" onclick="return confirm('Xóa video này?');" name="delete_video"> -->
          </div>
       </form>
    </div>

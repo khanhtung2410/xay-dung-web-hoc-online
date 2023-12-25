@@ -45,7 +45,7 @@ $test_name = $row['Test_name'];
 
 <body>
   <div class="w3-bar" style="background-color: antiquewhite;">
-    <a class="w3-bar-item w3-button" href="/Btl/xay-dung-web-hoc-online/html/menu.php"><img src="/Btl/xay-dung-web-hoc-online/image/icon/dragon-removebg-preview.png" class="logo"></a>
+    <a class="w3-bar-item w3-button" href="/Btl/xay-dung-web-hoc-online/html/menu.php"><img src="../image/icon/dragon-removebg-preview.png" class="logo"></a>
     <div class="w3-dropdown-click w3-hide-large w3-hide-medium ">
       <button onclick="menudropdown()" class="w3-button"><img src="/image/icon/menu-bar.png" height="31px"></button>
       <div id="sub-menu" class="w3-dropdown-content w3-bar-block dropdown-menu">
@@ -55,7 +55,7 @@ $test_name = $row['Test_name'];
             <div class="hover-drop-toan">
               <span class="w3-padding-large w3-bar-item">Toán</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lop-thuong-toan.php">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lopthuong.php">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
 
@@ -63,7 +63,7 @@ $test_name = $row['Test_name'];
             <div class="hover-drop-ly">
               <span class="w3-padding-large w3-bar-item">Lý</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lop-thuong-ly.php">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lopthuong.php">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
             </div>
@@ -79,7 +79,7 @@ $test_name = $row['Test_name'];
           <div class="hover-drop-toan">
             <span class="w3-padding-large w3-bar-item">Toán</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lop-thuong-toan.php">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lopthuong.php?subject=1">Lớp thường</a>
               <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/ki1-12-toan.php">Luyện đề</a>
             </div>
           </div>
@@ -87,7 +87,7 @@ $test_name = $row['Test_name'];
           <div class="hover-drop-ly">
             <span class="w3-padding-large w3-bar-item">Lý</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lop-thuong-ly.php">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lopthuong.php">Lớp thường</a>
               <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
             </div>
           </div>

@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <body>
-  <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
+  <button class="nextpage"><a href="/Btl/xay-dung-web-hoc-online/html/admin.php">HOME</a></button>
   <div class="them-answer">
     <h1>Thêm câu trả lời</h1>
     <form method="post" id="questions" action="add-question-answer.php">

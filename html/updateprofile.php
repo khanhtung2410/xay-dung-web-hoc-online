@@ -128,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="info">
 
             <div class="user">
-                <img src="/image/anh-bia/pic-1.jpg" alt="">
+                <img src="/Btl/xay-dung-web-hoc-online/image/anh-bia/pic-1.jpg" alt="">
                 <?php
                 $sql = "SELECT * FROM user WHERE username='$login_session'";
                 $result = mysqli_query($db, $sql);
@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="./profile.php" class="inline-btn">return</a>
             </div>
             <div class="update-profile">
-                <form action="updateprofile.php" method="post">
+                <form action="/Btl/xay-dung-web-hoc-online/html/updateprofile.php" method="post">
                     <label for="Hoten">Họ tên:</label>
                     <input class="input-box" type="text" name="Hoten"><br>
                     <label for="gmail">Gmail:</label>

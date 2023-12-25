@@ -1,13 +1,4 @@
 <?php
-$subject = isset($_GET['subject']) ? $_GET['subject'] : '';
-
-$title = 'Web học trực tuyến';
-
-if ($subject == 1) {
-   $title = 'Toán';
-} elseif ($subject == 2) {
-   $title = 'Lý';
-}
 session_start();
 include ("./config.php")
 ?>
@@ -29,7 +20,7 @@ include ("./config.php")
 
 <body>
    <div class="w3-bar" style="background-color: antiquewhite;">
-      <a class="w3-bar-item w3-button" href="/html/menu.php"><img src="/image/icon/dragon-removebg-preview.png" class="logo"></a>
+      <a class="w3-bar-item w3-button" href="/Btl/xay-dung-web-hoc-online/html/menu.php"><img src="/image/icon/dragon-removebg-preview.png" class="logo"></a>
       <div class="w3-hide-small dropdown-menu-big">
          <div class="w3-dropdown-hover w3-bar-block w3-padding-large">
             <span>Lớp học</span>

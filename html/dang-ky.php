@@ -66,9 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="w3-bar" style="background-color: antiquewhite;">
-        <a class="w3-bar-item w3-button" href="/Btl/xay-dung-web-hoc-online/html/menu.php">
+        <a class="w3-bar-item w3-button" href="/Btl/xay-dung-web-hoc-online/Btl/xay-dung-web-hoc-online/html/menu.php">
             <img src="../image/icon/dragon-removebg-preview.png" class="logo"></a>
-        <a class="w3-bar-item w3-button hover-text w3-right" data-hover="Close" href="/Btl/xay-dung-web-hoc-online/html/menu.php">
+        <a class="w3-bar-item w3-button hover-text w3-right" data-hover="Close" href="/Btl/xay-dung-web-hoc-online/Btl/xay-dung-web-hoc-online/html/menu.php">
             <img src="../image/icon/x-icon.png" style="width: 25px; height: 31px; opacity: 0.6;"></a>
     </div>
     <div class="sign-up-box-wrapper">

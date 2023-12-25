@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </style>
 
 <body>
-  <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
+  <button class="nextpage"><a href="/Btl/xay-dung-web-hoc-online/html/admin.php">HOME</a></button>
   <div class="them-test">
     <h1>Thêm bài kiểm tra</h1>
     <form method="POST" id="overall" action="add-test.php">
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <input type="text" class="input-box" name="test_name" id="test_name" required><br>
       <input type="submit" class="button" id="confirm" value="Nhập">
     </form>
-    <button class="nextpage"><a href="/html/add-test-content.php">Thêm câu hỏi</a></button>
+    <button class="nextpage"><a href="/Btl/xay-dung-web-hoc-online/html/add-test-content.php">Thêm câu hỏi</a></button>
   </div>
   <div class="listing">
     <h1>Danh sách bài kiểm tra</h1>

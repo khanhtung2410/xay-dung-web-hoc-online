@@ -34,7 +34,7 @@ include("./config.php");
 </style>
 
 <body>
-    <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
+    <button class="nextpage"><a href="/Btl/xay-dung-web-hoc-online/html/admin.php">HOME</a></button>
     <div class="listing">
         <h1>Danh sách học sinh</h1>
         <div class="container">

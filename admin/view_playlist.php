@@ -23,6 +23,8 @@ if(isset($_POST['delete_playlist'])){
    $delete_playlist_thumb->execute([$delete_id]);
    $fetch_thumb = $delete_playlist_thumb->fetch(PDO::FETCH_ASSOC);
    unlink('../uploaded_files/'.$fetch_thumb['thumb']);
+   $delete_bookmark = $conn->prepare("DELETE FROM `bookmark` WHERE playlist_id = ?");
+   $delete_bookmark->execute([$delete_id]);
    $delete_playlist = $conn->prepare("DELETE FROM `playlist` WHERE id = ?");
    $delete_playlist->execute([$delete_id]);
    header('locatin:playlists.php');
@@ -95,7 +97,7 @@ if(isset($_POST['delete_video'])){
          <form action="" method="post" class="flex-btn">
             <input type="hidden" name="playlist_id" value="<?= $playlist_id; ?>">
             <a href="update_playlist.php?get_id=<?= $playlist_id; ?>" class="option-btn">Cập nhật playlist</a>
-            <!-- <input type="submit" value="Xóa playlist" class="delete-btn" onclick="return confirm('Xóa playlist này?');" name="delete"> -->
+            <input type="submit" value="Xóa playlist" class="delete-btn" onclick="return confirm('Xóa playlist này?');" name="delete">
          </form>
       </div>
    </div>
@@ -123,6 +125,7 @@ if(isset($_POST['delete_video'])){
    ?>
       <div class="box">
          <div class="flex">
+            <div><i class="fas fa-dot-circle" style="<?php if($fecth_videos['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"></i><span style="<?php if($fecth_videos['status'] == 'active'){echo 'color:limegreen'; }else{echo 'color:red';} ?>"><?= $fecth_videos['status']; ?></span></div>
             <div><i class="fas fa-calendar"></i><span><?= $fecth_videos['date']; ?></span></div>
          </div>
          <img src="../uploaded_files/<?= $fecth_videos['thumb']; ?>" class="thumb" alt="">

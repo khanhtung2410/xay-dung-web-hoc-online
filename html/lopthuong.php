@@ -78,8 +78,8 @@ include ("./config.php")
          <?php
          include("../components/connect.php");
          
-         $select_courses = $conn->prepare("SELECT * FROM `playlist` WHERE subject = ? ORDER BY date DESC");
-         $select_courses->execute([$subject]);
+         $select_courses = $conn->prepare("SELECT * FROM `playlist` WHERE status = ? AND subject = ? ORDER BY date DESC");
+         $select_courses->execute(['active', $subject]);
          if ($select_courses->rowCount() > 0) {
             while ($fetch_course = $select_courses->fetch(PDO::FETCH_ASSOC)) {
                $course_id = $fetch_course['id'];
@@ -105,7 +105,7 @@ include ("./config.php")
          <?php
             }
          } else {
-            echo '<p class="empty">chưa có playlist!</p>';
+            echo '<p class="empty">no courses added yet!</p>';
          }
          ?>
 

@@ -27,8 +27,8 @@ if(isset($_POST['submit'])){
    $image_tmp_name = $_FILES['image']['tmp_name'];
    $image_folder = '../uploaded_files/'.$rename;
 
-   $add_playlist = $conn->prepare("INSERT INTO `playlist`(id, tutor_id, title, description, thumb, subject) VALUES(?,?,?,?,?,?)");
-   $add_playlist->execute([$id, $tutor_id, $title, $description, $rename, $subject]);
+   $add_playlist = $conn->prepare("INSERT INTO `playlist`(id, tutor_id, title, description, thumb, status, subject) VALUES(?,?,?,?,?,?,?)");
+   $add_playlist->execute([$id, $tutor_id, $title, $description, $rename, "active", $subject]);
 
    move_uploaded_file($image_tmp_name, $image_folder);
 

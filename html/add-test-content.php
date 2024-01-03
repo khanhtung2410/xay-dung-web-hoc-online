@@ -10,54 +10,61 @@
 </head>
 <?php
 include("./config.php");
-if(isset($_GET["search_test"]))
-{
-   $test_id = $_GET["search_test"];
+if (isset($_GET["search_test"])) {
+  $test_id = $_GET["search_test"];
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   $exists = false;
-  $question_id = $_POST['question_id'];
+  $question_diff = $_POST['question_diff'];
   $test_id = $_POST['test_id'];
   $question = $_POST['question'];
-  $sql = "select * from question where question_id = '$question_id'";
 
+  $sql = "INSERT INTO `question` (`Question_id`,`Test_id`,`Question`,`Difficulty`) VALUES ('$question_id','$test_id','$question','$question_diff')";
   $result = mysqli_query($db, $sql);
-
-  $num = mysqli_num_rows($result);
-
-  if ($num == 0) {
-    if ($exists == false) {
-      $sql = "INSERT INTO `question` (`Question_id`,`Test_id`,`Question`) VALUES ('$question_id','$test_id','$question')";
-      $result = mysqli_query($db, $sql);
-    }
-  };
-
-  if ($num > 0) {
-    $exists = "ID CÂU HỎI ĐÃ TỒN TẠI";
-  }
 }
 
 ?>
 <style>
-    a {
-        text-decoration: none;
-        position: relative;
-        color: rgb(85, 83, 83);
-        font-size: 14px;
-        display: table;
-        padding: 10px;
+  a {
+    text-decoration: none;
+    position: relative;
+    color: rgb(85, 83, 83);
+    font-size: 14px;
+    display: table;
+    padding: 10px;
+  }
+
+  .action {
+    display: flex;
+    text-decoration: none;
+  }
+
+  .fix {
+    color: #fdbc24;
+  }
+
+  .delete {
+    color: red;
+  }
+
+  @media only screen and (min-width: 576px) {
+
+    .listing {
+      max-width: 600px;
     }
-    .action{
-        display: flex;
-        text-decoration: none;
+
+    .nextpage {
+      left: 75%;
     }
-    .fix{
-        color: #fdbc24;
+  }
+
+  @media only screen and (min-width: 768px) {
+
+    .listing {
+      max-width: 920px;
     }
-    .delete{
-        color: red;
-    }
+  }
 </style>
 
 <body>
@@ -67,8 +74,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="post" class="questions" action="add-test-content.php">
       <label for="test_id">Mã bài kiểm tra : </label><br>
       <input type="text" class="input-box" id="test_id" name="test_id" required maxlength="2"><br>
-      <label for="question_id">Câu hỏi thứ : </label><br>
-      <input type="text" class="input-box" id="question_id" name="question_id" required maxlength="2" minlength="2" placeholder="VD: 01"><br>
+      <label for="question_id">Độ khó : </label><br>
+      <input type="text" class="input-box" id="question_diff" name="question_diff" required maxlength="5" minlength="2" placeholder="VD: Ez or Med or Hard"><br>
       <label for="test_name">Câu hỏi : </label><br>
       <input type="text" class="input-box" name="question" id="question" required><br>
       <input type="submit" id="confirm" value="Nhập">
@@ -95,6 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <tr class="table_header">
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="question_id_list">Câu hỏi thứ</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number" id="">Câu hỏi</a></th>
+            <th class="hd"><a href="#" class="filter__link filter__link--number" id="">Độ khó</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number">Có câu trả lời ?</a></th>
             <th class="hd"><a href="#" class="filter__link filter__link--number">Thao tác</a></th>
           </tr>
@@ -104,16 +112,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if (isset($_GET['begin_search'])) {
             $search_subject = $_GET['search_subject'];
             $search_test_id = $_GET['search_test'];
-            $sql1 = "SELECT Question_id, Question, Have_answer FROM question_status WHERE `Subject_id`='$search_subject' AND `Test_id` = '$search_test_id'";
+            $sql1 = "SELECT Question_id, Question, Have_answer, Difficulty FROM question_status WHERE `Subject_id`='$search_subject' AND `Test_id` = '$search_test_id'";
             $result = mysqli_query($db, $sql1);
             while ($row = mysqli_fetch_assoc($result)) {
           ?>
               <tr>
                 <td><?php echo $row['Question_id']; ?></td>
                 <td><?php echo $row['Question']; ?></td>
+                <td><?php echo $row['Difficulty']; ?></td>
                 <td><?php echo $row['Have_answer']; ?></td>
                 <td class="action"><a class="fix" href="update_question.php?qeid=<?php echo $row['Question_id']; ?>&teid=<?php echo ($test_id); ?>" class="btn">Sửa</a>
-                  <a class="delete" onclick="return confirm('Bạn có muốn xóa không?');" href="delete_test.php?qeid=<?php echo $row['Question_id']; ?>&teid=<?php echo ($test_id); ?>&status=que"class="btn">Xóa</a>
+                  <a class="delete" onclick="return confirm('Bạn có muốn xóa không?');" href="delete_test.php?qeid=<?php echo $row['Question_id']; ?>&teid=<?php echo ($test_id); ?>&status=que" class="btn">Xóa</a>
                 </td>
               </tr>
           <?php
@@ -129,13 +138,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script>
-  var sub_id = document.getElementById("subject_id");
+  var question_diff = document.getElementById("question_diff");
   document.getElementById("confirm").onmouseover = function() {
     //check value hop le hay khong
-    if (sub_id.value == "T" || sub_id.value == "L") {
+    if (question_diff.value == "T" || question_diff.value == "L") {
       return
     } else
-      sub_id.value = "";
+      question_diff.value = "";
   }
   var properties = [
     'question_id_list',

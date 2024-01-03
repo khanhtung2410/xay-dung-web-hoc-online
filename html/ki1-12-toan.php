@@ -15,17 +15,13 @@ session_start();
 include("./config.php");
 $subject_id = "T";
 $test_id = "T1";
-$sql = "SELECT * FROM question WHERE Test_id = '$test_id'";
-$result = mysqli_query($db, $sql);
-$sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Test_id = '$test_id'";
-$result1 = mysqli_query($db, $sql1);
 $sql2 = "SELECT * FROM test WHERE Test_id = '$test_id'";
 $result2 = mysqli_query($db, $sql2);
 ?>
 
 <body style="background-color: white;">
   <div class="w3-bar" style="background-color: antiquewhite;">
-    <a class="w3-bar-item w3-button" href="/Btl/xay-dung-web-hoc-online/html/menu.php"><img src="/Btl/xay-dung-web-hoc-online/image/icon/dragon-removebg-preview.png" class="logo"></a>
+    <a class="w3-bar-item w3-button" href="/html/menu.php"><img src="/image/icon/dragon-removebg-preview.png" class="logo"></a>
     <div class="w3-dropdown-click w3-hide-large w3-hide-medium ">
       <button onclick="menudropdown()" class="w3-button"><img src="/image/icon/menu-bar.png" height="31px"></button>
       <div id="sub-menu" class="w3-dropdown-content w3-bar-block dropdown-menu">
@@ -35,7 +31,7 @@ $result2 = mysqli_query($db, $sql2);
             <div class="hover-drop-toan">
               <span class="w3-padding-large w3-bar-item">Toán</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lop-thuong-toan.php">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.php">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
 
@@ -43,13 +39,13 @@ $result2 = mysqli_query($db, $sql2);
             <div class="hover-drop-ly">
               <span class="w3-padding-large w3-bar-item">Lý</span>
               <div class="lop">
-                <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lop-thuong-ly.php">Lớp thường</a>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.php">Lớp thường</a>
                 <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
               </div>
             </div>
           </div>
         </div>
-        <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/profile.php">Thông tin</a>
+        <a class="w3-bar-item w3-button w3-padding-large" href="/html/profile.php">Thông tin</a>
       </div>
     </div>
     <div class="w3-hide-small dropdown-menu-big">
@@ -59,21 +55,21 @@ $result2 = mysqli_query($db, $sql2);
           <div class="hover-drop-toan">
             <span class="w3-padding-large w3-bar-item">Toán</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lop-thuong-toan.php">Lớp thường</a>
-              <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/ki1-12-toan.php">Luyện đề</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-toan.php">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/ki1-12-toan.php">Luyện đề</a>
             </div>
           </div>
 
           <div class="hover-drop-ly">
             <span class="w3-padding-large w3-bar-item">Lý</span>
             <div class="lop">
-              <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/lop-thuong-ly.php">Lớp thường</a>
+              <a class="w3-bar-item w3-button w3-padding-large" href="/html/lop-thuong-ly.php">Lớp thường</a>
               <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
             </div>
           </div>
         </div>
       </div>
-      <a class="w3-bar-item w3-button w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/about.html">Về chúng tôi</a>
+      <a class="w3-bar-item w3-button w3-padding-large" href="/html/about.html">Về chúng tôi</a>
     </div>
     <div class="authorize">
       <?php if (isset($_SESSION['login_user'])) : ?>
@@ -82,12 +78,12 @@ $result2 = mysqli_query($db, $sql2);
         $ses_sql = mysqli_query($db, "select Username from user where Username = '$user_check' ");
         $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
         $login_session = $row['Username'];
-        echo '<a class="w3-bar-item w3-button w3-right w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/profile.php">Welcome,' . $login_session . '</a>';
+        echo '<a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/profile.php">Welcome,' . $login_session . '</a>';
         ?>
       <?php else : ?>
-        <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/Btl/xay-dung-web-hoc-online/html/dang-nhap.php">Đăng
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng
           nhập</a>
-        <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/Btl/xay-dung-web-hoc-online/html/dang-ky.php">Đăng Ký</a>
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-ky.php">Đăng Ký</a>
       <?php endif; ?>
     </div>
   </div>
@@ -123,27 +119,38 @@ $result2 = mysqli_query($db, $sql2);
       <div class="que-form">
         <?php
         $forty = 0;
-        while ($row = mysqli_fetch_assoc($result)) {
-          $four = 0;
-          $forty += 1;
+        while ($forty < 40) {
+          if ($forty < 19) {
+            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Ez' ORDER BY rand() LIMIT 19";
+            $result = mysqli_query($db, $sql);
+          } elseif ($forty < 34) {
+            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Med' ORDER BY rand() LIMIT 15";
+            $result = mysqli_query($db, $sql);
+          } else {
+            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Hard' ORDER BY rand() LIMIT 5";
+            $result = mysqli_query($db, $sql);
+          }
+          while ($row = mysqli_fetch_assoc($result)) {
+            $four = 0;
+            $forty += 1;
         ?>
-          <?php echo '<p class="debai"><span>Câu ' . $row['Question_id'] . ':</span> ' . $row['Question'] . '</p>'; ?>
-          <ol class="answer">
-            <?php
-            while ($row1 = mysqli_fetch_assoc($result1)) {
-              $four += 1;
-              echo '<li><input type="radio" required name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
-              if ($four == 4) {
-                break;
+            <?php echo '<p class="debai"><span>Câu ' . $forty . ':' . $row['Difficulty'] . '</span> ' . $row['Question'] . '</p>'; ?>
+            <ol class="answer">
+              <?php
+              $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Question_id = $row[Question_id]";
+              $result1 = mysqli_query($db, $sql1);
+              while ($row1 = mysqli_fetch_assoc($result1)) {
+                $four += 1;
+                echo '<li><input type="radio" required name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
+                if ($four == 4) {
+                  break;
+                }
+              ?>
+              <?php
               }
-            ?>
-            <?php
-            }
-            ?>
-          </ol>
+              ?>
+            </ol>
         <?php
-          if ($forty == 40) {
-            break;
           }
         }
         $db->close();

@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   var question_diff = document.getElementById("question_diff");
   document.getElementById("confirm").onmouseover = function() {
     //check value hop le hay khong
-    if (question_diff.value == "T" || question_diff.value == "L") {
+    if (question_diff.value == "Ez" || question_diff.value == "Med" || question_diff.value == "Hard") {
       return
     } else
       question_diff.value = "";

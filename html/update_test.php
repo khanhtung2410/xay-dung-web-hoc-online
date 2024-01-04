@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </style>
 
 <body>
-    <button class="nextpage"><a href="/Btl/xay-dung-web-hoc-online/html/admin.php">HOME</a></button>
+    <button class="nextpage"><a href="/html/admin.php">HOME</a></button>
     <div class="them-test">
         <h1>Sửa tên bài kiểm tra</h1>
         <form method="POST" id="overall" action="update_test.php">

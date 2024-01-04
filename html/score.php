@@ -153,11 +153,11 @@ $test_name = $row['Test_name'];
               $four += 1;
               if ($row1['Choice'] == $answer[$test_answer_position]) {
                 if ($student_answer[$test_answer_position] == $answer[$test_answer_position])
-                  echo '<li class="right" ><input type="radio" checked disabled name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
+                  echo '<li class="right" ><input type="radio" checked readonly name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
                 elseif ($student_answer[$test_answer_position] != $answer[$test_answer_position])
-                  echo '<li class="wrong" ><input type="radio" checked disabled name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
+                  echo '<li class="wrong" ><input type="radio" checked readonly name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
               } else
-                echo '<li><input type="radio" disabled name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
+                echo '<li><input type="radio" readonly name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
               if ($four == 4) {
                 break;
               }

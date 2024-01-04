@@ -14,17 +14,17 @@ include("./config.php")
 ?>
 
 <body>
-  <?php if (isset($_COOKIE['tutor_id'])) {
-    $user_check = $_COOKIE['tutor_id'];
-    $sql = "Select * from tutors where id='$user_check'";
+  <?php
+  // if (isset($_COOKIE['tutor_id'])) {
+  //   $user_check = $_COOKIE['tutor_id'];
+  //   $sql = "Select * from tutors where id='$user_check'";
 
-    $result = mysqli_query($db, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    echo '<p class="w3-bar-item w3-button w3-right w3-padding-large">Welcome ' . $row['name'] . '</p>';
-  }
-  else {
-    header("location:../admin/login.php");
-  }
+  //   $result = mysqli_query($db, $sql);
+  //   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  //   echo '<p class="w3-bar-item w3-button w3-right w3-padding-large">Welcome ' . $row['name'] . '</p>';
+  // } else {
+  //  header("location:../admin/login.php");
+  // }
   ?>
 
   <div class="container">

@@ -79,8 +79,7 @@ include("./config.php")
         echo '<a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/profile.php">Welcome,' . $login_session . '</a>';
         ?>
       <?php else : ?>
-        <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng
-          nhập</a>
+        <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng nhập</a>
         <a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/dang-ky.php">Đăng Ký</a>
       <?php endif; ?>
     </div>
@@ -119,9 +118,15 @@ include("./config.php")
       <table>
         <thead>
           <tr class="table_header">
-            <th class="hd"><a href="#" class="filter__link filter__link--number" id="question_id_list">Mã bài kiểm tra</a></th>
-            <th class="hd"><a href="#" class="filter__link filter__link--number" id="">Tên bài kiểm tra</a></th>
-            <th class="hd"><a href="#" class="filter__link filter__link--number">Điểm</a></th>
+            <th class="hd">
+              <p class="filter__link filter__link--number" id="question_id_list">Mã bài kiểm tra</p>
+            </th>
+            <th class="hd">
+              <p class="filter__link filter__link--number" id="">Lần làm thứ</p>
+            </th>
+            <th class="hd">
+              <p class="filter__link filter__link--number">Điểm</p>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -133,7 +138,7 @@ include("./config.php")
           ?>
             <tr>
               <td><?php echo $row['Test_id']; ?></td>
-              <td><?php echo $row['Test_name']; ?></td>
+              <td><?php echo $row['Time_done']; ?></td>
               <td><?php echo $row['Score']; ?></td>
             </tr>
           <?php

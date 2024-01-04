@@ -17,6 +17,7 @@ $subject_id = "T";
 $test_id = "T1";
 $sql2 = "SELECT * FROM test WHERE Test_id = '$test_id'";
 $result2 = mysqli_query($db, $sql2);
+$question_id_list = array();
 ?>
 
 <body style="background-color: white;">
@@ -127,10 +128,11 @@ $result2 = mysqli_query($db, $sql2);
             $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Med' ORDER BY rand() LIMIT 15";
             $result = mysqli_query($db, $sql);
           } else {
-            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Hard' ORDER BY rand() LIMIT 5";
+            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Hard' ORDER BY rand() ";
             $result = mysqli_query($db, $sql);
           }
           while ($row = mysqli_fetch_assoc($result)) {
+            array_push($question_id_list, $row['Question_id']);
             $four = 0;
             $forty += 1;
         ?>
@@ -155,6 +157,7 @@ $result2 = mysqli_query($db, $sql2);
         }
         $db->close();
         ?>
+        <input type='hidden' name='question_id_list' value="<?php echo htmlentities(serialize($question_id_list)); ?>" />
         <input type="submit" value="Nộp bài">
     </form>
   </div>
@@ -163,13 +166,17 @@ $result2 = mysqli_query($db, $sql2);
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="../js/moment.js"></script>
 <script>
+  <?php
+  $han = 90;
+  $warn_limit = 300000;
+  $submit_limit = 1000;
+  ?>
+
   function begin() {
-    // Đặt biến
-    const han = 90;
     // Bắt đầu
     var start = moment();
     // Hạn
-    var limit = start.add(han, 'minutes');
+    var limit = start.add(<?php echo($han) ?>, 'minutes');
     // Lấy độ trễ
     var x = setInterval(function() {
       function time() {
@@ -177,10 +184,10 @@ $result2 = mysqli_query($db, $sql2);
         //Tính thời gian còn lại
         remaining = limit - now;
         //Đổi màu nếu còn ít hơn 5p
-        if (remaining < 300000)
+        if (remaining < <?php echo($warn_limit) ?>)
           document.querySelector(".clock-wr").style.backgroundColor = 'rgb(252, 39, 39)'
         //Thông báo hết giờ
-        if (remaining < 1000) {
+        if (remaining < <?php echo($submit_limit) ?>) {
           document.querySelector(".time-noti").style.display = 'Hết giờ'
           document.getElementById("tet").style.display = 'none'
         }

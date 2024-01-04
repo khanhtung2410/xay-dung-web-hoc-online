@@ -16,22 +16,25 @@ include("./config.php");
 $student_answer = array();
 $answer = array();
 $score = 0;
+$question_no = 0;
 
+$question_id_list = unserialize($_POST['question_id_list']);
 $subject_id = $_POST['subject_id'];
 $test_id = $_POST['test_id'];
 
-$sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet_true WHERE Test_id = '$test_id'";
-$result1 = mysqli_query($db, $sql1);
-while ($row1 = mysqli_fetch_assoc($result1)) {
-  array_push($answer, $row1['Choice']);
-  array_push($student_answer, $_POST['' . $row1['Question_id'] . '']);
+while ($question_no < 40) {
+  $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet_true WHERE Test_id = '$test_id' AND Question_id='$question_id_list[$question_no]'";
+  $result1 = mysqli_query($db, $sql1);
+  while ($row1 = mysqli_fetch_assoc($result1)) {
+    array_push($answer, $row1['Choice']);
+    array_push($student_answer, $_POST['' . $row1['Question_id'] . '']);
+  }
+  $question_no += 1;
 }
 for ($i = 0; $i < 40; $i++) {
   if ($answer[$i] == $student_answer[$i])
     $score += 0.25;
 }
-$sql = "SELECT * FROM question WHERE Test_id = '$test_id'";
-$result = mysqli_query($db, $sql);
 
 $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Test_id = '$test_id'";
 $result1 = mysqli_query($db, $sql1);
@@ -127,9 +130,16 @@ $test_name = $row['Test_name'];
       <input type="text" value="<?php echo ($subject_id) ?>" name="subject_id" style="display: none;">
       <div class="que-form">
         <?php
-        $sql3 = "INSERT INTO test_result  (`Test_id`, `Username`, `Test_name`, `Score`) VALUES ('$test_id', '$login_session', '$test_name', '$score')";
+        $sql = "SELECT * FROM test_result WHERE Test_id='$test_id' AND Username='$login_session'";
+        $result = mysqli_query($db, $sql);
+        $howmany = mysqli_num_rows($result);
+        $howmany += 1;
+
+        $sql3 = "INSERT INTO test_result  (`Test_id`, `Username`,`Time_done` ,`Score`) VALUES ('$test_id', '$login_session', '$howmany','$score')";
         $result3 = mysqli_query($db, $sql3);
 
+        $sql = "SELECT * FROM question WHERE Test_id = '$test_id'";
+        $result = mysqli_query($db, $sql);
         $test_answer_position = 0;
         $forty = 0;
         while ($row = mysqli_fetch_assoc($result)) {

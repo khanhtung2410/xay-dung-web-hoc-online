@@ -13,11 +13,13 @@
 <?php
 session_start();
 include("./config.php");
+
 $subject_id = "T";
 $test_id = "T1";
 $sql2 = "SELECT * FROM test WHERE Test_id = '$test_id'";
 $result2 = mysqli_query($db, $sql2);
 $question_id_list = array();
+$state = 0
 ?>
 
 <body style="background-color: white;">
@@ -120,25 +122,25 @@ $question_id_list = array();
       <div class="que-form">
         <?php
         $forty = 0;
-        while ($forty < 40) {
-          if ($forty < 19) {
-            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Ez' ORDER BY rand() LIMIT 19";
-            $result = mysqli_query($db, $sql);
-          } elseif ($forty < 34) {
-            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Med' ORDER BY rand() LIMIT 15";
-            $result = mysqli_query($db, $sql);
-          } else {
-            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Hard' ORDER BY rand() ";
-            $result = mysqli_query($db, $sql);
-          }
-          while ($row = mysqli_fetch_assoc($result)) {
-            array_push($question_id_list, $row['Question_id']);
-            $four = 0;
+        if (!isset($_SESSION["visits"])) {
+          $_SESSION["visits"] = 0;
+        }
+        $time_visited = 2;
+        $_SESSION["visits"] = $_SESSION["visits"] + 1;
+        $time_visited += 1;
+
+        if ($_SESSION["visits"] > 1) {
+          $forty = 0;
+          $question_id_list = unserialize($_POST['question_id_list']);
+          foreach ($question_id_list as $x) {
             $forty += 1;
-        ?>
-            <?php echo '<p class="debai"><span>Câu ' . $forty . ':</span> ' . $row['Question'] . '</p>'; ?>
+            $sql = "SELECT * FROM question WHERE Test_id = '$test_id' and Question_id='$x'";
+            $result = mysqli_query($db, $sql);
+            $row = mysqli_fetch_assoc($result);
+            echo '<p class="debai"><span>Câu ' . $forty . ':</span> ' . $row['Question'] . '</p>'; ?>
             <ol class="answer">
               <?php
+              $four = 0;
               $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Question_id = $row[Question_id]";
               $result1 = mysqli_query($db, $sql1);
               while ($row1 = mysqli_fetch_assoc($result1)) {
@@ -147,18 +149,54 @@ $question_id_list = array();
                 if ($four == 4) {
                   break;
                 }
-              ?>
-              <?php
               }
               ?>
             </ol>
+            <?php
+          }
+        } else {
+          while ($forty < 40) {
+            if ($forty < 19) {
+              $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Ez' ORDER BY rand() LIMIT 19";
+              $result = mysqli_query($db, $sql);
+            } elseif ($forty < 34) {
+              $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Med' ORDER BY rand() LIMIT 15";
+              $result = mysqli_query($db, $sql);
+            } else {
+              $sql = "SELECT * FROM question WHERE Test_id = '$test_id' AND Difficulty = 'Hard' ORDER BY rand() ";
+              $result = mysqli_query($db, $sql);
+            }
+            while ($row = mysqli_fetch_assoc($result)) {
+              array_push($question_id_list, $row['Question_id']);
+              $four = 0;
+              $forty += 1;
+            ?>
+              <?php echo '<p class="debai"><span>Câu ' . $forty . ':</span> ' . $row['Question'] . '</p>'; ?>
+              <ol class="answer">
+                <?php
+                $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Question_id = $row[Question_id]";
+                $result1 = mysqli_query($db, $sql1);
+                while ($row1 = mysqli_fetch_assoc($result1)) {
+                  $four += 1;
+                  echo '<li><input type="radio" required name=' . $row['Question_id'] . ' value="' . $row1['Choice'] . '"> \(' . $row1['Answer'] . '\).</li>';
+                  if ($four == 4) {
+                    break;
+                  }
+                }
+                ?>
+              </ol>
         <?php
+            }
           }
         }
         $db->close();
         ?>
-        <input type='hidden' name='question_id_list' value="<?php echo htmlentities(serialize($question_id_list)); ?>" />
-        <input type="submit" value="Nộp bài">
+      </div>
+      <input type='hidden' name='question_id_list' value="<?php echo htmlentities(serialize($question_id_list)); ?>" />
+      <input type="submit" value="Nộp bài">
+    </form>
+    <form action="ki1-12-toan.php" name="auto" method="post">
+      <input type='hidden' name='question_id_list' value="<?php echo htmlentities(serialize($question_id_list)); ?>" />
     </form>
   </div>
 </body>
@@ -167,6 +205,12 @@ $question_id_list = array();
 <script src="../js/moment.js"></script>
 <script>
   <?php
+  if ($_SESSION["visits"] < $time_visited) { ?>
+    window.onload = function() {
+      document.forms['auto'].submit();
+    }
+  <?php
+  }
   // Set giá trị kiểm tra
   $han = 90;
   $warn_limit = 300000;
@@ -174,19 +218,6 @@ $question_id_list = array();
   ?>
   let data = window.performance.getEntriesByType("navigation")[0].type;
 
-  const question_id_list = []
-
-  //Lấy danh sách id câu hỏi được chọn ngẫu nhiên
-  question_id_list.push(
-    <?php
-    foreach ($question_id_list as $x) {
-      echo "$x,";
-    }
-    ?>
-  )
-  console.log(question_id_list)
-  //Lưu id câu hỏi
-  sessionStorage.setItem("question", JSON.stringify(question_id_list))
 
   function begin() {
     // Bắt đầu
@@ -227,7 +258,7 @@ $question_id_list = array();
 
         //Lấy lựa chọn đã nhập vào
         for (i = 0; i < ques.length; i++) {
-          if (ques[i].type = "radio") {
+          if (ques[i].type == "radio") {
             if (ques[i].checked) {
               answer_arr[i] = ques[i].value
               //Lưu lựa chọn trong sesion storage
@@ -238,13 +269,7 @@ $question_id_list = array();
       } else {
         alert("Your brower doesn't support session storage please try another brower");
       }
-      //Lấy lựa chọn từ session storage
-      const answerArray = JSON.parse(sessionStorage.getItem("answer"));
-      // for (var i = 0; i < answerArray.length; i++) {
-      // if(answerArray[i].value != null)
-      //   ques[i].checked = true
-      // }
-      //Độ trễ là 10 giây
+
     }, 10000);
 
     //Chỉnh display các element
@@ -264,7 +289,9 @@ $question_id_list = array();
   }
   //Xác định scroll đến đâu r
   setScrollvar()
+  //Nếu tải lại trang
   if (data == "reload") {
+
     //Lấy thời gian còn lại đã lưu
     var remaining = JSON.parse(sessionStorage.getItem("time"));
 
@@ -275,10 +302,6 @@ $question_id_list = array();
     //Lấy giới hạn thời gian mới
     var restart = moment();
     var limit = restart.add(remaining, 'milliseconds');
-
-    //Lấy id câu hỏi đầu
-    var reload_question_id = JSON.parse(sessionStorage.getItem("question"));
-    console.log(reload_question_id)
 
     var x = setInterval(function() {
       function time() {
@@ -295,9 +318,43 @@ $question_id_list = array();
       var hours = Math.floor((time() % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var minutes = Math.floor((time() % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((time() % (1000 * 60)) / 1000);
-
       document.getElementById("tet").innerHTML = hours + "h" + minutes + "p" + seconds + "s"
     }, 1000);
+
+    var autosend = setInterval(function() {
+      const answer_arr = []
+      if (typeof(Storage) !== "undefined") {
+        var ques = document.getElementsByTagName('input');
+
+        //Lấy thời gian còn lại
+        sessionStorage.setItem("time", JSON.stringify(remaining))
+
+        //Lấy lựa chọn đã nhập vào
+        for (i = 0; i < ques.length; i++) {
+          if (ques[i].type == "radio") {
+            if (ques[i].checked) {
+              answer_arr[i] = ques[i].value
+              //Lưu lựa chọn trong sesion storage
+              sessionStorage.setItem("answer", JSON.stringify(answer_arr))
+            }
+          }
+        }
+      } else {
+        alert("Your brower doesn't support session storage please try another brower");
+      }
+
+    }, 10000);
+
+
+
+    //Lấy kết quả
+    const answerArray = JSON.parse(sessionStorage.getItem("answer"));
+    var ques = document.getElementsByTagName('input');
+
+      for (var i = 0; i < answerArray.length; i++) {
+      if(answerArray[i] != null)
+        ques[i].checked = true
+      }
   }
 </script>
 

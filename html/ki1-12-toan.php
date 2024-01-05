@@ -167,12 +167,26 @@ $question_id_list = array();
 <script src="../js/moment.js"></script>
 <script>
   <?php
+  // Set giá trị kiểm tra
   $han = 90;
   $warn_limit = 300000;
   $submit_limit = 1000;
   ?>
   let data = window.performance.getEntriesByType("navigation")[0].type;
-  console.log(data)
+
+  const question_id_list = []
+
+  //Lấy danh sách id câu hỏi được chọn ngẫu nhiên
+  question_id_list.push(
+    <?php
+    foreach ($question_id_list as $x) {
+      echo "$x,";
+    }
+    ?>
+  )
+  console.log(question_id_list)
+  //Lưu id câu hỏi
+  sessionStorage.setItem("question", JSON.stringify(question_id_list))
 
   function begin() {
     // Bắt đầu
@@ -251,17 +265,20 @@ $question_id_list = array();
   //Xác định scroll đến đâu r
   setScrollvar()
   if (data == "reload") {
-    //Lấy giá trị đã lưu
+    //Lấy thời gian còn lại đã lưu
     var remaining = JSON.parse(sessionStorage.getItem("time"));
-    console.log("sss"+ remaining)
 
     document.getElementById("noidung").style.display = 'block'
     document.querySelector(".clock-wr").style.display = 'block'
     document.querySelector(".pop-box").style.display = 'none'
 
-    //Lấy giới hạn mới
+    //Lấy giới hạn thời gian mới
     var restart = moment();
     var limit = restart.add(remaining, 'milliseconds');
+
+    //Lấy id câu hỏi đầu
+    var reload_question_id = JSON.parse(sessionStorage.getItem("question"));
+    console.log(reload_question_id)
 
     var x = setInterval(function() {
       function time() {

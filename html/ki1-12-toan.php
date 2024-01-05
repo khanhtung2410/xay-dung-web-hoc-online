@@ -179,7 +179,6 @@ $question_id_list = array();
     var start = moment();
     // Hạn
     var limit = start.add(<?php echo ($han) ?>, 'minutes');
-    console.log(limit)
     // Lấy độ trễ
     var x = setInterval(function() {
       function time() {
@@ -211,8 +210,6 @@ $question_id_list = array();
 
         //Lấy thời gian còn lại
         sessionStorage.setItem("time", JSON.stringify(remaining))
-        //Lấy thời điểm hết giờ
-        sessionStorage.setItem("time_limit", JSON.stringify(limit))
 
         //Lấy lựa chọn đã nhập vào
         for (i = 0; i < ques.length; i++) {
@@ -256,12 +253,15 @@ $question_id_list = array();
   if (data == "reload") {
     //Lấy giá trị đã lưu
     var remaining = JSON.parse(sessionStorage.getItem("time"));
-    var limit = JSON.parse(sessionStorage.getItem("time_limit"));
-console.log(remaining)
-console.log(limit)
+    console.log("sss"+ remaining)
+
     document.getElementById("noidung").style.display = 'block'
     document.querySelector(".clock-wr").style.display = 'block'
     document.querySelector(".pop-box").style.display = 'none'
+
+    //Lấy giới hạn mới
+    var restart = moment();
+    var limit = restart.add(remaining, 'milliseconds');
 
     var x = setInterval(function() {
       function time() {

@@ -27,7 +27,10 @@ while ($question_no < 40) {
   $result1 = mysqli_query($db, $sql1);
   while ($row1 = mysqli_fetch_assoc($result1)) {
     array_push($answer, $row1['Choice']);
-    array_push($student_answer, $_POST['' . $row1['Question_id'] . '']);
+    if (isset($_POST['' . $row1['Question_id'] . '']))
+      array_push($student_answer, $_POST['' . $row1['Question_id'] . '']);
+    else
+      array_push($student_answer, "e");
   }
   $question_no += 1;
 }

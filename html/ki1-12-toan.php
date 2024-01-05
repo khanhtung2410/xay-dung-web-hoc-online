@@ -116,7 +116,7 @@ $state = 0
         ?>
       </div>
     </div>
-    <form action="/html/score.php" method="post">
+    <form action="/html/score.php" method="post" name="test">
       <input type="text" value="<?php echo ($test_id) ?>" name="test_id" style="display: none;">
       <input type="text" value="<?php echo ($subject_id) ?>" name="subject_id" style="display: none;">
       <div class="que-form">
@@ -212,7 +212,7 @@ $state = 0
   <?php
   }
   // Set giá trị kiểm tra
-  $han = 90;
+  $han = 01;
   $warn_limit = 300000;
   $submit_limit = 1000;
   ?>
@@ -237,6 +237,7 @@ $state = 0
         if (remaining < <?php echo ($submit_limit) ?>) {
           document.querySelector(".time-noti").style.display = 'Hết giờ'
           document.getElementById("tet").style.display = 'none'
+          document.forms['test'].submit();
         }
         return remaining
       }
@@ -312,6 +313,7 @@ $state = 0
         if (remaining < <?php echo ($submit_limit) ?>) {
           document.querySelector(".time-noti").style.display = 'Hết giờ'
           document.getElementById("tet").style.display = 'none'
+          document.forms['test'].submit();
         }
         return remaining
       }
@@ -351,10 +353,10 @@ $state = 0
     const answerArray = JSON.parse(sessionStorage.getItem("answer"));
     var ques = document.getElementsByTagName('input');
 
-      for (var i = 0; i < answerArray.length; i++) {
-      if(answerArray[i] != null)
+    for (var i = 0; i < answerArray.length; i++) {
+      if (answerArray[i] != null)
         ques[i].checked = true
-      }
+    }
   }
 </script>
 

@@ -116,7 +116,7 @@ $state = 0
         ?>
       </div>
     </div>
-    <form action="/html/score.php" method="post" name="test">
+    <form action="/html/score.php" method="post" name="test" onsubmit="get_time()">
       <input type="text" value="<?php echo ($test_id) ?>" name="test_id" style="display: none;">
       <input type="text" value="<?php echo ($subject_id) ?>" name="subject_id" style="display: none;">
       <div class="que-form">
@@ -192,6 +192,7 @@ $state = 0
         $db->close();
         ?>
       </div>
+      <input type='hidden' name="time_take" id="time_take" value="">
       <input type='hidden' name='question_id_list' value="<?php echo htmlentities(serialize($question_id_list)); ?>" />
       <input type="submit" value="Nộp bài">
     </form>
@@ -218,9 +219,17 @@ $state = 0
   ?>
   let data = window.performance.getEntriesByType("navigation")[0].type;
 
+  function get_time() {
+    var time_take = <?php echo $han ?> * 60 * 1000 - remaining
+    var hours = Math.floor((time_take % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((time_take % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((time_take % (1000 * 60)) / 1000);
+    document.getElementById("time_take").value = hours + ":" + minutes + ":" + seconds
+  }
 
   function begin() {
     // Bắt đầu
+    time_take = 0
     var start = moment();
     // Hạn
     var limit = start.add(<?php echo ($han) ?>, 'minutes');
@@ -237,6 +246,8 @@ $state = 0
         if (remaining < <?php echo ($submit_limit) ?>) {
           document.querySelector(".time-noti").style.display = 'Hết giờ'
           document.getElementById("tet").style.display = 'none'
+          //Nộp và lấy thời gian khi hết giờ
+          document.getElementById("time_take").value = '01:30:00'
           document.forms['test'].submit();
         }
         return remaining
@@ -313,6 +324,7 @@ $state = 0
         if (remaining < <?php echo ($submit_limit) ?>) {
           document.querySelector(".time-noti").style.display = 'Hết giờ'
           document.getElementById("tet").style.display = 'none'
+          document.getElementById("time_take").value = '01:30:00'
           document.forms['test'].submit();
         }
         return remaining
@@ -320,6 +332,7 @@ $state = 0
       var hours = Math.floor((time() % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       var minutes = Math.floor((time() % (1000 * 60 * 60)) / (1000 * 60));
       var seconds = Math.floor((time() % (1000 * 60)) / 1000);
+
       document.getElementById("tet").innerHTML = hours + "h" + minutes + "p" + seconds + "s"
     }, 1000);
 
@@ -346,8 +359,6 @@ $state = 0
       }
 
     }, 10000);
-
-
 
     //Lấy kết quả
     const answerArray = JSON.parse(sessionStorage.getItem("answer"));

@@ -10,6 +10,7 @@
   <link rel="stylesheet" type="text/css" type="text/css" href="../css/w3.css">
 
 </head>
+
 <?php
 session_start();
 include("./config.php");
@@ -21,6 +22,7 @@ $question_no = 0;
 $question_id_list = unserialize($_POST['question_id_list']);
 $subject_id = $_POST['subject_id'];
 $test_id = $_POST['test_id'];
+$time_take = $_POST['time_take'];
 
 while ($question_no < 40) {
   $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet_true WHERE Test_id = '$test_id' AND Question_id='$question_id_list[$question_no]'";
@@ -118,7 +120,7 @@ $test_name = $row['Test_name'];
     </div>
   </div>
   <div class="score-wr">
-    <p class="score-noti">Bạn được <?php echo ($score); ?> điểm</p>
+    <p class="score-noti">Bạn mất <?php echo ($time_take); ?> để được <?php echo ($score); ?> điểm</p>
   </div>
   <div id="noidung-answer">
     <div class="header">
@@ -138,7 +140,7 @@ $test_name = $row['Test_name'];
         $howmany = mysqli_num_rows($result);
         $howmany += 1;
 
-        $sql3 = "INSERT INTO test_result  (`Test_id`, `Username`,`Time_done` ,`Score`) VALUES ('$test_id', '$login_session', '$howmany','$score')";
+        $sql3 = "INSERT INTO test_result  (`Test_id`, `Username`,`Time_done` ,`Score`,`Time`) VALUES ('$test_id', '$login_session', '$howmany','$score','$time_take')";
         $result3 = mysqli_query($db, $sql3);
 
         $sql = "SELECT * FROM question WHERE Test_id = '$test_id'";

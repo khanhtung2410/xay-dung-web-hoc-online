@@ -87,7 +87,7 @@
     width: 250px;
     font-size: 18px;
     /* Tính di chuyển của box thời gian  */
-    translate: 0 calc(-1% * var(--scroll) * 8.65);
+    translate: 0 calc(-1% * var(--scroll) * 6.1);
 }
 .score-noti {
     margin-left: 5px;

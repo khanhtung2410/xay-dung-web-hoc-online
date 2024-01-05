@@ -127,6 +127,9 @@ include("./config.php")
             <th class="hd">
               <p class="filter__link filter__link--number">Điểm</p>
             </th>
+            <th class="hd">
+              <p class="filter__link filter__link--number">Thời gian</p>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -140,6 +143,7 @@ include("./config.php")
               <td><?php echo $row['Test_id']; ?></td>
               <td><?php echo $row['Time_done']; ?></td>
               <td><?php echo $row['Score']; ?></td>
+              <td><?php echo $row['Time']; ?></td>
             </tr>
           <?php
           }

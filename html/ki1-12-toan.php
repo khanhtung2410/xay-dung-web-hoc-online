@@ -212,7 +212,7 @@ $state = 0
   <?php
   }
   // Set giá trị kiểm tra
-  $han = 01;
+  $han = 90;
   $warn_limit = 300000;
   $submit_limit = 1000;
   ?>

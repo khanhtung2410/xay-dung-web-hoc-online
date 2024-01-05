@@ -136,7 +136,7 @@ $question_id_list = array();
             $four = 0;
             $forty += 1;
         ?>
-            <?php echo '<p class="debai"><span>Câu ' . $forty . ':' . $row['Difficulty'] . '</span> ' . $row['Question'] . '</p>'; ?>
+            <?php echo '<p class="debai"><span>Câu ' . $forty . ':</span> ' . $row['Question'] . '</p>'; ?>
             <ol class="answer">
               <?php
               $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Question_id = $row[Question_id]";
@@ -171,12 +171,15 @@ $question_id_list = array();
   $warn_limit = 300000;
   $submit_limit = 1000;
   ?>
+  let data = window.performance.getEntriesByType("navigation")[0].type;
+  console.log(data)
 
   function begin() {
     // Bắt đầu
     var start = moment();
     // Hạn
-    var limit = start.add(<?php echo($han) ?>, 'minutes');
+    var limit = start.add(<?php echo ($han) ?>, 'minutes');
+    console.log(limit)
     // Lấy độ trễ
     var x = setInterval(function() {
       function time() {
@@ -184,10 +187,10 @@ $question_id_list = array();
         //Tính thời gian còn lại
         remaining = limit - now;
         //Đổi màu nếu còn ít hơn 5p
-        if (remaining < <?php echo($warn_limit) ?>)
+        if (remaining < <?php echo ($warn_limit) ?>)
           document.querySelector(".clock-wr").style.backgroundColor = 'rgb(252, 39, 39)'
         //Thông báo hết giờ
-        if (remaining < <?php echo($submit_limit) ?>) {
+        if (remaining < <?php echo ($submit_limit) ?>) {
           document.querySelector(".time-noti").style.display = 'Hết giờ'
           document.getElementById("tet").style.display = 'none'
         }
@@ -200,6 +203,39 @@ $question_id_list = array();
 
       document.getElementById("tet").innerHTML = hours + "h" + minutes + "p" + seconds + "s"
     }, 1000);
+
+    var autosend = setInterval(function() {
+      const answer_arr = []
+      if (typeof(Storage) !== "undefined") {
+        var ques = document.getElementsByTagName('input');
+
+        //Lấy thời gian còn lại
+        sessionStorage.setItem("time", JSON.stringify(remaining))
+        //Lấy thời điểm hết giờ
+        sessionStorage.setItem("time_limit", JSON.stringify(limit))
+
+        //Lấy lựa chọn đã nhập vào
+        for (i = 0; i < ques.length; i++) {
+          if (ques[i].type = "radio") {
+            if (ques[i].checked) {
+              answer_arr[i] = ques[i].value
+              //Lưu lựa chọn trong sesion storage
+              sessionStorage.setItem("answer", JSON.stringify(answer_arr))
+            }
+          }
+        }
+      } else {
+        alert("Your brower doesn't support session storage please try another brower");
+      }
+      //Lấy lựa chọn từ session storage
+      const answerArray = JSON.parse(sessionStorage.getItem("answer"));
+      // for (var i = 0; i < answerArray.length; i++) {
+      // if(answerArray[i].value != null)
+      //   ques[i].checked = true
+      // }
+      //Độ trễ là 10 giây
+    }, 10000);
+
     //Chỉnh display các element
     document.getElementById("noidung").style.display = 'block'
     document.querySelector(".clock-wr").style.display = 'block'
@@ -217,6 +253,35 @@ $question_id_list = array();
   }
   //Xác định scroll đến đâu r
   setScrollvar()
+  if (data == "reload") {
+    //Lấy giá trị đã lưu
+    var remaining = JSON.parse(sessionStorage.getItem("time"));
+    var limit = JSON.parse(sessionStorage.getItem("time_limit"));
+console.log(remaining)
+console.log(limit)
+    document.getElementById("noidung").style.display = 'block'
+    document.querySelector(".clock-wr").style.display = 'block'
+    document.querySelector(".pop-box").style.display = 'none'
+
+    var x = setInterval(function() {
+      function time() {
+        var now = moment();
+        remaining = limit - now;
+        if (remaining < <?php echo ($warn_limit) ?>)
+          document.querySelector(".clock-wr").style.backgroundColor = 'rgb(252, 39, 39)'
+        if (remaining < <?php echo ($submit_limit) ?>) {
+          document.querySelector(".time-noti").style.display = 'Hết giờ'
+          document.getElementById("tet").style.display = 'none'
+        }
+        return remaining
+      }
+      var hours = Math.floor((time() % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((time() % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((time() % (1000 * 60)) / 1000);
+
+      document.getElementById("tet").innerHTML = hours + "h" + minutes + "p" + seconds + "s"
+    }, 1000);
+  }
 </script>
 
 </html>

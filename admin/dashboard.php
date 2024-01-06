@@ -65,6 +65,10 @@ $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
          <a href="contents.php" class="btn">Danh sách video</a>
       </div>
 
+      <div class="box">
+         <a href="comments.php" class="btn">Xem comment</a>
+      </div>
+
       <div class="box">         
          <h3>Danh sách playlist</h3>
          <div class="flex-btn">

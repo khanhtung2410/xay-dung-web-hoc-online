@@ -52,7 +52,7 @@ if (isset($_POST['update'])) {
          $update_thumb->execute([$rename_thumb, $video_id]);
          move_uploaded_file($thumb_tmp_name, $thumb_folder);
          if ($old_thumb != '' and $old_thumb != $rename_thumb) {
-            unlink('../uploaded_files/' .$old_thumb);
+            unlink('../uploaded_files/' . $old_thumb);
          }
       }
    }
@@ -114,7 +114,7 @@ if (isset($_POST['delete_video'])) {
 </head>
 
 <body>
-<?php include '../components/admin_header.php'; ?>
+   <?php include '../components/admin_header.php'; ?>
    <section class="video-form">
 
       <h1 class="heading">Cập nhật video</h1>
@@ -174,4 +174,5 @@ if (isset($_POST['delete_video'])) {
 
    </section>
 </body>
+
 </html>

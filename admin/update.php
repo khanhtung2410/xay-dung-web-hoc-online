@@ -43,7 +43,7 @@ if(isset($_POST['submit'])){
 
    $image = $_FILES['image']['name'];
    $image = filter_var($image, FILTER_SANITIZE_STRING);
-   $ext = pathinfo($image, PATHINFO_EXTENSION);
+   $ext = pathinfo($image, PATHINFO_EXTENSION);//lấy thông tin vêf phần mở rộng 
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
    $image_tmp_name = $_FILES['image']['tmp_name'];
@@ -51,7 +51,7 @@ if(isset($_POST['submit'])){
 
    if(!empty($image)){
       if($image_size > 2000000){
-         $message[] = 'image size too large!';
+         $message[] = 'dung lượng ảnh quá lớn!';
       }else{
          $update_image = $conn->prepare("UPDATE `tutors` SET `image` = ? WHERE id = ?");
          $update_image->execute([$rename, $tutor_id]);
@@ -59,7 +59,7 @@ if(isset($_POST['submit'])){
          if($prev_image != '' AND $prev_image != $rename){
             unlink('../uploaded_files/'.$prev_image);
          }
-         $message[] = 'anhe cập nhật thành công!';
+         $message[] = 'ảnh cập nhật thành công!';
       }
    }
 

@@ -44,7 +44,6 @@
       <div class="tutor">
          <img src="../uploaded_files/<?= $fetch_profile['image']; ?>" alt="">
          <h3><?= $fetch_profile['name']; ?></h3>
-         <span><?= $fetch_profile['profession']; ?></span>
          <a href="update.php" class="inline-btn">Cập nhật profile</a>
       </div>
       <div class="flex">

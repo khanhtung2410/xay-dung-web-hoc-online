@@ -16,22 +16,22 @@ if(isset($_GET['get_id'])){
    header('location:contents.php');
 }
 
-if(isset($_POST['delete_video'])){
+// if(isset($_POST['delete_video'])){
 
-   $delete_id = $_POST['video_id'];
-   $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
+//    $delete_id = $_POST['video_id'];
+//    $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
 
-   $delete_video_thumb = $conn->prepare("SELECT thumb FROM `content` WHERE id = ? LIMIT 1");
-   $delete_video_thumb->execute([$delete_id]);
-   $fetch_thumb = $delete_video_thumb->fetch(PDO::FETCH_ASSOC);
-   unlink('../uploaded_files/'.$fetch_thumb['thumb']);
+//    $delete_video_thumb = $conn->prepare("SELECT thumb FROM `content` WHERE id = ? LIMIT 1");
+//    $delete_video_thumb->execute([$delete_id]);
+//    $fetch_thumb = $delete_video_thumb->fetch(PDO::FETCH_ASSOC);
+//    unlink('../uploaded_files/'.$fetch_thumb['thumb']);
 
-   $delete_video = $conn->prepare("SELECT video FROM `content` WHERE id = ? LIMIT 1");
-   $delete_video->execute([$delete_id]);
-   $fetch_video = $delete_video->fetch(PDO::FETCH_ASSOC);
-   unlink('../uploaded_files/'.$fetch_video['video']);
+//    $delete_video = $conn->prepare("SELECT video FROM `content` WHERE id = ? LIMIT 1");
+//    $delete_video->execute([$delete_id]);
+//    $fetch_video = $delete_video->fetch(PDO::FETCH_ASSOC);
+//    unlink('../uploaded_files/'.$fetch_video['video']);
     
-}
+// }
 
 ?>
 
@@ -48,7 +48,6 @@ if(isset($_POST['delete_video'])){
 </head>
 <body>
 <?php include '../components/admin_header.php'; ?>
-
 
 <section class="view-content">
 
@@ -76,12 +75,9 @@ if(isset($_POST['delete_video'])){
     }
    }else{
       echo '<p class="empty">Chưa có video! <a href="add_content.php" class="btn" style="margin-top: 1.5rem;">Thêm videos</a></p>';
-   }
-      
+   }    
    ?>
-
 </section>
-
 
 </body>
 </html>

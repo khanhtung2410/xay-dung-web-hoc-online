@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_STRING);
    $email = $_POST['email'];
-   $email = filter_var($email, FILTER_SANITIZE_STRING);
+   $email = filter_var($email, FILTER_SANITIZE_STRING);// filter_var để lọc
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_STRING);
    $cpass = sha1($_POST['cpass']);
@@ -17,9 +17,10 @@ if(isset($_POST['submit'])){
    $image = $_FILES['image']['name'];
    $image = filter_var($image, FILTER_SANITIZE_STRING);
    $ext = pathinfo($image, PATHINFO_EXTENSION);
+   //lấy phần mở rộng để đặt tên mới cho ảnh
    $rename = unique_id().'.'.$ext;
    $image_size = $_FILES['image']['size'];
-   $image_tmp_name = $_FILES['image']['tmp_name'];
+   $image_tmp_name = $_FILES['image']['tmp_name']; //lưu tạm thời
    $image_folder = '../uploaded_files/'.$rename;
 
    $select_tutor = $conn->prepare("SELECT * FROM `tutors` WHERE email = ?");

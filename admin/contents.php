@@ -9,25 +9,20 @@ if(isset($_COOKIE['tutor_id'])){
    header('location:login.php');
 }
 
-if(isset($_POST['delete_video'])){
-   $delete_id = $_POST['video_id'];
+if(isset($_POST['delete_comment'])){
+
+   $delete_id = $_POST['comment_id'];
    $delete_id = filter_var($delete_id, FILTER_SANITIZE_STRING);
-   $verify_video = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
-   $verify_video->execute([$delete_id]);
-   if($verify_video->rowCount() > 0){
-      $delete_video_thumb = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
-      $delete_video_thumb->execute([$delete_id]);
-      $fetch_thumb = $delete_video_thumb->fetch(PDO::FETCH_ASSOC);
-      unlink('../uploaded_files/'.$fetch_thumb['thumb']);
-      $delete_video = $conn->prepare("SELECT * FROM `content` WHERE id = ? LIMIT 1");
-      $delete_video->execute([$delete_id]);
-      $fetch_video = $delete_video->fetch(PDO::FETCH_ASSOC);
-      unlink('../uploaded_files/'.$fetch_video['video']);
-      $delete_content = $conn->prepare("DELETE FROM `content` WHERE id = ?");
-      $delete_content->execute([$delete_id]);
-      $message[] = 'Đã xóa video!';
+
+   $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ?");
+   $verify_comment->execute([$delete_id]);
+
+   if($verify_comment->rowCount() > 0){
+      $delete_comment = $conn->prepare("DELETE FROM `comments` WHERE id = ?");
+      $delete_comment->execute([$delete_id]);
+      $message[] = 'comment đã xóa thành công!';
    }else{
-      $message[] = 'video đã bị xóa!';
+      $message[] = 'comment đã xóa!';
    }
 
 }
@@ -41,53 +36,50 @@ if(isset($_POST['delete_video'])){
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Dashboard</title>
+
+   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <!-- custom css file link  -->
    <link rel="stylesheet" href="../css/admin_style.css">
 
 </head>
 <body>
+
 <?php include '../components/admin_header.php'; ?>
    
-<section class="contents">
 
-   <h1 class="heading">Video của bạn</h1>
+<section class="comments">
 
-   <div class="box-container">
+   <h1 class="heading">user comments</h1>
 
-   <div class="box" style="text-align: center;">
-      <h3 class="title" style="margin-bottom: .5rem;">Tạo video mới</h3>
-      <a href="add_content.php" class="btn">Thêm video</a>
-   </div>
-
-   <?php
-      $select_videos = $conn->prepare("SELECT * FROM `content` WHERE tutor_id = ? ORDER BY date DESC");
-      $select_videos->execute([$tutor_id]);
-      if($select_videos->rowCount() > 0){
-         while($fecth_videos = $select_videos->fetch(PDO::FETCH_ASSOC)){ 
-            $video_id = $fecth_videos['id'];
-   ?>
-      <div class="box">
-         <div class="flex">
-            <div><i class="fas fa-calendar"></i><span><?= $fecth_videos['date']; ?></span></div>
-         </div>
-         <img src="../uploaded_files/<?= $fecth_videos['thumb']; ?>" class="thumb" alt="">
-         <h3 class="title"><?= $fecth_videos['title']; ?></h3>
-         <form action="" method="post" class="flex-btn">
-            <input type="hidden" name="video_id" value="<?= $video_id; ?>">
-            <a href="update_content.php?get_id=<?= $video_id; ?>" class="option-btn">Cập nhật</a>
-            <input type="submit" value="Xóa" class="delete-btn" onclick="return confirm('Xóa video này?');" name="delete_video">
+   
+   <div class="show-comments">
+      <?php
+         $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE tutor_id = ?");
+         $select_comments->execute([$tutor_id]);
+         if($select_comments->rowCount() > 0){
+            while($fetch_comment = $select_comments->fetch(PDO::FETCH_ASSOC)){
+               $select_content = $conn->prepare("SELECT * FROM `content` WHERE id = ?");
+               $select_content->execute([$fetch_comment['content_id']]);
+               $fetch_content = $select_content->fetch(PDO::FETCH_ASSOC);
+      ?>
+      <div class="box" style="<?php if($fetch_comment['tutor_id'] == $tutor_id){echo 'order:-1;';} ?>">
+         <div class="content"><span><?= $fetch_comment['date']; ?></span><p> - <?= $fetch_content['title']; ?> - </p><a href="view_content.php?get_id=<?= $fetch_content['id']; ?>">view content</a></div>
+         <p class="text"><?= $fetch_comment['comment']; ?></p>
+         <form action="" method="post">
+            <input type="hidden" name="comment_id" value="<?= $fetch_comment['id']; ?>">
+            <button type="submit" name="delete_comment" class="inline-delete-btn" onclick="return confirm('Xóa comment?');">delete comment</button>
          </form>
-         <a href="view_content.php?get_id=<?= $video_id; ?>" class="btn">Xem video</a>
       </div>
-   <?php
-         }
+      <?php
+       }
       }else{
-         echo '<p class="empty">Không có video!</p>';
+         echo '<p class="empty">Chưa có comment!</p>';
       }
-   ?>
-
-   </div>
-
+      ?>
+      </div>
+   
 </section>
 
 </body>

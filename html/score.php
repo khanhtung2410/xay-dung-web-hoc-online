@@ -41,9 +41,6 @@ for ($i = 0; $i < 40; $i++) {
     $score += 0.25;
 }
 
-$sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Test_id = '$test_id'";
-$result1 = mysqli_query($db, $sql1);
-
 $sql2 = "SELECT * FROM test WHERE Test_id = '$test_id'";
 $result2 = mysqli_query($db, $sql2);
 $row = mysqli_fetch_assoc($result2);
@@ -138,11 +135,27 @@ $test_name = $row['Test_name'];
         $sql = "SELECT * FROM test_result WHERE Test_id='$test_id' AND Username='$login_session'";
         $result = mysqli_query($db, $sql);
         $howmany = mysqli_num_rows($result);
-        $howmany += 1;
 
-        $sql3 = "INSERT INTO test_result  (`Test_id`, `Username`,`Time_done` ,`Score`,`Time`) VALUES ('$test_id', '$login_session', '$howmany','$score','$time_take')";
-        $result3 = mysqli_query($db, $sql3);
+        if (!isset($_SESSION["visits"])) {
+          $_SESSION["visits"] = 0;
+        }
+        $_SESSION["visits"] = $_SESSION["visits"] + 1;
 
+        if ($_SESSION["visits"] > 1) {
+          $sql1 = "SELECT * FROM test_result WHERE Test_id='$test_id' AND Username='$login_session' AND Time_done='$howmany'";
+          $result1 = mysqli_query($db, $sql1);
+          $row1 = mysqli_fetch_assoc($result1);
+
+          if ($row1['Time'] != $time_take and $row1['Score'] != $score) {
+            $howmany += 1;
+            $sql3 = "INSERT INTO test_result  (`Test_id`, `Username`,`Time_done` ,`Score`,`Time`) VALUES ('$test_id', '$login_session', '$howmany','$score','$time_take')";
+            $result3 = mysqli_query($db, $sql3);
+          }
+        } else {
+          $howmany += 1;
+          $sql3 = "INSERT INTO test_result  (`Test_id`, `Username`,`Time_done` ,`Score`,`Time`) VALUES ('$test_id', '$login_session', '$howmany','$score','$time_take')";
+          $result3 = mysqli_query($db, $sql3);
+        }
         $sql = "SELECT * FROM question WHERE Test_id = '$test_id'";
         $result = mysqli_query($db, $sql);
         $test_answer_position = 0;
@@ -154,6 +167,8 @@ $test_name = $row['Test_name'];
           <?php echo '<p class="debai"><span>Câu ' . $row['Question_id'] . ':</span> ' . $row['Question'] . '</p>'; ?>
           <ol class="answer">
             <?php
+            $sql1 = "SELECT Answer, Choice,Question_id FROM answer_sheet WHERE Test_id = '$test_id'";
+            $result1 = mysqli_query($db, $sql1);
             while ($row1 = mysqli_fetch_assoc($result1)) {
               $four += 1;
               if ($row1['Choice'] == $answer[$test_answer_position]) {

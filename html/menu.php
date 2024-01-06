@@ -12,7 +12,7 @@
 </head>
 <?php
 session_start();
-include ("./config.php")
+include("./config.php")
 ?>
 
 <body style="background-color: white;">
@@ -28,7 +28,11 @@ include ("./config.php")
               <span class="w3-padding-large w3-bar-item">Toán</span>
               <div class="lop">
                 <a class="w3-bar-item w3-button w3-padding-large" href="/html/lopthuong.php?subject=1">Lớp thường</a>
-                <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+                <?php if (isset($_SESSION['login_user'])) : ?>
+                  <a class="w3-bar-item w3-button w3-padding-large" href="/html/ki1-12-toan.php">Luyện đề</a>;
+                <?php else : ?>
+                  <a class="w3-bar-item w3-button w3-padding-large" onclick="return confirm('Bạn cần đăng nhập để làm bài kiểm tra')" href="/html/dang-nhap.php">Luyện đề</a>
+                <?php endif; ?>
               </div>
 
             </div>
@@ -36,7 +40,11 @@ include ("./config.php")
               <span class="w3-padding-large w3-bar-item">Lý</span>
               <div class="lop">
                 <a class="w3-bar-item w3-button w3-padding-large" href="/html/lopthuong.php?subject=2">Lớp thường</a>
-                <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+                <?php if (isset($_SESSION['login_user'])) : ?>
+                  <a class="w3-bar-item w3-button w3-padding-large" href="#luyende">Luyện đề</a>;
+                <?php else : ?>
+                  <a class="w3-bar-item w3-button w3-padding-large" onclick="return confirm('Bạn cần đăng nhập để làm bài kiểm tra')" href="/html/dang-nhap.php">Luyện đề</a>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -52,7 +60,11 @@ include ("./config.php")
             <span class="w3-padding-large w3-bar-item">Toán</span>
             <div class="lop">
               <a class="w3-bar-item w3-button w3-padding-large" href="/html/lopthuong.php?subject=1">Lớp thường</a>
-              <a class="w3-bar-item w3-button w3-padding-large" href="/html/ki1-12-toan.php">Luyện đề</a>
+              <?php if (isset($_SESSION['login_user'])) : ?>
+                <a class="w3-bar-item w3-button w3-padding-large" href="/html/ki1-12-toan.php">Luyện đề</a>;
+              <?php else : ?>
+                <a class="w3-bar-item w3-button w3-padding-large" onclick="return confirm('Bạn cần đăng nhập để làm bài kiểm tra')" href="/html/dang-nhap.php">Luyện đề</a>
+              <?php endif; ?>
             </div>
           </div>
 
@@ -60,7 +72,11 @@ include ("./config.php")
             <span class="w3-padding-large w3-bar-item">Lý</span>
             <div class="lop">
               <a class="w3-bar-item w3-button w3-padding-large" href="/html/lopthuong.php?subject=2">Lớp thường</a>
-              <a class="w3-bar-item w3-button w3-padding-large" href="#luyện đề">Luyện đề</a>
+              <?php if (isset($_SESSION['login_user'])) : ?>
+                <a class="w3-bar-item w3-button w3-padding-large" href="#luyende">Luyện đề</a>;
+              <?php else : ?>
+                <a class="w3-bar-item w3-button w3-padding-large" onclick="return confirm('Bạn cần đăng nhập để làm bài kiểm tra')" href="/html/dang-nhap.php">Luyện đề</a>
+              <?php endif; ?>
             </div>
           </div>
         </div>
@@ -68,13 +84,13 @@ include ("./config.php")
       <a class="w3-bar-item w3-button w3-padding-large" href="/html/about.html">Về chúng tôi</a>
     </div>
     <div class="authorize">
-      <?php if (isset($_SESSION['login_user'])) :?>
-       <?php
+      <?php if (isset($_SESSION['login_user'])) : ?>
+        <?php
         $user_check = $_SESSION['login_user'];
         $ses_sql = mysqli_query($db, "select Username from user where Username = '$user_check' ");
         $row = mysqli_fetch_array($ses_sql, MYSQLI_ASSOC);
-        $login_session = $row['Username']; 
-        echo '<a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/profile.php">Welcome,'.$login_session.'</a>';
+        $login_session = $row['Username'];
+        echo '<a class="w3-bar-item w3-button w3-right w3-padding-large" href="/html/profile.php">Welcome,' . $login_session . '</a>';
         ?>
       <?php else : ?>
         <a class="w3-bar-item w3-button w3-right w3-padding-large" onclick="login()" href="/html/dang-nhap.php">Đăng
